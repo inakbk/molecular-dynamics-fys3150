@@ -80,15 +80,49 @@ void System::resetForcesOnAllAtoms() {
 
 void System::createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant, double temperature) {
     // You should implement this function properly. Right now, 100 atoms are created uniformly placed in the system of size (10, 10, 10).
-    for(int i=0; i<100; i++) {
-        Atom *atom = new Atom(UnitConverter::massFromSI(6.63352088e-26));
-        double x = Random::nextDouble()*10; // random number in the interval [0,10]
-        double y = Random::nextDouble()*10;
-        double z = Random::nextDouble()*10;
-        atom->position.set(x,y,z);
-        atom->resetVelocityMaxwellian(temperature);
-        m_atoms.push_back(atom);
+    int N = 100;
+    //int N_y = 100;
+
+    for(int i=0; i<N-1; i++) {
+        for(int j=0; j<N-1; j++){
+            for(int k=0; k<N-1; k++){
+
+                // one unit cell:
+                Atom *atom1 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
+                double x = 0 + latticeConstant*i;
+                double y = 0 + latticeConstant*j;
+                double z = 0 + latticeConstant*k;
+                atom1->position.set(x,y,z);
+                atom1->resetVelocityMaxwellian(temperature);
+                m_atoms.push_back(atom1);
+
+                Atom *atom2 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
+                x = latticeConstant/2 + latticeConstant*i;
+                y = latticeConstant/2 + latticeConstant*j;
+                z = 0 + latticeConstant*k;
+                atom2->position.set(x,y,z);
+                atom2->resetVelocityMaxwellian(temperature);
+                m_atoms.push_back(atom2);
+
+                Atom *atom3 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
+                x = 0 + latticeConstant*i;
+                y = latticeConstant/2 + latticeConstant*j;
+                z = latticeConstant/2 + latticeConstant*k;
+                atom3->position.set(x,y,z);
+                atom3->resetVelocityMaxwellian(temperature);
+                m_atoms.push_back(atom3);
+
+                Atom *atom4 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
+                x = latticeConstant/2 + latticeConstant*i;
+                y = 0 + latticeConstant*j;
+                z = latticeConstant/2 + latticeConstant*k;
+                atom4->position.set(x,y,z);
+                atom4->resetVelocityMaxwellian(temperature);
+                m_atoms.push_back(atom4);
+            }
+        }
     }
+
     setSystemSize(vec3(10, 10, 10));
 }
 
