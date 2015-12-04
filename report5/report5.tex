@@ -114,15 +114,13 @@ see 'Areas of application and limitations' at \url{https://en.wikipedia.org/wiki
 \section{Numerical methods}
 
 \subsection{Periodic boundaryconditions (PBCs)}
-To avoid problems with boundary effects we will apply periodic boundary conditions using a small part called a unit cell so that we simulate a system of infinite size. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of the unit cell, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the lattice at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the lattice will interact with an atom at the opposite side of the lattice so that every atom have the same number of 'neighbours'. 
+To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
 
-The size of the simulation box(?define) must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}. Eller er det nettopp dette som skjer her??
+MD simulations that use periodic boundary conditions have a large number of unit cells (define?)
 
-MD simulations that use periodic boundary conditions have a large number of unit cells where one is the 'original' and the others are copies called images. 
+The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
 
-During the simulation, only the properties of the original simulation box need to be recorded and propagated. 
-
-\paragraph{The minimum image convention}
+\paragraph{The minimum image convention} (due to calculation of forces)
 When an atom leave the simulation box it must re-enter the box on the opposite side. This leads to two possible strategic choices: (A) 'fold back' particles into the simulation box when they leave it, or (B) let them go on into the other side of the box?
 
 ....ahh, this is relevant for computing forces/potentials!

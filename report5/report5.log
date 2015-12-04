@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  3 DEC 2015 18:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  4 DEC 2015 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -431,21 +431,21 @@ rt5.toc)
 
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 119--119
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Periodic _ bo
 undary _ conditions # Practical _ implementation :
  []
 
 [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 143.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 141.
  [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 143.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
  (./report5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 143.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 143.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 141.
 Package rerunfilecheck Info: File `report5.out' has not changed.
 (rerunfilecheck)             Checksum: CDD40CAFAD930D288C94F10FB197863C;294.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 143.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 141.
  ) 
 Here is how much of TeX's memory you used:
  7690 strings out of 493117
@@ -454,7 +454,7 @@ Here is how much of TeX's memory you used:
  11011 multiletter control sequences out of 15000+600000
  22011 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,8n,58p,744b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,58p,649b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></
 usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></us
@@ -471,7 +471,7 @@ e/2014/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/t
 exmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/tex
 mf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on report5.pdf (4 pages, 287540 bytes).
+Output written on report5.pdf (4 pages, 287084 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  105 compressed objects within 2 object streams
