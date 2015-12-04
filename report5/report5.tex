@@ -14,6 +14,7 @@
 
 \setcounter{tocdepth}{2}
 \usepackage{url} %url + line break
+\newcommand{\dm}[1]{\mathrm{d}#1}
 
 \lstset{language=c++}
 \lstset{alsolanguage=[90]Fortran}
@@ -126,6 +127,36 @@ When an atom leave the simulation box it must re-enter the box on the opposite s
 ....ahh, this is relevant for computing forces/potentials!
 An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
 
+\subsection{The Maxwell-Boltzmann distrubution}
+The atoms are usually given velocities according to the Maxwell-Boltzmann distribution so that
+\begin{align}
+	\label{eq:maxwell_boltzmann}
+	P(v_i)\dm{v_i} = \left(\frac{m}{2\pi k_B T}\right)^{1/2} \exp\left(-\frac{m v_i^2}{2k_B T}\right) \dm{v_i},
+\end{align}
+where $m$ is the mass of the atom, $k_B$ is Boltzmann's constant and $T$ is the temperature. We recognize this as a normal distribution with zero mean and standard deviation $\sigma = \sqrt{k_B T/m}$. This is a good choice because bla bla bla bla (?) 
+
+
+But this will result in a nonzero net momentum in the system which we will remove. The momentum in a given direction for one atom is $p_{i} = mv_i$ where the mass is $m$ and $v_i$ is the velocity in direction $i$. The total momentum in one direction, assuming that all particles have the same mass, is given by:
+\[
+p_{tot} = m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})
+\]
+where $n$ is the total number of atoms in the simulation. 
+
+We want to remove this momentum evenly from all the particles. The momentum we want to remove from each particle is then:
+\[
+p_{rm} = \frac{p_{tot}}{n}
+\]
+so that $p_i'$ is the momentum for one particle after removing the total momentum:
+\[
+p_i' = p_i - p_{rm} 
+\]
+If we write this out
+\begin{align*}
+mv_i' &= mv_i - \frac{m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})}{n} \\
+\Rightarrow v_i' &= v_i - \frac{v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n}}{n} \\
+&= v_i - \overline{v_i}
+\end{align*}
+We see that to remove the total momentum we only have to substract the average velocity from each of the particles velocity. 
 
 
 \subsection{intergration methods}
