@@ -22,7 +22,7 @@ int main(int numberOfArguments, char **argumentList)
     // If a second argument is provided, it is the initial temperature (measured in kelvin)
     if(numberOfArguments > 2) initialTemperature = UnitConverter::temperatureFromSI(atof(argumentList[2]));
     // If a third argument is provided, it is the lattice constant determining the density (measured in angstroms)
-    if(numberOfArguments > 3) initialTemperature = UnitConverter::lengthFromAngstroms(atof(argumentList[3]));
+    if(numberOfArguments > 3) latticeConstant = UnitConverter::lengthFromAngstroms(atof(argumentList[3]));
 
     double dt = UnitConverter::timeFromSI(1e-15); // Measured in seconds
 
@@ -33,6 +33,7 @@ int main(int numberOfArguments, char **argumentList)
     cout << "One unit of temperature is " << UnitConverter::temperatureToSI(1.0) << " K" << endl;
 
     System system;
+
     system.createFCCLattice(numberOfUnitCells, latticeConstant, initialTemperature);
     system.setPotential(new LennardJones(1.0, 1.0)); // You must insert correct parameters here
     system.setIntegrator(new EulerCromer());
@@ -49,6 +50,7 @@ int main(int numberOfArguments, char **argumentList)
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
             cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << endl;
+            cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
         }
         movie.saveState(&system);
     }

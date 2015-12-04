@@ -28,6 +28,11 @@ void StatisticsSampler::sampleKineticEnergy(System &system)
     for(Atom *atom : system.atoms()) {
 
     }
+
+    for(int i=0; i<system.atoms().size(); i++) {
+        Atom *atom = system.atoms()[i];
+
+    }
 }
 
 void StatisticsSampler::samplePotentialEnergy(System &system)
