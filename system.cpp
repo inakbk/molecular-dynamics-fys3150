@@ -23,19 +23,24 @@ System::~System()
 void System::applyPeriodicBoundaryConditions() {
     // Read here: http://en.wikipedia.org/wiki/Periodic_boundary_conditions#Practical_implementation:_continuity_and_the_minimum_image_convention
 
-    for(Atom *atom : m_atoms) {
-        double x = atom->position[0];
-        double y = atom->position[1];
-        double z = atom->position[2];
-        if(x<0) x += m_systemSize[0];
-        if(y<0) y += m_systemSize[1];
-        if(z<0) z += m_systemSize[2];
-        if(x>m_systemSize[0]) x -= m_systemSize[0];
-        if(y>m_systemSize[1]) y -= m_systemSize[1];
-        if(z>m_systemSize[2]) z -= m_systemSize[2];
-        atom->position[0] = x;
-        atom->position[1] = y;
-        atom->position[2] = z;
+    for(Atom *atom : m_atoms) { //this does something weird
+//        double x = atom->position[0];
+//        double y = atom->position[1];
+//        double z = atom->position[2];
+//        std::cout << "Before, x: " << x << " y: " << y << " z: " << z << std::endl;
+
+//        if(x<0) x += m_systemSize[0];
+//        if(y<0) y += m_systemSize[1];
+//        if(z<0) z += m_systemSize[2];
+//        if(x>m_systemSize[0]) x -= m_systemSize[0];
+//        if(y>m_systemSize[1]) y -= m_systemSize[1];
+//        if(z>m_systemSize[2]) z -= m_systemSize[2];
+//        atom->position[0] = x;
+//        atom->position[1] = y;
+//        atom->position[2] = z;
+
+//        std::cout << "After, x: " << x << " y: " << y << " z: " << z << std::endl;
+
 
         //r_0 must also be corrected here
     }
@@ -81,14 +86,15 @@ void System::resetForcesOnAllAtoms() {
 void System::createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant, double temperature) {
     // You should implement this function properly. Right now, 100 atoms are created uniformly placed in the system of size (10, 10, 10).
 
-    for(int i=0; i<numberOfUnitCellsEachDimension-1; i++) {
-        for(int j=0; j<numberOfUnitCellsEachDimension-1; j++){
-            for(int k=0; k<numberOfUnitCellsEachDimension-1; k++){
+    for(int i=0; i<numberOfUnitCellsEachDimension; i++) {
+        for(int j=0; j<numberOfUnitCellsEachDimension; j++){
+            for(int k=0; k<numberOfUnitCellsEachDimension; k++){
                 // one unit cell:
                 Atom *atom1 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
                 double x = 0 + latticeConstant*i;
                 double y = 0 + latticeConstant*j;
                 double z = 0 + latticeConstant*k;
+                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom1->position.set(x,y,z);
                 atom1->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom1);
@@ -97,6 +103,7 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 x = latticeConstant*0.5 + latticeConstant*i;
                 y = latticeConstant*0.5 + latticeConstant*j;
                 z = 0 + latticeConstant*k;
+                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom2->position.set(x,y,z);
                 atom2->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom2);
@@ -105,6 +112,7 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 x = 0 + latticeConstant*i;
                 y = latticeConstant*0.5 + latticeConstant*j;
                 z = latticeConstant*0.5 + latticeConstant*k;
+                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom3->position.set(x,y,z);
                 atom3->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom3);
@@ -113,13 +121,15 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 x = latticeConstant*0.5 + latticeConstant*i;
                 y = 0 + latticeConstant*j;
                 z = latticeConstant*0.5 + latticeConstant*k;
+                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom4->position.set(x,y,z);
                 atom4->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom4);
             }
         }
     }
-    setSystemSize(vec3(numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension));
+    setSystemSize(vec3(latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension));
+    //std::cout << "this is b: " << latticeConstant << " this is nr " << numberOfUnitCellsEachDimension << std::endl;
 }
 
 void System::calculateForces() {
