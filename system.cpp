@@ -80,13 +80,10 @@ void System::resetForcesOnAllAtoms() {
 
 void System::createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant, double temperature) {
     // You should implement this function properly. Right now, 100 atoms are created uniformly placed in the system of size (10, 10, 10).
-    int N = 100;
-    //int N_y = 100;
 
-    for(int i=0; i<N-1; i++) {
-        for(int j=0; j<N-1; j++){
-            for(int k=0; k<N-1; k++){
-
+    for(int i=0; i<numberOfUnitCellsEachDimension-1; i++) {
+        for(int j=0; j<numberOfUnitCellsEachDimension-1; j++){
+            for(int k=0; k<numberOfUnitCellsEachDimension-1; k++){
                 // one unit cell:
                 Atom *atom1 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
                 double x = 0 + latticeConstant*i;
@@ -122,8 +119,7 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
             }
         }
     }
-
-    setSystemSize(vec3(10, 10, 10));
+    setSystemSize(vec3(latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension));
 }
 
 void System::calculateForces() {
