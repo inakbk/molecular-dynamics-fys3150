@@ -50,7 +50,7 @@ int main(int numberOfArguments, char **argumentList)
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
             cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << endl;
-            cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
+            //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
         }
         movie.saveState(&system);
     }

@@ -53,7 +53,7 @@ void System::removeTotalMomentum() {
     }
 
     average_velocity = average_velocity/atoms().size();
-    std::cout << "Number of atoms " << atoms().size() << std::endl;
+    //std::cout << "Average velocity before removing total momentum " << average_velocity << std::endl;
 
     // removing total momentum in the velocities (assuming all masses are equal)
     for(Atom *atom : m_atoms) {
@@ -62,15 +62,14 @@ void System::removeTotalMomentum() {
         atom->velocity[2] = atom->velocity[2] - average_velocity[2];
     }
 
-    average_velocity = vec3(0,0,0);
-
-    for(Atom *atom : m_atoms) {
-        average_velocity[0] += atom->velocity[0];
-        average_velocity[1] += atom->velocity[1];
-        average_velocity[2] += atom->velocity[2];
-    }
-    std::cout << "Average momentum after removing total momentum " << average_velocity << std::endl;
-
+    //testing implementation
+//    average_velocity = vec3(0,0,0);
+//    for(Atom *atom : m_atoms) {
+//        average_velocity[0] += atom->velocity[0];
+//        average_velocity[1] += atom->velocity[1];
+//        average_velocity[2] += atom->velocity[2];
+//    }
+//    std::cout << "Average velocity after removing total momentum " << average_velocity/atoms().size() << std::endl;
 }
 
 void System::resetForcesOnAllAtoms() {
