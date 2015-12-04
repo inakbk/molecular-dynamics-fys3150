@@ -36,11 +36,41 @@ void System::applyPeriodicBoundaryConditions() {
         atom->position[0] = x;
         atom->position[1] = y;
         atom->position[2] = z;
+
+        //r_0 must also be corrected here
     }
 }
 
 void System::removeTotalMomentum() {
     // Find the total momentum and remove momentum equally on each atom so the total momentum becomes zero.
+
+    vec3 average_velocity = vec3(0,0,0);
+
+    for(Atom *atom : m_atoms) {
+        average_velocity[0] += atom->velocity[0];
+        average_velocity[1] += atom->velocity[1];
+        average_velocity[2] += atom->velocity[2];
+    }
+
+    average_velocity = average_velocity/atoms().size();
+    std::cout << "Number of atoms " << atoms().size() << std::endl;
+
+    // removing total momentum in the velocities (assuming all masses are equal)
+    for(Atom *atom : m_atoms) {
+        atom->velocity[0] = atom->velocity[0] - average_velocity[0];
+        atom->velocity[1] = atom->velocity[1] - average_velocity[1];
+        atom->velocity[2] = atom->velocity[2] - average_velocity[2];
+    }
+
+    average_velocity = vec3(0,0,0);
+
+    for(Atom *atom : m_atoms) {
+        average_velocity[0] += atom->velocity[0];
+        average_velocity[1] += atom->velocity[1];
+        average_velocity[2] += atom->velocity[2];
+    }
+    std::cout << "Average momentum after removing total momentum " << average_velocity << std::endl;
+
 }
 
 void System::resetForcesOnAllAtoms() {
