@@ -22,6 +22,9 @@ System::~System()
 
 void System::applyPeriodicBoundaryConditions() {
     // Read here: http://en.wikipedia.org/wiki/Periodic_boundary_conditions#Practical_implementation:_continuity_and_the_minimum_image_convention
+
+
+    //if()
 }
 
 void System::removeTotalMomentum() {
