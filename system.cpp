@@ -94,8 +94,8 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 m_atoms.push_back(atom1);
 
                 Atom *atom2 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
-                x = latticeConstant/2 + latticeConstant*i;
-                y = latticeConstant/2 + latticeConstant*j;
+                x = latticeConstant*0.5 + latticeConstant*i;
+                y = latticeConstant*0.5 + latticeConstant*j;
                 z = 0 + latticeConstant*k;
                 atom2->position.set(x,y,z);
                 atom2->resetVelocityMaxwellian(temperature);
@@ -103,23 +103,23 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
 
                 Atom *atom3 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
                 x = 0 + latticeConstant*i;
-                y = latticeConstant/2 + latticeConstant*j;
-                z = latticeConstant/2 + latticeConstant*k;
+                y = latticeConstant*0.5 + latticeConstant*j;
+                z = latticeConstant*0.5 + latticeConstant*k;
                 atom3->position.set(x,y,z);
                 atom3->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom3);
 
                 Atom *atom4 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
-                x = latticeConstant/2 + latticeConstant*i;
+                x = latticeConstant*0.5 + latticeConstant*i;
                 y = 0 + latticeConstant*j;
-                z = latticeConstant/2 + latticeConstant*k;
+                z = latticeConstant*0.5 + latticeConstant*k;
                 atom4->position.set(x,y,z);
                 atom4->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom4);
             }
         }
     }
-    setSystemSize(vec3(latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension));
+    setSystemSize(vec3(numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension));
 }
 
 void System::calculateForces() {
