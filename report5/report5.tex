@@ -117,7 +117,7 @@ see 'Areas of application and limitations' at \url{https://en.wikipedia.org/wiki
 \subsection{Periodic boundaryconditions (PBCs)}
 To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
 
-MD simulations that use periodic boundary conditions have a large number of unit cells (define?)
+MD simulations that use periodic boundary conditions have a large number of unit cells (define?), a group of atoms, so that a larger system can be created by repeating these cells in space. 
 
 The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
 
@@ -127,7 +127,12 @@ When an atom leave the simulation box it must re-enter the box on the opposite s
 ....ahh, this is relevant for computing forces/potentials!
 An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
 
-\subsection{The Maxwell-Boltzmann distrubution}
+\section{Creating the lattice}
+
+
+
+
+\subsection{The Maxwell-Boltzmann distrubution (giving velocities)}
 The atoms are usually given velocities according to the Maxwell-Boltzmann distribution so that
 \begin{align}
 	\label{eq:maxwell_boltzmann}
