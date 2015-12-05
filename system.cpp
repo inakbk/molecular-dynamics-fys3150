@@ -24,20 +24,20 @@ void System::applyPeriodicBoundaryConditions() {
     // Read here: http://en.wikipedia.org/wiki/Periodic_boundary_conditions#Practical_implementation:_continuity_and_the_minimum_image_convention
 
     for(Atom *atom : m_atoms) {
-//        double x = atom->position[0];
-//        double y = atom->position[1];
-//        double z = atom->position[2];
-//        //std::cout << "Before, x: " << x << " y: " << y << " z: " << z << std::endl;
+        double x = atom->position[0];
+        double y = atom->position[1];
+        double z = atom->position[2];
+        //std::cout << "Before, x: " << x << " y: " << y << " z: " << z << std::endl;
 
-//        if(x<0) x += m_systemSize[0];
-//        if(y<0) y += m_systemSize[1];
-//        if(z<0) z += m_systemSize[2];
-//        if(x>m_systemSize[0]) x -= m_systemSize[0];
-//        if(y>m_systemSize[1]) y -= m_systemSize[1];
-//        if(z>m_systemSize[2]) z -= m_systemSize[2];
-//        atom->position[0] = x;
-//        atom->position[1] = y;
-//        atom->position[2] = z;
+        if(x<0) x += m_systemSize[0];
+        if(y<0) y += m_systemSize[1];
+        if(z<0) z += m_systemSize[2];
+        if(x>=m_systemSize[0]) x -= m_systemSize[0];
+        if(y>=m_systemSize[1]) y -= m_systemSize[1];
+        if(z>=m_systemSize[2]) z -= m_systemSize[2];
+        atom->position[0] = x;
+        atom->position[1] = y;
+        atom->position[2] = z;
 
         //std::cout << "After, x: " << x << " y: " << y << " z: " << z << std::endl;
 

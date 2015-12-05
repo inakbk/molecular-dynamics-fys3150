@@ -13,7 +13,7 @@ using namespace std;
 
 int main(int numberOfArguments, char **argumentList)
 {
-    int numberOfUnitCells = 1;
+    int numberOfUnitCells = 5;
     double initialTemperature = UnitConverter::temperatureFromSI(300.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
 
@@ -47,15 +47,15 @@ int main(int numberOfArguments, char **argumentList)
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy" << endl;
     for(int timestep=0; timestep<1000; timestep++) {
         movie.saveState(&system);
-        if( timestep==0) cout << "Timestep 0 " << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
 
         system.step(dt);
+
 
         statisticsSampler.sample(system);
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
             cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << endl;
-            cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
+            //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
         }
 
     }
