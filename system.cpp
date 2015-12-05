@@ -23,11 +23,11 @@ System::~System()
 void System::applyPeriodicBoundaryConditions() {
     // Read here: http://en.wikipedia.org/wiki/Periodic_boundary_conditions#Practical_implementation:_continuity_and_the_minimum_image_convention
 
-    for(Atom *atom : m_atoms) { //this does something weird
+    for(Atom *atom : m_atoms) {
 //        double x = atom->position[0];
 //        double y = atom->position[1];
 //        double z = atom->position[2];
-//        std::cout << "Before, x: " << x << " y: " << y << " z: " << z << std::endl;
+//        //std::cout << "Before, x: " << x << " y: " << y << " z: " << z << std::endl;
 
 //        if(x<0) x += m_systemSize[0];
 //        if(y<0) y += m_systemSize[1];
@@ -39,7 +39,7 @@ void System::applyPeriodicBoundaryConditions() {
 //        atom->position[1] = y;
 //        atom->position[2] = z;
 
-//        std::cout << "After, x: " << x << " y: " << y << " z: " << z << std::endl;
+        //std::cout << "After, x: " << x << " y: " << y << " z: " << z << std::endl;
 
 
         //r_0 must also be corrected here
@@ -91,36 +91,36 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
             for(int k=0; k<numberOfUnitCellsEachDimension; k++){
                 // one unit cell:
                 Atom *atom1 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
-                double x = 0 + latticeConstant*i;
-                double y = 0 + latticeConstant*j;
-                double z = 0 + latticeConstant*k;
+                double x = latticeConstant*i;
+                double y = latticeConstant*j;
+                double z = latticeConstant*k;
                 //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom1->position.set(x,y,z);
                 atom1->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom1);
 
                 Atom *atom2 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
-                x = latticeConstant*0.5 + latticeConstant*i;
-                y = latticeConstant*0.5 + latticeConstant*j;
-                z = 0 + latticeConstant*k;
+                x = latticeConstant*(0.5 + i);
+                y = latticeConstant*(0.5 + j);
+                z = latticeConstant*k;
                 //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom2->position.set(x,y,z);
                 atom2->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom2);
 
                 Atom *atom3 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
-                x = 0 + latticeConstant*i;
-                y = latticeConstant*0.5 + latticeConstant*j;
-                z = latticeConstant*0.5 + latticeConstant*k;
+                x = latticeConstant*i;
+                y = latticeConstant*(0.5 + j);
+                z = latticeConstant*(0.5 + k);
                 //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom3->position.set(x,y,z);
                 atom3->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom3);
 
                 Atom *atom4 = new Atom(UnitConverter::massFromSI(6.63352088e-26));
-                x = latticeConstant*0.5 + latticeConstant*i;
-                y = 0 + latticeConstant*j;
-                z = latticeConstant*0.5 + latticeConstant*k;
+                x = latticeConstant*(0.5 + i);
+                y = latticeConstant*j;
+                z = latticeConstant*(0.5 + k);
                 //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom4->position.set(x,y,z);
                 atom4->resetVelocityMaxwellian(temperature);
@@ -128,7 +128,7 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
             }
         }
     }
-    setSystemSize(vec3(latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension, latticeConstant*numberOfUnitCellsEachDimension));
+    setSystemSize(latticeConstant*vec3(numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension));
     //std::cout << "this is b: " << latticeConstant << " this is nr " << numberOfUnitCellsEachDimension << std::endl;
 }
 

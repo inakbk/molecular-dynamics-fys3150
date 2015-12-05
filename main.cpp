@@ -38,6 +38,7 @@ int main(int numberOfArguments, char **argumentList)
     system.setPotential(new LennardJones(1.0, 1.0)); // You must insert correct parameters here
     system.setIntegrator(new EulerCromer());
     system.removeTotalMomentum();
+    cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
 
     StatisticsSampler statisticsSampler;
     IO movie; // To write the state to file
@@ -45,14 +46,18 @@ int main(int numberOfArguments, char **argumentList)
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy" << endl;
     for(int timestep=0; timestep<1000; timestep++) {
+        movie.saveState(&system);
+        if( timestep==0) cout << "Timestep 0 " << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
+
         system.step(dt);
+
         statisticsSampler.sample(system);
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
             cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << endl;
-            //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
+            cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
         }
-        movie.saveState(&system);
+
     }
 
     movie.close();
