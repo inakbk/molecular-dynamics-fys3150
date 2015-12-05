@@ -14,7 +14,7 @@ using namespace std;
 int main(int numberOfArguments, char **argumentList)
 {
     int numberOfUnitCells = 5;
-    double initialTemperature = UnitConverter::temperatureFromSI(5.0); // measured in Kelvin
+    double initialTemperature = UnitConverter::temperatureFromSI(1500.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
 
     // If a first argument is provided, it is the number of unit cells
@@ -35,7 +35,7 @@ int main(int numberOfArguments, char **argumentList)
     System system;
 
     system.createFCCLattice(numberOfUnitCells, latticeConstant, initialTemperature);
-    system.setPotential(new LennardJones(1.0, 3.405)); // You must insert correct parameters here
+    system.setPotential(new LennardJones(3.405, 1.0)); // You must insert correct parameters here
     system.setIntegrator(new EulerCromer());
     system.removeTotalMomentum();
     cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;

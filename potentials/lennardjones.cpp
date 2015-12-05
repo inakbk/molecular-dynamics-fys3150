@@ -13,8 +13,8 @@ void LennardJones::calculateForces(System *system)
     m_potentialEnergy = 0; // Remember to compute this in the loop
 
     for(int i=0; i< system->atoms().size(); i++){
+        Atom *atom_i = system->atoms()[i];
         for(int j=i+1; j< system->atoms().size(); j++){
-            Atom *atom_i = system->atoms()[i];
             Atom *atom_j = system->atoms()[j];
 
             double x_ij = atom_i->position[0] - atom_j->position[0];
@@ -23,11 +23,11 @@ void LennardJones::calculateForces(System *system)
 
             // minimum image convention:
             if (x_ij >   system->systemSize()[0] * 0.5) x_ij = x_ij - system->systemSize()[0];
-            if (x_ij <= -system->systemSize()[0] * 0.5) x_ij = x_ij + system->systemSize()[0];
+            else if (x_ij <= -system->systemSize()[0] * 0.5) x_ij = x_ij + system->systemSize()[0];
             if (y_ij >   system->systemSize()[1] * 0.5) y_ij = y_ij - system->systemSize()[1];
-            if (y_ij <= -system->systemSize()[1] * 0.5) y_ij = y_ij + system->systemSize()[1];
+            else if (y_ij <= -system->systemSize()[1] * 0.5) y_ij = y_ij + system->systemSize()[1];
             if (z_ij >   system->systemSize()[2] * 0.5) z_ij = z_ij - system->systemSize()[2];
-            if (z_ij <= -system->systemSize()[2] * 0.5) z_ij = z_ij + system->systemSize()[2];
+            else if (z_ij <= -system->systemSize()[2] * 0.5) z_ij = z_ij + system->systemSize()[2];
 
             double r_ij = std::sqrt(x_ij*x_ij + y_ij*y_ij + z_ij*z_ij);
 
