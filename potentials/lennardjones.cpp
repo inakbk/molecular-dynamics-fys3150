@@ -21,6 +21,14 @@ void LennardJones::calculateForces(System *system)
             double y_ij = atom_i->position[1] - atom_j->position[1];
             double z_ij = atom_i->position[2] - atom_j->position[2];
 
+            // minimum image convention:
+            if (x_ij >   system->systemSize()[0] * 0.5) x_ij = x_ij - system->systemSize()[0];
+            if (x_ij <= -system->systemSize()[0] * 0.5) x_ij = x_ij + system->systemSize()[0];
+            if (y_ij >   system->systemSize()[1] * 0.5) y_ij = y_ij - system->systemSize()[1];
+            if (y_ij <= -system->systemSize()[1] * 0.5) y_ij = y_ij + system->systemSize()[1];
+            if (z_ij >   system->systemSize()[2] * 0.5) z_ij = z_ij - system->systemSize()[2];
+            if (z_ij <= -system->systemSize()[2] * 0.5) z_ij = z_ij + system->systemSize()[2];
+
             double r_ij = std::sqrt(x_ij*x_ij + y_ij*y_ij + z_ij*z_ij);
 
             double r = m_sigma/r_ij;
@@ -28,6 +36,7 @@ void LennardJones::calculateForces(System *system)
             double r8 = r6*r*r;
             double some_numbers = ( 24*m_epsilon/(m_sigma*m_sigma) )*r8*( 2*r6 - 1);
 
+            // calculating final force
             atom_i->force[0] += some_numbers*x_ij;
             atom_i->force[1] += some_numbers*y_ij;
             atom_i->force[2] += some_numbers*z_ij;
