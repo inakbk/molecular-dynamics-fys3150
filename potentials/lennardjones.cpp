@@ -23,7 +23,7 @@ void LennardJones::calculateForces(System *system)
 
             double r_ij = std::sqrt(x_ij*x_ij + y_ij*y_ij + z_ij*z_ij);
 
-            double r = sigma/r_ij;
+            double r = m_sigma/r_ij;
             double r6 = r*r*r*r*r*r;
             double r8 = r6*r*r;
             double some_numbers = ( 24*m_epsilon/(m_sigma*m_sigma) )*r8*( 2*r6 - 1);

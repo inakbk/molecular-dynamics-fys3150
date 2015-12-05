@@ -13,7 +13,7 @@ using namespace std;
 
 int main(int numberOfArguments, char **argumentList)
 {
-    int numberOfUnitCells = 10;
+    int numberOfUnitCells = 5;
     double initialTemperature = UnitConverter::temperatureFromSI(300.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
 
