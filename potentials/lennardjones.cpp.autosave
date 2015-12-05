@@ -25,12 +25,9 @@ void LennardJones::calculateForces(System *system)
             double r8 = r6*r*r;
             double some_numbers = ( 24*m_epsilon/(m_sigma*m_sigma) )*r8*( 2*r6 - 1);
 
-            m_force_x = some_numbers*x_ij;
-            m_force_y = some_numbers*y_ij;
-            m_force_y = some_numbers*z_ij;
+            atom_i->force[0] = some_numbers*x_ij;
+            atom_i->force[1] = some_numbers*y_ij;
+            atom_i->force[2] = some_numbers*z_ij;
         }
-
     }
-
-
 }

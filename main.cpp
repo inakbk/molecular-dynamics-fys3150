@@ -35,7 +35,7 @@ int main(int numberOfArguments, char **argumentList)
     System system;
 
     system.createFCCLattice(numberOfUnitCells, latticeConstant, initialTemperature);
-    system.setPotential(new LennardJones(1.0, 1.0)); // You must insert correct parameters here
+    system.setPotential(new LennardJones(1.0, 3.405)); // You must insert correct parameters here
     system.setIntegrator(new EulerCromer());
     system.removeTotalMomentum();
     cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
