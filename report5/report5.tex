@@ -123,7 +123,7 @@ see 'Areas of application and limitations' at \url{https://en.wikipedia.org/wiki
 \section{Numerical methods}
 
 
-\section{Creating the lattice}
+\subsection{Creating the lattice}
 We want to start out the simulation with the atoms in a crystal structure. We will choose the face-centered cubic (FCC) lattice which is a stable structure for the Lennard-Jones potential that will be used. The lattice is build up by unit cells, a group of attoms, so that a larger system can be created by repeating these cells in space. The FFC lattice unit cell is of size $b \angstrom $ and consists of four atoms with local coordinates
 \begin{align}
 	\vec r_1 &= 0 \ihat + 0 \jhat + 0 \khat,\\
@@ -140,7 +140,7 @@ where $i=0,1,..., N_x-1, j=0,1,..., N_y-1, k=0,1,..., N_z-1$. The unit vectors o
 	\hat{\textbf{u}}_1 = b\ihat, \quad \hat{\textbf{u}}_2 = b\jhat, \quad \hat{\textbf{u}}_3 = b\khat.
 \end{align}
 
-The coordinates of particle one to four is then given by
+The coordinates of particle one to four is then given by:
 
 \begin{minipage}{0.2\textwidth}
 \begin{align*}
@@ -171,11 +171,11 @@ z_4 &= \frac{1}{2} + kb
 \end{align*}
 \end{minipage}
 
-Each of the sides of the simulation box has the length $L = bN$ so that the size of the whole system or the volume is given by $V = L^3 = (bN)^3$. The density of the system is then:
+Each of the sides of the simulation box has the length $L = bN$ so that the size of the whole system or the volume of the cubic lattice is given by $V = L^3 = (bN)^3$. The density of the system is then:
 \[
 \rho = \frac{M_{tot}}{V} = \frac{4*N^3*m}{(bN)^3} = \frac{4m}{b^3}
 \]
-
+where $m$ is the mass of one atom and is equal for all the atoms. We can see that the density will be constant as long as the mass and the lattice constant is held constant. 
 
 \subsection{The Maxwell-Boltzmann distrubution (giving velocities)}
 The atoms are usually given velocities according to the Maxwell-Boltzmann distribution so that
@@ -223,10 +223,63 @@ When an atom leave the simulation box it must re-enter the box on the opposite s
 An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
 
 
+\subsection{The Lennard-Jones potential}
+
+In this project, we will use the Lennard-Jones potential which is a mathematically simple model that approximates the interaction between a pair of neutral atoms or molecules. Due to its computational simplicity, the Lennard-Jones potential is used extensively in computer simulations even though more accurate potentials exist\footnote{\url{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}.
+
+The potential calculates the energy between two atoms $i$ and $j$ as
+\begin{align}
+	U(r_{ij}) = 4\epsilon\left[\left(\frac{\sigma}{r_{ij}}\right)^{12} - \left(\frac{\sigma}{r_{ij}}\right)^6\right],
+\end{align}
+where $r_{ij} = |\vec r_i - \vec r_j|$ is the distance from atom $i$ to atom $j$, $\epsilon$ is the depth of the potential well (units energy) and $\sigma$ is the distance at which the potential is zero. 
+
+The parameters in the potential can be fitted to reproduce experimental data. For argon, optimal values of the parameters are:
+\begin{align}
+	\frac{\epsilon}{k_B} = \unit{119.8}{\kelvin}, \sigma=\unit{3.405}{\angstrom}.
+\end{align}
+With these parameters the L-J potential reproduces equilibrium thermodynamic properties that are in good agreement with experimental values for argon.
+
+In our code, we use the so called MD units (see appendix \ref{sec:units}). (finne enheten og verdier til parameterne?)
+
+%The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and everything which is remarkable.(?)
+
+The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once)
+\begin{align}
+	V = \sum_{i>j} U(r_{ij}).
+\end{align}
+The force is calculated by taking the negative gradient of the potential
+\begin{align}
+	\vec F(r_{ij}) = -\nabla U(r_{ij}),
+\end{align}
+giving the $x$-component (the other components are calculated the same way)
+\begin{align}
+	F_x(r_{ij}) = -\frac{\partial U}{\partial r_{ij}}\frac{\partial r_{ij}}{\partial x_{ij}},
+\end{align}
+where $x_{ij}$ is the $x$-component of $\vec r_{ij}$. Calculating the differensials separately:
+\begin{align*}
+\frac{\partial U}{\partial r_{ij}} &= \frac{\partial }{\partial r_{ij}} 4\epsilon\Big[\Big(\frac{\sigma}{r_{ij}}\Big)^{12} - \Big(\frac{\sigma}{r_{ij}}\Big)^6 \Big] =  4\epsilon\Big[ \sigma^{12}\frac{\partial }{\partial r_{ij}} r_{ij}^{-12} - \sigma^6 \frac{\partial }{\partial r_{ij}}r_{ij}^{-6} \Big] \\
+&= 4\epsilon\Big[ -12\sigma^{12} r_{ij}^{-13} -(-6) \sigma^6 r_{ij}^{-7} \Big] = \frac{24\epsilon}{\sigma} \Big[\Big(\frac{\sigma}{r_{ij}}\Big)^{7} - 2\Big(\frac{\sigma}{r_{ij}}\Big)^{13} \Big] \\
+r_{ij} &= |\vec{r_i} - \vec{r_j} | = | x_i\ihat + y_i\jhat + z_i\khat - x_j\ihat + y_j\jhat + z_j\khat | = | (x_i - x_j)\ihat + (y_i - y_j)\jhat + (z_i - z_j)\khat | \\
+&= \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2 + (z_i - z_j)^2} = \sqrt{x_{ij}^2 + y_{ij}^2 + z_{ij}^2} \\
+\frac{\partial r_{ij}}{\partial x_{ij}} &= \frac{\partial}{\partial x_{ij}} \sqrt{x_{ij}^2 + y_{ij}^2 + z_{ij}^2} = \frac{1}{2r_{ij}}\cdot 2x_{ij} = \frac{x_{ij}}{r_{ij}}
+\end{align*}
+gives
+\begin{align*}
+F_x(r_{ij}) &= -\frac{24\epsilon}{\sigma} \Big[\Big(\frac{\sigma}{r_{ij}}\Big)^{7} - 2\Big(\frac{\sigma}{r_{ij}}\Big)^{13} \Big]\cdot \frac{x_{ij}}{r_{ij}} \\
+&= \frac{24\epsilon}{\sigma^2} \Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{14} - \Big(\frac{\sigma}{r_{ij}}\Big)^{8} \Big]x_{ij}
+\end{align*}
+The force in y and z direction can be calculated the same way giving:
+\begin{align*}
+\vec F &= F_x\ihat + F_y \jhat + F_z\khat \\
+&= \frac{24\epsilon}{\sigma^2} \Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{14} - \Big(\frac{\sigma}{r_{ij}}\Big)^{8} \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)
+\end{align*}
+A better numerical expression for the force is
+\begin{align*}
+\vec F = \frac{24\epsilon}{\sigma^2} \Big(\frac{\sigma}{r_{ij}}\Big)^8\Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{6} - 1 \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)
+\end{align*}
 
 
-
-\subsection{intergration methods}
+\subsection{Intergration methods}
 Euler-Cromer method and the Velocity-Verlet method (discussed in the lecture notes.)
   
   
