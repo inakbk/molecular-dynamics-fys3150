@@ -125,7 +125,7 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
             }
         }
     }
-    setSystemSize(latticeConstant*vec3(numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension, numberOfUnitCellsEachDimension));
+    setSystemSize(latticeConstant*numberOfUnitCellsEachDimension*vec3(1, 1, 1));
     //std::cout << "this is b: " << latticeConstant << " this is nr " << numberOfUnitCellsEachDimension << std::endl;
 }
 
