@@ -208,7 +208,6 @@ mv_i' &= mv_i - \frac{m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})}{n} \\
 \end{align*}
 We see that to remove the total momentum we only have to substract the average velocity from each of the particles velocity. 
 
-
 \subsection{Periodic boundaryconditions (PBCs)}
 To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
 
@@ -216,14 +215,7 @@ MD simulations that use periodic boundary conditions have a large number of unit
 
 The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
 
-\paragraph{The minimum image convention} (due to calculation of forces)
-When an atom leave the simulation box it must re-enter the box on the opposite side. This leads to two possible strategic choices: (A) 'fold back' particles into the simulation box when they leave it, or (B) let them go on into the other side of the box?
-
-....ahh, this is relevant for computing forces/potentials!
-An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
-
-
-\subsection{The Lennard-Jones potential}
+\subsection{The Lennard-Jones potential (interaction/forces)}
 
 In this project, we will use the Lennard-Jones potential which is a mathematically simple model that approximates the interaction between a pair of neutral atoms or molecules. Due to its computational simplicity, the Lennard-Jones potential is used extensively in computer simulations even though more accurate potentials exist\footnote{\url{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}.
 
@@ -277,6 +269,29 @@ A better numerical expression for the force is
 \begin{align*}
 \vec F = \frac{24\epsilon}{\sigma^2} \Big(\frac{\sigma}{r_{ij}}\Big)^8\Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{6} - 1 \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)
 \end{align*}
+
+
+
+\paragraph{The minimum image convention} (due to calculation of forces)
+When an atom leave the simulation box it must re-enter the box on the opposite side. An atom at the edge of the simulation box must also interact with an atom at the other side of the box 'through' the wall, or interact with the image of the simulation box. But this atom is also contained inside the box so the atoms interact twice, once through the wall and once from across the box. To avoid counting this interaction twice we will apply the minimum image convention. An atom will interact with the other atoms only once and then choose the image (or the simulation box) that gives the minimum distance\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}:
+%This is because we want to avoid extensive mathematical calculations of pairwise interactions with all particle inside or outside the box. MIC is a way of providing a cutoff distance over which we are not calculating pairwise potential. The cutoff is usually half the box length. This means if distance between particle i and particle j is more than L/2, you will neglect the pairwise potential between i & j, instead you will consider potential between i & neareset image of j, hence the term Minimum Image.
+
+\begin{lstlisting}
+if(periodic_x) then
+  dx = x(j) - x(i)
+  if (dx >   x_size * 0.5) dx = dx - x_size
+  if (dx <= -x_size * 0.5) dx = dx + x_size
+endif
+\end{lstlisting}
+
+(include drawing??)
+
+This leads to two possible strategic choices: (A) 'fold back' particles into the simulation box when they leave it, or (B) let them go on into the other side of the box?
+
+....ahh, this is relevant for computing forces/potentials!
+An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
+
+
 
 
 \subsection{Intergration methods}

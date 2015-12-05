@@ -4,6 +4,6 @@
 \contentsline {subsection}{\numberline {3.1}Creating the lattice}{3}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}The Maxwell-Boltzmann distrubution (giving velocities)}{4}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Periodic boundaryconditions (PBCs)}{5}{subsection.3.3}
-\contentsline {paragraph}{The minimum image convention}{6}{section*.2}
-\contentsline {subsection}{\numberline {3.4}The Lennard-Jones potential}{6}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.4}The Lennard-Jones potential (interaction/forces)}{6}{subsection.3.4}
+\contentsline {paragraph}{The minimum image convention}{7}{section*.2}
 \contentsline {subsection}{\numberline {3.5}Intergration methods}{7}{subsection.3.5}
