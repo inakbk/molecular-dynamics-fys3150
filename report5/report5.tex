@@ -11,10 +11,18 @@
 \usepackage{cite} % [2,3,4] --> [2--4]
 \usepackage{shadow}
 \usepackage{hyperref}
+\usepackage[squaren]{SIunits}
 
 \setcounter{tocdepth}{2}
 \usepackage{url} %url + line break
+
+\renewcommand{\vec}{\mathbf}
 \newcommand{\dm}[1]{\mathrm{d}#1}
+\newcommand{\ihat}{\hat{\textbf{\i}}}
+\newcommand{\jhat}{\hat{\textbf{\j}}}
+\newcommand{\khat}{\hat{\textbf{k}}}
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
 
 \lstset{language=c++}
 \lstset{alsolanguage=[90]Fortran}
@@ -114,22 +122,59 @@ see 'Areas of application and limitations' at \url{https://en.wikipedia.org/wiki
 
 \section{Numerical methods}
 
-\subsection{Periodic boundaryconditions (PBCs)}
-To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
-
-MD simulations that use periodic boundary conditions have a large number of unit cells (define?), a group of atoms, so that a larger system can be created by repeating these cells in space. 
-
-The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
-
-\paragraph{The minimum image convention} (due to calculation of forces)
-When an atom leave the simulation box it must re-enter the box on the opposite side. This leads to two possible strategic choices: (A) 'fold back' particles into the simulation box when they leave it, or (B) let them go on into the other side of the box?
-
-....ahh, this is relevant for computing forces/potentials!
-An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
 
 \section{Creating the lattice}
+We want to start out the simulation with the atoms in a crystal structure. We will choose the face-centered cubic (FCC) lattice which is a stable structure for the Lennard-Jones potential that will be used. The lattice is build up by unit cells, a group of attoms, so that a larger system can be created by repeating these cells in space. The FFC lattice unit cell is of size $b \angstrom $ and consists of four atoms with local coordinates
+\begin{align}
+	\vec r_1 &= 0 \ihat + 0 \jhat + 0 \khat,\\
+	\vec r_2 &= \frac{b}{2} \ihat + \frac{b}{2} \jhat + 0 \khat,\\
+	\vec r_3 &= 0 \ihat + \frac{b}{2} \jhat + \frac{b}{2} \khat,\\
+	\vec r_4 &= \frac{b}{2} \ihat + 0 \jhat + \frac{b}{2} \khat.
+\end{align}
+where $b=5.26$ is the lattice constant. We want to construct a larger system with $N\times N\times N$ such unit cells next to each other. The orgin of unit cell $(i,j,k)$ is
+\begin{align}
+	\vec R_{i,j,k} = i \hat{\textbf{u}}_1 + j \hat{\textbf{u}}_2 + k \hat{\textbf{u}}_3,
+\end{align}
+where $i=0,1,..., N_x-1, j=0,1,..., N_y-1, k=0,1,..., N_z-1$. The unit vectors of the unit cells are scaled with the lattice constant $b$ so that
+\begin{align}
+	\hat{\textbf{u}}_1 = b\ihat, \quad \hat{\textbf{u}}_2 = b\jhat, \quad \hat{\textbf{u}}_3 = b\khat.
+\end{align}
 
+The coordinates of particle one to four is then given by
 
+\begin{minipage}{0.2\textwidth}
+\begin{align*}
+x_1 &= 0 + ib\\
+y_1 &= 0 + jb \\
+z_1 &= 0 + kb
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.25\textwidth}
+\begin{align*}
+x_2 &= \frac{1}{2} + ib\\
+y_2 &= \frac{1}{2} + jb \\
+z_2 &= 0 + kb
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.25\textwidth}
+\begin{align*}
+x_3 &= 0 + ib\\
+y_3 &= \frac{1}{2} + jb \\
+z_3 &= \frac{1}{2} + kb
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.25\textwidth}
+\begin{align*}
+x_4 &= \frac{1}{2} + ib\\
+y_4 &= 0 + jb \\
+z_4 &= \frac{1}{2} + kb
+\end{align*}
+\end{minipage}
+
+Each of the sides of the simulation box has the length $L = bN$ so that the size of the whole system or the volume is given by $V = L^3 = (bN)^3$. The density of the system is then:
+\[
+\rho = \frac{M_{tot}}{V} = \frac{4*N^3*m}{(bN)^3} = \frac{4m}{b^3}
+\]
 
 
 \subsection{The Maxwell-Boltzmann distrubution (giving velocities)}
@@ -162,6 +207,23 @@ mv_i' &= mv_i - \frac{m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})}{n} \\
 &= v_i - \overline{v_i}
 \end{align*}
 We see that to remove the total momentum we only have to substract the average velocity from each of the particles velocity. 
+
+
+\subsection{Periodic boundaryconditions (PBCs)}
+To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
+
+MD simulations that use periodic boundary conditions have a large number of unit cells (defined above?), a group of atoms, so that a larger system can be created by repeating these cells in space. 
+
+The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
+
+\paragraph{The minimum image convention} (due to calculation of forces)
+When an atom leave the simulation box it must re-enter the box on the opposite side. This leads to two possible strategic choices: (A) 'fold back' particles into the simulation box when they leave it, or (B) let them go on into the other side of the box?
+
+....ahh, this is relevant for computing forces/potentials!
+An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
+
+
+
 
 
 \subsection{intergration methods}
