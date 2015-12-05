@@ -39,9 +39,6 @@ void System::applyPeriodicBoundaryConditions() {
         atom->position[1] = y;
         atom->position[2] = z;
 
-        //std::cout << "After, x: " << x << " y: " << y << " z: " << z << std::endl;
-
-
         //r_0 must also be corrected here
     }
 }
