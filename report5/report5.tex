@@ -208,14 +208,14 @@ mv_i' &= mv_i - \frac{m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})}{n} \\
 \end{align*}
 We see that to remove the total momentum we only have to substract the average velocity from each of the particles velocity. 
 
-\subsection{Periodic boundaryconditions (PBCs)}
+\subsection{Periodic boundaryconditions (PBCs)} 
 To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
 
 MD simulations that use periodic boundary conditions have a large number of unit cells (defined above?), a group of atoms, so that a larger system can be created by repeating these cells in space. 
 
 The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
 
-\subsection{The Lennard-Jones potential (interaction/forces)}
+\subsection{The Lennard-Jones potential (interaction/forces)} \label{sec: L-Jpot_forces}
 
 In this project, we will use the Lennard-Jones potential which is a mathematically simple model that approximates the interaction between a pair of neutral atoms or molecules. Due to its computational simplicity, the Lennard-Jones potential is used extensively in computer simulations even though more accurate potentials exist\footnote{\url{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}.
 
@@ -295,7 +295,21 @@ An atom which has passed through one face of the simulation box should re-enter 
 
 
 \subsection{Intergration methods}
-Euler-Cromer method and the Velocity-Verlet method (discussed in the lecture notes.)
+During the first implementation of the MD code we have used the Euler-Cromer method to find the next time step for the atoms. (bla bla legge til likninger?)
+
+In MD the Velocity Verlet integrator is usually used. This is because other integration algorithms tend to drift the energy over time, which we want to avoid. We will therefore compare Euler-Cromer method with the Velocity-Verlet integrator and shed light on the pros and cons (?).
+
+say something more about energy drift?
+
+The Velocity Verlet algorithm consists of three steps (in addition to computing the forces, see section \ref{sec: L-Jpot_forces})
+\begin{align}
+	\vec v(t + \Delta t/2) &= \vec v(t) + \frac{\vec F(t)}{m}\frac{\Delta t}{2}\\
+	\vec r(t + \Delta t) &= \vec r(t) + \vec v(t + \Delta t/2)\Delta t\\
+	\vec v(t + \Delta t) &= \vec v(t + \Delta t/2) + \frac{\vec F(t + \Delta t)}{m}\frac{\Delta t}{2}.
+\end{align}
+
+
+(discussed in the lecture notes.?)
   
   
 bla bla bla  
