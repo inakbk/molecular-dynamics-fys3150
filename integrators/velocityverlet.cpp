@@ -4,17 +4,21 @@
 
 void VelocityVerlet::integrate(System *system, double dt)
 {
-    system->calculateForces();
-    for(Atom *atom : system->atoms()) {
-        vec3 velocity_half = atom->velocity + atom->force*0.5*dt / atom->mass();
-        atom->position += velocity_half*dt;
-
+    if(first_time) {
+        system->calculateForces();
+        first_time = false;
     }
+
+    for(Atom *atom : system->atoms()) {
+        //should do it component wise or not?
+        atom->velocity = atom->velocity + atom->force*0.5*dt / atom->mass();
+        atom->position += atom->velocity*dt;
+    }
+    system->applyPeriodicBoundaryConditions();
+    // calculating forces again now that the position is updated:
     system->calculateForces();
     for(Atom *atom : system->atoms()){
-        atom->velocity = velocity_half + atom->force*0.5*dt / atom->mass();
-
+        // calculating the new velocity with the new force:
+        atom->velocity = atom->velocity + atom->force*0.5*dt / atom->mass();
     }
-
-    system->applyPeriodicBoundaryConditions();
 }

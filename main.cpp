@@ -14,7 +14,7 @@ using namespace std;
 int main(int numberOfArguments, char **argumentList)
 {
     int numberOfUnitCells = 5;
-    double initialTemperature = UnitConverter::temperatureFromSI(300.0); // measured in Kelvin
+    double initialTemperature = UnitConverter::temperatureFromSI(800.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
 
     // If a first argument is provided, it is the number of unit cells
@@ -36,9 +36,10 @@ int main(int numberOfArguments, char **argumentList)
 
     system.createFCCLattice(numberOfUnitCells, latticeConstant, initialTemperature);
     system.setPotential(new LennardJones(3.405, 1.0)); // You must insert correct parameters here
-    system.setIntegrator(new EulerCromer());
+    //system.setIntegrator(new EulerCromer());
+    system.setIntegrator(new VelocityVerlet());
     system.removeTotalMomentum();
-    cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
+    //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
 
     StatisticsSampler statisticsSampler;
     IO movie; // To write the state to file
@@ -48,10 +49,11 @@ int main(int numberOfArguments, char **argumentList)
     for(int timestep=0; timestep<1000; timestep++) {
         movie.saveState(&system);
 
+        statisticsSampler.sample(system);
+
+
         system.step(dt);
 
-
-        statisticsSampler.sample(system);
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
             cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << endl;

@@ -5,7 +5,9 @@
 class VelocityVerlet : public Integrator
 {
 public:
+    bool first_time = true;
     VelocityVerlet() { }
     virtual void integrate(System *system, double dt) override;
 };
+
 #endif
