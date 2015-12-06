@@ -10,8 +10,7 @@ LennardJones::LennardJones(double sigma, double epsilon) :
 
 void LennardJones::calculateForces(System *system)
 {
-    m_potentialEnergy = 0; // Remember to compute this in the loop
-
+    m_potentialEnergy = 0;
     for(int i=0; i< system->atoms().size(); i++){
         Atom *atom_i = system->atoms()[i];
         for(int j=i+1; j< system->atoms().size(); j++){
@@ -44,6 +43,10 @@ void LennardJones::calculateForces(System *system)
             atom_j->force[0] -= some_numbers*x_ij;
             atom_j->force[1] -= some_numbers*y_ij;
             atom_j->force[2] -= some_numbers*z_ij;
+
+            // calculating total potential energy in same loop
+            m_potentialEnergy += 4*m_epsilon*r6*(r6 - 1);
         }
     }
+    //std::cout << "Potential energy: " << m_potentialEnergy << std::endl;
 }

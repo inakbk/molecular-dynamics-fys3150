@@ -8,11 +8,15 @@
 #include "io.h"
 #include "unitconverter.h"
 #include <iostream>
+#include "time.h"
 
 using namespace std;
 
 int main(int numberOfArguments, char **argumentList)
 {
+    clock_t executionTimeStart, executionTimeFinish; // declare start and final time start = clock () ;
+    executionTimeStart = clock();
+
     int numberOfUnitCells = 5;
     double initialTemperature = UnitConverter::temperatureFromSI(800.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
@@ -58,11 +62,16 @@ int main(int numberOfArguments, char **argumentList)
             // Print the timestep every 100 timesteps
             cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << endl;
             //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
+
         }
 
     }
 
     movie.close();
+
+    executionTimeFinish = clock();
+    double totalExecutionTime = (( executionTimeFinish - executionTimeStart )/double(CLOCKS_PER_SEC ));
+    cout << "Execution time: " << totalExecutionTime << endl;
 
     return 0;
 }
