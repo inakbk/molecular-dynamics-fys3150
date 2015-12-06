@@ -42,12 +42,12 @@ void StatisticsSampler::samplePotentialEnergy(System &system)
 
 void StatisticsSampler::sampleTemperature(System &system)
 {
-    //instantaneous temperature
+    //instantaneous temperature:
     m_temperature = 2*m_kineticEnergy/(3*system.atoms().size());
 }
 
 void StatisticsSampler::sampleDensity(System &system)
 {
-    //the density is constant? 4m/b^3
+    //the (mass)density is constant 4m/b^3, but this is particle desity:
     m_density = system.atoms().size() / ( system.systemSize().x()*system.systemSize().y()*system.systemSize().z() );
 }

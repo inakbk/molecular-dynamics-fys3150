@@ -14,7 +14,7 @@ using namespace std;
 
 int main(int numberOfArguments, char **argumentList)
 {
-    clock_t executionTimeStart, executionTimeFinish; // declare start and final time start = clock () ;
+    clock_t executionTimeStart, executionTimeFinish;
     executionTimeStart = clock();
 
     int numberOfUnitCells = 5;
@@ -50,12 +50,12 @@ int main(int numberOfArguments, char **argumentList)
     IO movie; // To write the state to file
     movie.open("movie.xyz");
 
+    IO statisticsFile;
+    statisticsFile.open("statistics_file.txt");
+
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy" << endl;
     for(int timestep=0; timestep<1000; timestep++) {
         movie.saveState(&system);
-
-
-
 
         system.step(dt);
         statisticsSampler.sample(system);
@@ -75,5 +75,12 @@ int main(int numberOfArguments, char **argumentList)
     double totalExecutionTime = (( executionTimeFinish - executionTimeStart )/double(CLOCKS_PER_SEC ));
     cout << "Execution time: " << totalExecutionTime << endl;
 
+    //statisticsFile.file << "Execution time: " << totalExecutionTime << endl;
+
+    statisticsFile.close();
+
     return 0;
 }
+
+
+
