@@ -19,7 +19,7 @@ def read_file(filename):
 
     	i += 1
 
-    return totalEnergy#/10**3
+    return totalEnergy
 
 """
 ------------------------------------------------------------------------------------------
