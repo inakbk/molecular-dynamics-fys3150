@@ -26,13 +26,13 @@ void StatisticsSampler::sampleKineticEnergy(System &system)
 {
     m_kineticEnergy = 0; // Remember to reset the value from the previous timestep
     for(Atom *atom : system.atoms()) {
-
+        m_kineticEnergy += 0.5*atom->mass()*atom->velocity.lengthSquared();
     }
 
-    for(int i=0; i<system.atoms().size(); i++) {
-        Atom *atom = system.atoms()[i];
+//    for(int i=0; i<system.atoms().size(); i++) {
+//        Atom *atom = system.atoms()[i];
 
-    }
+//    }
 }
 
 void StatisticsSampler::samplePotentialEnergy(System &system)
@@ -42,10 +42,18 @@ void StatisticsSampler::samplePotentialEnergy(System &system)
 
 void StatisticsSampler::sampleTemperature(System &system)
 {
-
+    //instantaneous temperature
+    m_temperature = 2*m_kineticEnergy/(3*system.m_atoms.size());
 }
 
 void StatisticsSampler::sampleDensity(System &system)
 {
+    //the density is constant? 4m/b^3
+
+    //Atom *atom = system.atoms()[i];
+    //m_density = 4*atom->mass()/
+
+    //Atom *atom = system.atoms()[i];
+    //m_density = 4*atom->mass()*system.m_atoms.size()* * /system.volume()
 
 }
