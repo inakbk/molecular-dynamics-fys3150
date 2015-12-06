@@ -38,12 +38,6 @@ void LennardJones::calculateForces(System *system)
             double oneOverR2 = 1.0/r2;
             double oneOverR6 = oneOverR2*oneOverR2*oneOverR2;
 
-            // double r_ij = std::sqrt(x_ij*x_ij + y_ij*y_ij + z_ij*z_ij);
-
-            // double r = m_sigma/r_ij;
-            // double r6 = r*r*r*r*r*r;
-            // double r8 = r6*r*r;
-            // double some_numbers = ( 24*m_epsilon/(m_sigma*m_sigma) )*r8*( 2*r6 - 1);
             double F = 24*m_epsilon*sigma6*oneOverR6*(2.0*sigma6*oneOverR6 - 1.0)*oneOverR2;
 
             // calculating final force
@@ -55,9 +49,8 @@ void LennardJones::calculateForces(System *system)
             atom_j->force[1] -= F*y_ij;
             atom_j->force[2] -= F*z_ij;
 
-            // calculating total potential energy in same loop
+            // calculating total potential energy in same loop (moved with the energy at rCut)
             m_potentialEnergy += 4*m_epsilon*sigma6*oneOverR6*(sigma6*oneOverR6 - 1) - energyAtRcut;
         }
     }
-    //std::cout << "Potential energy: " << m_potentialEnergy << std::endl;
 }
