@@ -19,7 +19,7 @@ def read_file(filename):
 
     	i += 1
 
-    return totalEnergy
+    return totalEnergy#/10**3
 
 """
 ------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ integratorNumber = 2 # initially set to Velocity Verlet, 1 is Euler-Cromer
 #os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -O3 -std=c++11')
 
 N = 10
-dt_list = linspace(0.0001, 0.1, N)
+dt_list = linspace(0.001, 0.1, N)
 sigmaEnergyEuler = zeros(N)
 sigmaEnergyVV = zeros(N)
 i = 0
@@ -43,16 +43,15 @@ i = 0
 for dt in dt_list:
 	os.system('./main %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, 1))
 	totalEnergy = read_file('run_plot_python_output/statistics_file.txt')
-	sigmaEnergyEuler[i] = sum(totalEnergy**2)/len(totalEnergy) - sum(totalEnergy)**2/len(totalEnergy)
-	
+	sigmaEnergyEuler[i] = sqrt(sum(totalEnergy**2)/len(totalEnergy) - (sum(totalEnergy)/len(totalEnergy))**2)
 	os.system('./main %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, 2))
 	totalEnergy = read_file('run_plot_python_output/statistics_file.txt')
-	sigmaEnergyVV[i] = sum(totalEnergy**2)/len(totalEnergy) - sum(totalEnergy)**2/len(totalEnergy)
+	sigmaEnergyVV[i] = sqrt(sum(totalEnergy**2)/len(totalEnergy) - (sum(totalEnergy)/len(totalEnergy))**2)
 	
 	i += 1
 
-#print len(totalEnergy)
-#print sigmaEnergyEuler #/((1.651*10**(-21))**2) what units?
+print dt_list
+print sigmaEnergyEuler #/((1.651*10**(-21))**2) what units?
 
 plot(dt_list, sigmaEnergyEuler, 'k-o')
 hold('on')
