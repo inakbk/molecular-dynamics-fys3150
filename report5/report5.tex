@@ -309,7 +309,7 @@ In MD the Velocity Verlet integrator is usually used. This is because other inte
 
 sympletic integrator bla bla bla?
 
-To measure the drift of the energy we will use the standard deviation of the energy:
+To measure the drift of the energy we will use the standard deviation of the total energy $E$:
 \[
 \sigma_E = \sqrt{\langle E^2 \rangle - \langle E \rangle^2}
 \]
@@ -324,6 +324,22 @@ say something more about energy drift?
   
 bla bla bla  
   
+  
+\subsection{Calculating physical properties of the system}
+The potential energi is given in section \ref{sec: L-Jpot_forces}. The kinetic energy is defined as
+\begin{align}
+	E_k = \sum_{i=1}^{N_\text{atoms}} \frac{1}{2} m_i v_i^2,
+\end{align}
+where $m_i$ and $v_i$ is the mass and the speed of atom $i$. We will also calculate an estimate of the temperature through the equipartition theorem\footnote{See for example D. Schroeder's \textit{An Introduction to Thermal Physics} for details. better reference?}
+\begin{align}
+	\langle E_k \rangle = \frac{3}{2}N_\text{atoms} k_B T.
+\end{align}
+We can use this to define an \textit{instantaneous} temperature
+\begin{align}
+	\label{eq:temperature}
+	T = \frac{2}{3}\frac{E_k}{N_\text{atoms} k_B}.
+\end{align}
+
 
 
 \rule{0.3\textwidth}{0.4pt}\par % Short horizontal line under the title  
