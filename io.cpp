@@ -2,6 +2,7 @@
 #include "system.h"
 #include "atom.h"
 #include "unitconverter.h"
+#include "statisticssampler.h"
 #include <cstdlib>
 using std::endl; using std::cout;
 
@@ -40,3 +41,24 @@ void IO::saveState(System *system)
         }
     }
 }
+
+// This saves the statistics to a .txt file
+void IO::saveStatistics(System *system, StatisticsSampler *statisticsSampler, double totalExecutionTime)
+{
+    if(file.is_open()) {
+        if(first_time){
+            file << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy" << endl;
+            first_time = false;
+        }
+        //should convert units or not? add units in first line?
+        file << system->steps() << "      " << system->time() << "      " << statisticsSampler->temperature() << "      " << statisticsSampler->kineticEnergy() << "      " << statisticsSampler->potentialEnergy() << "      " << statisticsSampler->totalEnergy() << endl;
+//      file << UnitConverter::lengthToAngstroms(atom->position.x()) << " " << UnitConverter::lengthToAngstroms(atom->position.y()) << " " << UnitConverter::lengthToAngstroms(atom->position.z()) << endl;
+
+        if(totalExecutionTime){
+            file << "Execution time: " << totalExecutionTime << endl;
+        }
+    }
+}
+
+
+

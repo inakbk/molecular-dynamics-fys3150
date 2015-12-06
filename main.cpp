@@ -47,26 +47,25 @@ int main(int numberOfArguments, char **argumentList)
     //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
 
     StatisticsSampler statisticsSampler;
-    IO movie; // To write the state to file
-    movie.open("movie.xyz");
-
-    IO statisticsFile;
+    IO statisticsFile; // To write statistics to file for plotting
     statisticsFile.open("statistics_file.txt");
+
+    IO movie; // To write the state to file to look at in Ovito
+    movie.open("movie.xyz");
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy" << endl;
     for(int timestep=0; timestep<1000; timestep++) {
         movie.saveState(&system);
 
         system.step(dt);
+
         statisticsSampler.sample(system);
+        statisticsFile.saveStatistics(&system, &statisticsSampler, 0); //output done here
 
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
             cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << endl;
-            //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
-
         }
-
     }
 
     movie.close();
@@ -75,8 +74,7 @@ int main(int numberOfArguments, char **argumentList)
     double totalExecutionTime = (( executionTimeFinish - executionTimeStart )/double(CLOCKS_PER_SEC ));
     cout << "Execution time: " << totalExecutionTime << endl;
 
-    //statisticsFile.file << "Execution time: " << totalExecutionTime << endl;
-
+    statisticsFile.saveStatistics(&system, &statisticsSampler, totalExecutionTime);
     statisticsFile.close();
 
     return 0;

@@ -7,10 +7,10 @@ StatisticsSampler::StatisticsSampler()
 
 }
 
-void StatisticsSampler::saveToFile(System &system)
-{
-    // Save the statistical properties for each timestep for plotting etc.
-}
+//void StatisticsSampler::saveToFile(System &system)
+//{
+//    // Save the statistical properties for each timestep for plotting etc.
+//}
 
 void StatisticsSampler::sample(System &system)
 {
@@ -19,7 +19,7 @@ void StatisticsSampler::sample(System &system)
     samplePotentialEnergy(system);
     sampleTemperature(system);
     sampleDensity(system);
-    saveToFile(system);
+    //saveToFile(system);
 }
 
 void StatisticsSampler::sampleKineticEnergy(System &system)
