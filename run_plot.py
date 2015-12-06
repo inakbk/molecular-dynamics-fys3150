@@ -52,7 +52,7 @@ for dt in dt_list:
 	i += 1
 
 #print len(totalEnergy)
-print sigmaEnergyEuler #/((1.651*10**(-21))**2) what units?
+#print sigmaEnergyEuler #/((1.651*10**(-21))**2) what units?
 
 plot(dt_list, sigmaEnergyEuler, 'k-o')
 hold('on')

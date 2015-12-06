@@ -1000,4 +1000,4 @@ Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy
 999      99.9      1.31291      984.681      -2884.91      -1900.22
 1000      100      1.31967      989.751      -2890      -1900.25
 1000      100      1.31967      989.751      -2890      -1900.25
-Execution time: 1.78781
+Execution time: 1.84146
