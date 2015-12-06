@@ -37,23 +37,17 @@ void StatisticsSampler::sampleKineticEnergy(System &system)
 
 void StatisticsSampler::samplePotentialEnergy(System &system)
 {
-
+    m_potentialEnergy = system.potential()->potentialEnergy();
 }
 
 void StatisticsSampler::sampleTemperature(System &system)
 {
     //instantaneous temperature
-    m_temperature = 2*m_kineticEnergy/(3*system.m_atoms.size());
+    m_temperature = 2*m_kineticEnergy/(3*system.atoms().size());
 }
 
 void StatisticsSampler::sampleDensity(System &system)
 {
     //the density is constant? 4m/b^3
-
-    //Atom *atom = system.atoms()[i];
-    //m_density = 4*atom->mass()/
-
-    //Atom *atom = system.atoms()[i];
-    //m_density = 4*atom->mass()*system.m_atoms.size()* * /system.volume()
-
+    m_density = system.atoms().size() / ( system.systemSize().x()*system.systemSize().y()*system.systemSize().z() );
 }

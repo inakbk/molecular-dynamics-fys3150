@@ -40,8 +40,9 @@ int main(int numberOfArguments, char **argumentList)
 
     system.createFCCLattice(numberOfUnitCells, latticeConstant, initialTemperature);
     system.setPotential(new LennardJones(3.405, 1.0)); // You must insert correct parameters here
-    //system.setIntegrator(new EulerCromer());
-    system.setIntegrator(new VelocityVerlet());
+
+    system.setIntegrator(new EulerCromer());
+    //system.setIntegrator(new VelocityVerlet());
     system.removeTotalMomentum();
     //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
 
@@ -53,10 +54,11 @@ int main(int numberOfArguments, char **argumentList)
     for(int timestep=0; timestep<1000; timestep++) {
         movie.saveState(&system);
 
-        statisticsSampler.sample(system);
+
 
 
         system.step(dt);
+        statisticsSampler.sample(system);
 
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
