@@ -300,17 +300,24 @@ An atom which has passed through one face of the simulation box should re-enter 
 \subsection{Intergration methods}
 During the first implementation of the MD code we have used the Euler-Cromer method to find the next time step for the atoms. (bla bla legge til likninger?)
 
-In MD the Velocity Verlet integrator is usually used. This is because other integration algorithms tend to drift the energy over time, which we want to avoid. We will therefore compare Euler-Cromer method with the Velocity-Verlet integrator and shed light on the pros and cons (?).
-
-say something more about energy drift?
-
-The Velocity Verlet algorithm consists of three steps (in addition to computing the forces, see section \ref{sec: L-Jpot_forces})
+In MD the Velocity Verlet integrator is usually used. This is because other integration algorithms tend to drift the energy over time, which we want to avoid. The Velocity Verlet algorithm consists of three steps (in addition to computing the forces, see section \ref{sec: L-Jpot_forces})
 \begin{align}
 	\vec v(t + \Delta t/2) &= \vec v(t) + \frac{\vec F(t)}{m}\frac{\Delta t}{2}\\
 	\vec r(t + \Delta t) &= \vec r(t) + \vec v(t + \Delta t/2)\Delta t\\
 	\vec v(t + \Delta t) &= \vec v(t + \Delta t/2) + \frac{\vec F(t + \Delta t)}{m}\frac{\Delta t}{2}.
 \end{align}
 
+sympletic integrator bla bla bla?
+
+To measure the drift of the energy we will use the standard deviation of the energy:
+\[
+\sigma_E = \sqrt{\langle E^2 \rangle - \langle E \rangle^2}
+\]
+that we will calculate using the Euler-Cromer method and the Velocity-Verlet integrator and compare the results.
+
+Will also compare cumputing time (plot this!?)
+
+say something more about energy drift?
 
 (discussed in the lecture notes.?)
   see \url{https://en.wikipedia.org/wiki/Verlet\_integration\#Velocity\_Verlet} on conserved quantities
