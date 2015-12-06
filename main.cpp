@@ -20,6 +20,8 @@ int main(int numberOfArguments, char **argumentList)
     int numberOfUnitCells = 5;
     double initialTemperature = UnitConverter::temperatureFromSI(800.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
+    double dt = UnitConverter::timeFromSI(1e-15); // Measured in seconds
+    int integratorNumber = 2; //initially set to Velocity Verlet, 1 is Euler-Cromer
 
     // If a first argument is provided, it is the number of unit cells
     if(numberOfArguments > 1) numberOfUnitCells = atoi(argumentList[1]);
@@ -27,8 +29,10 @@ int main(int numberOfArguments, char **argumentList)
     if(numberOfArguments > 2) initialTemperature = UnitConverter::temperatureFromSI(atof(argumentList[2]));
     // If a third argument is provided, it is the lattice constant determining the density (measured in angstroms)
     if(numberOfArguments > 3) latticeConstant = UnitConverter::lengthFromAngstroms(atof(argumentList[3]));
-
-    double dt = UnitConverter::timeFromSI(1e-15); // Measured in seconds
+    // If a fourth argument is provided, it is the time step length dt
+    if(numberOfArguments > 4) dt = UnitConverter::timeFromSI(atof(argumentList[4]));
+    //If a fifth argument is provided, it is the integrator number
+    if(numberOfArguments > 5) integratorNumber = atoi(argumentList[5]);
 
     cout << "One unit of length is " << UnitConverter::lengthToSI(1.0) << " meters" << endl;
     cout << "One unit of velocity is " << UnitConverter::velocityToSI(1.0) << " meters/second" << endl;
@@ -41,10 +45,10 @@ int main(int numberOfArguments, char **argumentList)
     system.createFCCLattice(numberOfUnitCells, latticeConstant, initialTemperature);
     system.setPotential(new LennardJones(3.405, 1.0)); // You must insert correct parameters here
 
-    system.setIntegrator(new EulerCromer());
-    //system.setIntegrator(new VelocityVerlet());
+    if(integratorNumber == 1) system.setIntegrator(new EulerCromer());
+    else if(integratorNumber == 2) system.setIntegrator(new VelocityVerlet());
+
     system.removeTotalMomentum();
-    //cout << system.atoms()[0]->position.x() << "      " << system.atoms()[0]->position.y() << "      " << system.atoms()[0]->position.z() << endl;
 
     StatisticsSampler statisticsSampler;
     IO statisticsFile; // To write statistics to file for plotting
