@@ -29,8 +29,8 @@ int main(int numberOfArguments, char **argumentList)
     if(numberOfArguments > 2) initialTemperature = UnitConverter::temperatureFromSI(atof(argumentList[2]));
     // If a third argument is provided, it is the lattice constant determining the density (measured in angstroms)
     if(numberOfArguments > 3) latticeConstant = UnitConverter::lengthFromAngstroms(atof(argumentList[3]));
-    // If a fourth argument is provided, it is the time step length dt
-    if(numberOfArguments > 4) dt = UnitConverter::timeFromSI(atof(argumentList[4]));
+    // If a fourth argument is provided, it is the time step length dt (in the MD units)
+    if(numberOfArguments > 4) dt = atof(argumentList[4]);
     //If a fifth argument is provided, it is the integrator number
     if(numberOfArguments > 5) integratorNumber = atoi(argumentList[5]);
 
@@ -52,10 +52,17 @@ int main(int numberOfArguments, char **argumentList)
 
     StatisticsSampler statisticsSampler;
     IO statisticsFile; // To write statistics to file for plotting
-    statisticsFile.open("statistics_file.txt");
-
     IO movie; // To write the state to file to look at in Ovito
-    movie.open("movie.xyz");
+
+    if(numberOfArguments > 5){
+        statisticsFile.open("run_plot_python_output/statistics_file.txt");
+        movie.open("run_plot_python_output/movie.xyz");
+    }
+    else{
+        statisticsFile.open("statistics_file.txt");
+        movie.open("movie.xyz");
+    }
+
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy" << endl;
     for(int timestep=0; timestep<1000; timestep++) {
