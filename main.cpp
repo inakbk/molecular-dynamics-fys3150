@@ -55,9 +55,9 @@ int main(int numberOfArguments, char **argumentList)
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy" << endl;
     for(int timestep=0; timestep<1000; timestep++) {
-        movie.saveState(&system);
+        movie.saveState(&system); //including the starting position in the movie
 
-        system.step(dt);
+        system.step(dt); //moving the particle one step
 
         statisticsSampler.sample(system);
         statisticsFile.saveStatistics(&system, &statisticsSampler, 0); //output done here
