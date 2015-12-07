@@ -6,5 +6,5 @@
 \contentsline {subsection}{\numberline {3.3}Periodic boundaryconditions (PBCs)}{5}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}The Lennard-Jones potential (interaction/forces)}{6}{subsection.3.4}
 \contentsline {paragraph}{The minimum image convention}{7}{section*.2}
-\contentsline {subsection}{\numberline {3.5}Intergration methods}{7}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Calculating physical properties of the system}{8}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.5}Intergration methods}{8}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Calculating physical properties of the system}{9}{subsection.3.6}
