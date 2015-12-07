@@ -126,7 +126,6 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
         }
     }
     setSystemSize(latticeConstant*numberOfUnitCellsEachDimension*vec3(1, 1, 1));
-    //std::cout << "this is b: " << latticeConstant << " this is nr " << numberOfUnitCellsEachDimension << std::endl;
 }
 
 void System::calculateForces() {

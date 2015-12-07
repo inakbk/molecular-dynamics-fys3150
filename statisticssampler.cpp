@@ -51,3 +51,16 @@ void StatisticsSampler::sampleDensity(System &system)
     //the (mass)density is constant 4m/b^3, but this is particle desity:
     m_density = system.atoms().size() / ( system.systemSize().x()*system.systemSize().y()*system.systemSize().z() );
 }
+
+void StatisticsSampler::sampleDiffusionConstant(System &system)
+{
+    for(Atom *atom : system.atoms()) {
+        //sumSquaredR +=
+    }
+
+    //m_diffusionConstant = sumSquaredR/( 6*system.atoms().size()*system.time() ); //add here
+}
+
+
+
+
