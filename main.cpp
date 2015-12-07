@@ -18,7 +18,7 @@ int main(int numberOfArguments, char **argumentList)
     executionTimeStart = clock();
 
     int numberOfUnitCells = 5;
-    double initialTemperature = UnitConverter::temperatureFromSI(1500.0); // measured in Kelvin
+    double initialTemperature = UnitConverter::temperatureFromSI(2000.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
     double dt = UnitConverter::timeFromSI(1e-15); // Measured in seconds
     int integratorNumber = 2; //initially set to Velocity Verlet, 1 is Euler-Cromer

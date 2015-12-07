@@ -27,19 +27,46 @@ void System::applyPeriodicBoundaryConditions() {
         double x = atom->position[0];
         double y = atom->position[1];
         double z = atom->position[2];
+
+        double x0 = atom->initialPosition[0];
+        double y0 = atom->initialPosition[1];
+        double z0 = atom->initialPosition[2];
         //std::cout << "Before, x: " << x << " y: " << y << " z: " << z << std::endl;
 
-        if(x<0) x += m_systemSize[0];
-        if(y<0) y += m_systemSize[1];
-        if(z<0) z += m_systemSize[2];
-        if(x>=m_systemSize[0]) x -= m_systemSize[0];
-        if(y>=m_systemSize[1]) y -= m_systemSize[1];
-        if(z>=m_systemSize[2]) z -= m_systemSize[2];
+        // checking if particle has left the system, if so, placing on oposite side
+        // of box and moving initial position for the diffusion constant
+        if(x<0){
+            x += m_systemSize[0];
+            x0 += m_systemSize[0];
+        }
+        if(y<0){
+            y += m_systemSize[1];
+            y0 += m_systemSize[1];
+        }
+        if(z<0){
+            z += m_systemSize[2];
+            z0 += m_systemSize[2];
+        }
+        if(x>=m_systemSize[0]){
+            x -= m_systemSize[0];
+            x0 -= m_systemSize[0];
+        }
+        if(y>=m_systemSize[1]){
+            y -= m_systemSize[1];
+            y0 -= m_systemSize[1];
+        }
+        if(z>=m_systemSize[2]){
+            z -= m_systemSize[2];
+            z0 -= m_systemSize[2];
+        }
+
         atom->position[0] = x;
         atom->position[1] = y;
         atom->position[2] = z;
 
-        //r_0 must also be corrected here
+        atom->initialPosition[0] = x0;
+        atom->initialPosition[1] = y0;
+        atom->initialPosition[2] = z0;
     }
 }
 
