@@ -148,6 +148,7 @@ x_1 &= 0 + ib\\
 y_1 &= 0 + jb \\
 z_1 &= 0 + kb
 \end{align*}
+\smallskip
 \end{minipage}
 \begin{minipage}{0.25\textwidth}
 \begin{align*}
@@ -155,6 +156,7 @@ x_2 &= \frac{1}{2} + ib\\
 y_2 &= \frac{1}{2} + jb \\
 z_2 &= 0 + kb
 \end{align*}
+\smallskip
 \end{minipage}
 \begin{minipage}{0.25\textwidth}
 \begin{align*}
@@ -162,6 +164,7 @@ x_3 &= 0 + ib\\
 y_3 &= \frac{1}{2} + jb \\
 z_3 &= \frac{1}{2} + kb
 \end{align*}
+\smallskip
 \end{minipage}
 \begin{minipage}{0.25\textwidth}
 \begin{align*}
@@ -169,6 +172,7 @@ x_4 &= \frac{1}{2} + ib\\
 y_4 &= 0 + jb \\
 z_4 &= \frac{1}{2} + kb
 \end{align*}
+\smallskip
 \end{minipage}
 
 Each of the sides of the simulation box has the length $L = bN$ so that the size of the whole system or the volume of the cubic lattice is given by $V = L^3 = (bN)^3$. The density of the system is then:
@@ -238,10 +242,6 @@ In our code, we use the so called MD units (see appendix \ref{sec:units}). (finn
 
 %The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and everything which is remarkable.(?)
 
-The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once)
-\begin{align}
-	V = \sum_{i>j} U(r_{ij}).
-\end{align}
 The force is calculated by taking the negative gradient of the potential
 \begin{align}
 	\vec F(r_{ij}) = -\nabla U(r_{ij}),
@@ -268,11 +268,13 @@ The force in y and z direction can be calculated the same way giving:
 \vec F &= F_x\ihat + F_y \jhat + F_z\khat \\
 &= \frac{24\epsilon}{\sigma^2} \Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{14} - \Big(\frac{\sigma}{r_{ij}}\Big)^{8} \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)
 \end{align*}
+
 A better numerical expression for the force is
 \begin{align*}
-\vec F = \frac{24\epsilon}{\sigma^2} \Big(\frac{\sigma}{r_{ij}}\Big)^8\Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{6} - 1 \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)
+\vec F &= \frac{24\epsilon}{\sigma^2} \Big(\frac{\sigma}{r_{ij}}\Big)^2\Big(\frac{\sigma}{r_{ij}}\Big)^6\Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{6} - 1 \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)\\
+&= 24\epsilon\sigma^6r_{ij}^{-2}r^{-6}\big(2\sigma^6r_{ij}^{-6} - 1\big)
 \end{align*}
-
+so that the powers of $r_{ij}$ is calculated as few times as possible giving the most efficient code.  
 
 
 \paragraph{The minimum image convention} (due to calculation of forces)
@@ -326,11 +328,18 @@ bla bla bla
   
   
 \subsection{Calculating physical properties of the system}
-The potential energi is given in section \ref{sec: L-Jpot_forces}. The kinetic energy is defined as
+The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once) 
+\begin{align}
+	V = \sum_{i>j} U(r_{ij}).
+\end{align}
+where $U(r_{ij})$ are the Lennard-Jones potential given in section \ref{sec: L-Jpot_forces}. The kinetic energy is defined as
 \begin{align}
 	E_k = \sum_{i=1}^{N_\text{atoms}} \frac{1}{2} m_i v_i^2,
 \end{align}
-where $m_i$ and $v_i$ is the mass and the speed of atom $i$. We will also calculate an estimate of the temperature through the equipartition theorem\footnote{See for example D. Schroeder's \textit{An Introduction to Thermal Physics} for details. better reference?}
+where $m_i$ and $v_i$ is the mass and the speed of atom $i$. The total energy of the system is then $E = V + E_k$. (which we will study if is conserved or not, see $\sigma_E$ ??)
+
+
+We will also calculate an estimate of the temperature through the equipartition theorem\footnote{See for example D. Schroeder's \textit{An Introduction to Thermal Physics} for details. better reference?}
 \begin{align}
 	\langle E_k \rangle = \frac{3}{2}N_\text{atoms} k_B T.
 \end{align}
