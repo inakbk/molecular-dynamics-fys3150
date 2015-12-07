@@ -1,14 +1,6 @@
 #plotting the force and the potential 
 from pylab import *
 
-#epsilon = 119.8
-#sigma = 3.405
-
-#A = 24*epsilon/sigma**2
-#B = 4*epsilon
-
-#r = linspace(0.1,100,1000)
-
 rCut = 2.5 #sigma = 1
 r_marked = linspace(1,rCut+0.5,1000) 
 
@@ -29,7 +21,7 @@ hold('on')
 plot(rCut,U_marked(rCut), 'r-o')
 plot(r_marked,zeros(len(r_marked)), 'k')
 axis([0.99,rCut+0.5,-0.26,0.01])
-ylabel('$U^*$', fontsize=18)
+ylabel('$U/4\epsilon$', fontsize=18)
 
 subplot(2,1,2)
 plot(r_marked,F_marked(r_marked), 'b')
@@ -37,11 +29,10 @@ plot(rCut,F_marked(rCut), 'b-o')
 plot(r_marked,zeros(len(r_marked)), 'k')
 
 axis([0.99,rCut+0.5,-0.1,0.01])
-xlabel('$r^*$', fontsize=18)
-ylabel('$F^*$', fontsize=18)
+xlabel('$\sigma/r_{ij}$', fontsize=18)
+ylabel('$F\sigma^2/24\epsilon$', fontsize=18)
 
 print U_marked(rCut), F_marked(rCut)
-
 
 show()
 
