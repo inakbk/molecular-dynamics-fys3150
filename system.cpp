@@ -124,7 +124,11 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 m_atoms.push_back(atom4);
 
                 if(firstTimeCreateFFCLattice){
-                    //atom1->initialPosition =
+                    atom1->initialPosition.set(x,y,z);
+                    atom2->initialPosition.set(x,y,z);
+                    atom3->initialPosition.set(x,y,z);
+                    atom4->initialPosition.set(x,y,z);
+
                     firstTimeCreateFFCLattice = false;
                 }
             }

@@ -19,6 +19,7 @@ void StatisticsSampler::sample(System &system)
     samplePotentialEnergy(system);
     sampleTemperature(system);
     sampleDensity(system);
+    sampleDiffusionConstant(system);
     //saveToFile(system);
 }
 
@@ -54,11 +55,23 @@ void StatisticsSampler::sampleDensity(System &system)
 
 void StatisticsSampler::sampleDiffusionConstant(System &system)
 {
+    double sumSquaredR = 0;
     for(Atom *atom : system.atoms()) {
-        //sumSquaredR +=
-    }
+        double x = atom->position[0]; // x(t)
+        double y = atom->position[1];
+        double z = atom->position[2];
 
-    //m_diffusionConstant = sumSquaredR/( 6*system.atoms().size()*system.time() ); //add here
+        double x0 = atom->initialPosition[0]; // x(0)
+        double y0 = atom->initialPosition[1];
+        double z0 = atom->initialPosition[2];
+
+        double xi2 = (x - x0)*(x - x0);
+        double yi2 = (y - y0)*(y - y0);
+        double zi2 = (z - z0)*(z - z0);
+
+        sumSquaredR += xi2 + yi2 - zi2;
+    }
+    m_diffusionConstant = sumSquaredR/( 6*system.atoms().size()*system.time() );
 }
 
 
