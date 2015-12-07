@@ -38,7 +38,7 @@ void LennardJones::calculateForces(System *system)
             double oneOverR2 = 1.0/r2;
             double oneOverR6 = oneOverR2*oneOverR2*oneOverR2;
 
-            double F = 24*m_epsilon*sigma6*oneOverR6*(2.0*sigma6*oneOverR6 - 1.0)*oneOverR2;
+            double F = 24*m_epsilon*sigma6*oneOverR2*oneOverR6*(2.0*sigma6*oneOverR6 - 1.0);
 
             // calculating final force
             atom_i->force[0] += F*x_ij;
