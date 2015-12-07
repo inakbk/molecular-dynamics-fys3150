@@ -21,7 +21,8 @@ hold('on')
 plot(rCut,U_marked(rCut), 'r-o')
 plot(r_marked,zeros(len(r_marked)), 'k')
 axis([0.99,rCut+0.5,-0.26,0.01])
-ylabel('$U/4\epsilon$', fontsize=18)
+ylabel('$U(r_{ij})/4\epsilon$', fontsize=18)
+legend(['$U(r_{ij})/4\epsilon$', '$1/4\epsilon(U(r_{ij}) - U(r_{cut}))$', '$r_{cut}$'], loc='lower right')
 
 subplot(2,1,2)
 plot(r_marked,F_marked(r_marked), 'b')
@@ -30,7 +31,9 @@ plot(r_marked,zeros(len(r_marked)), 'k')
 
 axis([0.99,rCut+0.5,-0.1,0.01])
 xlabel('$\sigma/r_{ij}$', fontsize=18)
-ylabel('$F\sigma^2/24\epsilon$', fontsize=18)
+ylabel('$F(r_{ij})\sigma^2/24\epsilon$', fontsize=18)
+legend(['$F(r_{ij})\sigma^2/24\epsilon$', '$r_{cut}$'], loc='lower right')
+
 
 print U_marked(rCut), F_marked(rCut)
 

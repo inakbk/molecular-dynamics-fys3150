@@ -222,9 +222,37 @@ MD simulations that use periodic boundary conditions have a large number of unit
 
 The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
 
+
+\subsection{Intergration methods} \label{sec: int_methods}
+During the first implementation of the MD code we have used the Euler-Cromer method to find the next time step for the atoms. (bla bla legge til likninger?)
+
+In MD the Velocity Verlet integrator is usually used. This is because other integration algorithms tend to drift the energy over time, which we want to avoid. The Velocity Verlet algorithm consists of three steps (in addition to computing the forces, see section \ref{sec: L-Jpot_forces})
+\begin{align}
+	\vec v(t + \Delta t/2) &= \vec v(t) + \frac{\vec F(t)}{m}\frac{\Delta t}{2}\\
+	\vec r(t + \Delta t) &= \vec r(t) + \vec v(t + \Delta t/2)\Delta t\\
+	\vec v(t + \Delta t) &= \vec v(t + \Delta t/2) + \frac{\vec F(t + \Delta t)}{m}\frac{\Delta t}{2}.
+\end{align}
+
+sympletic integrator bla bla bla?
+
+To measure the drift of the energy we will use the standard deviation of the total energy $E$:
+\[
+\sigma_E = \sqrt{\langle E^2 \rangle - \langle E \rangle^2}
+\]
+that we will calculate using the Euler-Cromer method and the Velocity-Verlet integrator and compare the results.
+
+Will also compare cumputing time (plot this!?)
+
+say something more about energy drift?
+
+(discussed in the lecture notes.?)
+  see \url{https://en.wikipedia.org/wiki/Verlet\_integration\#Velocity\_Verlet} on conserved quantities
+  
+bla bla bla  
+
 \subsection{The Lennard-Jones potential (interaction/forces)} \label{sec: L-Jpot_forces}
 
-In this project, we will use the Lennard-Jones potential which is a mathematically simple model that approximates the interaction between a pair of neutral atoms or molecules. Due to its computational simplicity, the Lennard-Jones potential is used extensively in computer simulations even though more accurate potentials exist\footnote{\url{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}.
+In this project we will use the Lennard-Jones potential which is a mathematically simple model that approximates the interaction between a pair of neutral atoms or molecules. Due to its computational simplicity, the Lennard-Jones potential is used extensively in computer simulations even though more accurate potentials exist\footnote{\url{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}.
 
 The potential calculates the energy between two atoms $i$ and $j$ as
 \begin{align}
@@ -269,24 +297,33 @@ The force in y and z direction can be calculated the same way giving:
 &= \frac{24\epsilon}{\sigma^2} \Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{14} - \Big(\frac{\sigma}{r_{ij}}\Big)^{8} \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)
 \end{align*}
 
+
+
+(another section???)
+
+In section \ref{sec: int_methods} we see that to calculate the next time step for the particles we need to calculate the forces. This is very time consuming because we have to sum over all pairs of particles to find the force for one particle. Therefore a lot of time can be saved if the code for the calculation of forces is as efficient as possible.
+
 A better numerical expression for the force is
 \begin{align*}
-\vec F &= \frac{24\epsilon}{\sigma^2} \Big(\frac{\sigma}{r_{ij}}\Big)^2\Big(\frac{\sigma}{r_{ij}}\Big)^6\Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{6} - 1 \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)\\
+\vec F(r_{ij}) &= \frac{24\epsilon}{\sigma^2} \Big(\frac{\sigma}{r_{ij}}\Big)^2\Big(\frac{\sigma}{r_{ij}}\Big)^6\Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{6} - 1 \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)\\
 &= 24\epsilon\sigma^6r_{ij}^{-2}r_{ij}^{-6}\big(2\sigma^6r_{ij}^{-6} - 1\big)
 \end{align*}
 and for the potential energy
 \begin{align*}
 U(r_{ij}) = 4\epsilon\sigma^6r_{ij}^{-6}\big(\sigma^6r_{ij}^{-6} - 1\big)
 \end{align*}
+so that the powers of $r_{ij}$ is calculated as few times as possible, $r_{ij}^{-6}$ can be calculated just once for each loop (define?).  
 
-so that the powers of $r_{ij}$ is calculated as few times as possible giving the most efficient code.  
+Another smart way to make a more efficient code when calculating the forces is to realize that in the limit $r_{ij}\rightarrow \infty$ both the force and the potential energy is zero. In figure \ref{fig: force_potential} the potential energy (red) and the force (blue) plotted against the distance between two atoms $r_{ij}$. We can see that the energy and the force reaches zero for large values of $r_{ij}$.  The point for which the potential energy and the force is nearly zero, $r_{cut}$, is marked with a dot in the figure. A good approximation is therefore to stop calculating forces and energies for distances larger than $r_{cut}$ and set all forces and energies for $r_{ij} > r_{cut}$ to zero.
 
 \begin{figure}
 \centering
 \includegraphics[width = 0.8\textwidth]{plots_theory/force_potential.png}
-\caption{bla nla}
+\caption{\textbf{Top:} The Lennard-Jones potential (red), or the potential energy $U(r_{ij})$ between two atoms $i$ and $j$ plotted against the distance between atom $i$ and $j$, $r_{ij}$. The point $(r_{cut},U(r_{cut}))$ is marked with a  red dot. The shifted potential function is also plotted in green. \textbf{Bottom:}  The force (blue) between two atoms $i$ and $j$ plotted against the distance between atom $i$ and $j$, $r_{ij}$. The point $(r_{cut}, F(r_{cut}))$ is marked with a blue dot.}
 \label{fig: force_potential}
 \end{figure}
+
+The implementation of $r_{cut}$ will save the algorithm a lot of time and still be a good approximation since the force and the potential energy is esensially zero anyway. The only problem is that the potential energy function will be discontinuously at the point $r_{cut}$ when the energy is set to zero after $r_{cut}$. A solution to this is to shift the potential function slightly so that the energy is zero at $r_{cut}$ and still set to zero for $r_{ij}>r_{cut}$. The shifted potential function is marked with green in figure \ref{fig: force_potential}. This will only shift the values for the potential and total energy, but it will not affect the physics of the problem. The statistical properties of the system will not be affected by the shift in energy. 
 
 
 \paragraph{The minimum image convention} (due to calculation of forces)
@@ -311,32 +348,6 @@ An atom which has passed through one face of the simulation box should re-enter 
 
 
 
-\subsection{Intergration methods}
-During the first implementation of the MD code we have used the Euler-Cromer method to find the next time step for the atoms. (bla bla legge til likninger?)
-
-In MD the Velocity Verlet integrator is usually used. This is because other integration algorithms tend to drift the energy over time, which we want to avoid. The Velocity Verlet algorithm consists of three steps (in addition to computing the forces, see section \ref{sec: L-Jpot_forces})
-\begin{align}
-	\vec v(t + \Delta t/2) &= \vec v(t) + \frac{\vec F(t)}{m}\frac{\Delta t}{2}\\
-	\vec r(t + \Delta t) &= \vec r(t) + \vec v(t + \Delta t/2)\Delta t\\
-	\vec v(t + \Delta t) &= \vec v(t + \Delta t/2) + \frac{\vec F(t + \Delta t)}{m}\frac{\Delta t}{2}.
-\end{align}
-
-sympletic integrator bla bla bla?
-
-To measure the drift of the energy we will use the standard deviation of the total energy $E$:
-\[
-\sigma_E = \sqrt{\langle E^2 \rangle - \langle E \rangle^2}
-\]
-that we will calculate using the Euler-Cromer method and the Velocity-Verlet integrator and compare the results.
-
-Will also compare cumputing time (plot this!?)
-
-say something more about energy drift?
-
-(discussed in the lecture notes.?)
-  see \url{https://en.wikipedia.org/wiki/Verlet\_integration\#Velocity\_Verlet} on conserved quantities
-  
-bla bla bla  
   
   
 \subsection{Calculating physical properties of the system}
