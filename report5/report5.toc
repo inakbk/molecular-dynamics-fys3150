@@ -8,3 +8,4 @@
 \contentsline {subsection}{\numberline {3.5}The Lennard-Jones potential (interaction/forces)}{6}{subsection.3.5}
 \contentsline {paragraph}{The minimum image convention}{9}{section*.2}
 \contentsline {subsection}{\numberline {3.6}Calculating physical properties of the system}{9}{subsection.3.6}
+\contentsline {paragraph}{The diffusion constant}{10}{section*.3}
