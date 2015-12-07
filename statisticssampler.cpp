@@ -55,7 +55,7 @@ void StatisticsSampler::sampleDensity(System &system)
 
 void StatisticsSampler::sampleDiffusionConstant(System &system)
 {
-    m_diffusionConstant = 0;
+    //m_diffusionConstant = 0;
     double sumSquaredR = 0;
     for(Atom *atom : system.atoms()) {
         double x = atom->position[0]; // x(t)
