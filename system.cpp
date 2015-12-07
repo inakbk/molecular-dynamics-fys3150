@@ -122,10 +122,16 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 atom4->position.set(x,y,z);
                 atom4->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom4);
+
+                if(firstTimeCreateFFCLattice){
+                    //atom1->initialPosition =
+                    firstTimeCreateFFCLattice = false;
+                }
             }
         }
     }
     setSystemSize(latticeConstant*numberOfUnitCellsEachDimension*vec3(1, 1, 1));
+
 }
 
 void System::calculateForces() {

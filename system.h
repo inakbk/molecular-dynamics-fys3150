@@ -16,6 +16,7 @@ private:
     Integrator* m_integrator = nullptr;
     double m_time = 0;
     int m_steps = 0;
+    bool firstTimeCreateFFCLattice = true;
 
 public:
     System();

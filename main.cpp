@@ -88,6 +88,7 @@ int main(int numberOfArguments, char **argumentList)
     statisticsFile.saveStatistics(&system, &statisticsSampler, totalExecutionTime);
     statisticsFile.close();
 
+
     return 0;
 }
 
