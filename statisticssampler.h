@@ -9,6 +9,7 @@ private:
     double m_potentialEnergy = 0;
     double m_temperature = 0;
     double m_density = 0;
+    double m_meanSquareDisplacement = 0;
     double m_diffusionConstant = 0;
 public:
     StatisticsSampler();
@@ -18,12 +19,16 @@ public:
     void samplePotentialEnergy(System &system);
     void sampleTemperature(System &system);
     void sampleDensity(System &system);
+    //void sampleMeanSquareDisplacement(System &system);
     void sampleDiffusionConstant(System &system);
     double kineticEnergy() { return m_kineticEnergy; }
     double potentialEnergy() { return m_potentialEnergy; }
     double totalEnergy() { return m_kineticEnergy + m_potentialEnergy; }
     double temperature() { return m_temperature; }
     double density() { return m_density; }
+    double meanSquareDisplacement() { return m_meanSquareDisplacement; }
     double diffusionConstant() { return m_diffusionConstant; }
 };
+
+
 #endif

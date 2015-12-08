@@ -63,9 +63,8 @@ int main(int numberOfArguments, char **argumentList)
         movie.open("movie.xyz");
     }
 
-
-    cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionConstant" << endl;
-    for(int timestep=0; timestep<100000; timestep++) {
+    cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionConstant MeanSquareDisplacement" << endl;
+    for(int timestep=0; timestep<1000; timestep++) {
         //movie.saveState(&system); //including also the starting position in the movie
 
         system.step(dt); //moving the particle one step
@@ -75,7 +74,7 @@ int main(int numberOfArguments, char **argumentList)
 
         if( !(timestep % 100) ) {
             // Print the timestep every 100 timesteps
-            cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << "      " << statisticsSampler.diffusionConstant() << endl;
+            cout << system.steps() << "      " << system.time() << "      " << statisticsSampler.temperature() << "      " << statisticsSampler.kineticEnergy() << "      " << statisticsSampler.potentialEnergy() << "      " << statisticsSampler.totalEnergy() << "      " << statisticsSampler.diffusionConstant() << "      " << statisticsSampler.meanSquareDisplacement() << endl;
         }
     }
 
@@ -87,7 +86,6 @@ int main(int numberOfArguments, char **argumentList)
 
     statisticsFile.saveStatistics(&system, &statisticsSampler, totalExecutionTime);
     statisticsFile.close();
-
 
     return 0;
 }

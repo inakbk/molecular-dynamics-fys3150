@@ -14,7 +14,7 @@ StatisticsSampler::StatisticsSampler()
 
 void StatisticsSampler::sample(System &system)
 {
-    // Here you should measure different kinds of statistical properties and save it to a file.
+    // Here you should measure different kinds of statistical properties and save it to a file (done in IO class).
     sampleKineticEnergy(system);
     samplePotentialEnergy(system);
     sampleTemperature(system);
@@ -71,7 +71,8 @@ void StatisticsSampler::sampleDiffusionConstant(System &system)
 
         sumSquaredR += xi2 + yi2 - zi2;
     }
-    m_diffusionConstant = sumSquaredR/( 6*system.atoms().size()*system.time() );
+    m_meanSquareDisplacement = sumSquaredR/system.atoms().size();
+    m_diffusionConstant = m_meanSquareDisplacement/( 6*system.time() );
 }
 
 
