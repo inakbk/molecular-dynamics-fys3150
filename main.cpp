@@ -26,20 +26,22 @@ int main(int numberOfArguments, char **argumentList)
 
     // If a first argument is provided, it is the number of unit cells
     if(numberOfArguments > 1) numberOfUnitCells = atoi(argumentList[1]);
-    // If a second argument is provided, it is the initial temperature (measured in kelvin)
-    if(numberOfArguments > 2) initialTemperature = UnitConverter::temperatureFromSI(atof(argumentList[2]));
-    // If a third argument is provided, it is the lattice constant determining the density (measured in angstroms)
-    if(numberOfArguments > 3) latticeConstant = UnitConverter::lengthFromAngstroms(atof(argumentList[3]));
-    // If a fourth argument is provided, it is the time step length dt (in the MD units)
+    // If a second argument is provided, it is the initial temperature (measured in MD units)
+    if(numberOfArguments > 2) initialTemperature = atof(argumentList[2]);
+    // If a third argument is provided, it is the lattice constant determining the density (measured in MD units)
+    if(numberOfArguments > 3) latticeConstant = atof(argumentList[3]);
+    // If a fourth argument is provided, it is the time step length dt (measured in MD units)
     if(numberOfArguments > 4) dt = atof(argumentList[4]);
     //If a fifth argument is provided, it is the integrator number
     if(numberOfArguments > 5) integratorNumber = atoi(argumentList[5]);
 
+    /*
     cout << "One unit of length is " << UnitConverter::lengthToSI(1.0) << " meters" << endl;
     cout << "One unit of velocity is " << UnitConverter::velocityToSI(1.0) << " meters/second" << endl;
     cout << "One unit of time is " << UnitConverter::timeToSI(1.0) << " seconds" << endl;
     cout << "One unit of mass is " << UnitConverter::massToSI(1.0) << " kg" << endl;
     cout << "One unit of temperature is " << UnitConverter::temperatureToSI(1.0) << " K" << endl;
+    */
 
     System system;
 
@@ -55,10 +57,10 @@ int main(int numberOfArguments, char **argumentList)
     IO statisticsFile; // To write statistics to file for plotting
     IO movie; // To write the state to file to look at in Ovito
 
-    if(numberOfArguments > 5){ // for plotting with python
-        string filenameStatistics = "run_plot_python_output/statistics_file_N" + to_string(numberOfUnitCells) + "_T" + to_string(initialTemperature) + "_b" + to_string(latticeConstant*100) + "_dt" + to_string(dt*1000) + "_int" + to_string(integratorNumber) + ".txt";
+    if(numberOfArguments > 5){ // making unique filenames for plotting with python
+        string filenameStatistics = "run_plot_python_output/statistics_file_NrOfCells" + to_string(numberOfUnitCells) + "_T" + to_string(int(initialTemperature*1000)) + "_b" + to_string(int(latticeConstant*1000)) + "_dt" + to_string(int(dt*1000)) + "_int" + to_string(integratorNumber) + ".txt";
         statisticsFile.open(filenameStatistics.c_str());
-        string filenameMovie = "run_plot_python_output/movie_N" + to_string(numberOfUnitCells) + "_T" + to_string(initialTemperature) + "_b" + to_string(latticeConstant*100) + "_dt" + to_string(dt*1000) + "_int" + to_string(integratorNumber) + ".xyz";
+        string filenameMovie = "run_plot_python_output/movie_N" + to_string(numberOfUnitCells) + "_T" + to_string(int(initialTemperature*1000)) + "_b" + to_string(int(latticeConstant*1000)) + "_dt" + to_string(int(dt*1000)) + "_int" + to_string(integratorNumber) + ".xyz";
         movie.open(filenameMovie.c_str());
     }
     else{

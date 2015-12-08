@@ -56,7 +56,7 @@ void IO::saveStatistics(System *system, StatisticsSampler *statisticsSampler, do
 //      file << UnitConverter::lengthToAngstroms(atom->position.x()) << " " << UnitConverter::lengthToAngstroms(atom->position.y()) << " " << UnitConverter::lengthToAngstroms(atom->position.z()) << endl;
 
         if(totalExecutionTime){
-            file << "Execution time: " << totalExecutionTime << endl;
+            file << "Execution time in seconds: " << totalExecutionTime << endl;
         }
     }
 }
