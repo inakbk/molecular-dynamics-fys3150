@@ -19,7 +19,6 @@ public:
     void samplePotentialEnergy(System &system);
     void sampleTemperature(System &system);
     void sampleDensity(System &system);
-    //void sampleMeanSquareDisplacement(System &system);
     void sampleDiffusionConstant(System &system);
     double kineticEnergy() { return m_kineticEnergy; }
     double potentialEnergy() { return m_potentialEnergy; }
