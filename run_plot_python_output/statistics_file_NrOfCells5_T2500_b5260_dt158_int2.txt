@@ -999,5 +999,4 @@ Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionCon
 998      15.8419      1.29649      972.365      -2877.91      -1905.54      2.07609      197.336
 999      15.8578      1.29387      970.404      -2875.95      -1905.54      2.074      197.335
 1000      15.8737      1.29126      968.444      -2873.99      -1905.54      2.07192      197.334
-1000      15.8737      1.29126      968.444      -2873.99      -1905.54      2.07192      197.334
-Execution time in seconds: 1.86386
+Execution time in seconds: 1.88529
