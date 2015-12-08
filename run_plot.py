@@ -52,6 +52,9 @@ def read_file_E(filename):
 """
 ------------------------------------------------------------------------------------------
 """
+#plotting sigma_E vs dt:
+
+"""
 #all in MD units!
 numberOfUnitCells = 5
 initialTemperature = 2.5 # measured in Kelvin
@@ -60,11 +63,8 @@ latticeConstant = 5.26 # measured in angstroms
 length_of_list = 20
 dt_list = linspace(0.0001, 0.1, length_of_list)
 
-"""
-------------------------------------------------------------------------------------------
-"""
 
-"""
+
 #compiling once:
 os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -O3 -std=c++11')
 
@@ -72,9 +72,7 @@ os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -
 for dt in dt_list:
 	os.system('./main %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, 1))
 	os.system('./main %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, 2))
-
   
-#plotting sigma_E vs dt:  
 sigmaEnergyEuler = zeros(length_of_list)
 sigmaEnergyVV = zeros(length_of_list)
 
@@ -101,14 +99,15 @@ title('numberOfUnitCells= %s, initialTemperature= %s, latticeConstant= %s, time=
 
 #all in MD units!
 numberOfUnitCells = 15
-initialTemperature = 2.5 # measured in MD approx 2.5=300
+initialTemperature = 2.5 # measured in MD approx 2.5=300 Kelvin
 latticeConstant = 5.26 # measured in angstroms (MD)
 
-dt = 0.0526 # Measured MD units, is about the same as 1e-15 seconds
+dt = 0.0526 # Measured MD units, is about the same as 5e-15 seconds
 integratorNumber = 2 # initially set to Velocity Verlet, 1 is Euler-Cromer
 
 #compiling once:
-#os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -O3 -std=c++11')
+os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -O3 -std=c++11')
+
 #running cpp code
 os.system('./main %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, integratorNumber))
 
