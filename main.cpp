@@ -58,9 +58,9 @@ int main(int numberOfArguments, char **argumentList)
     IO movie; // To write the state to file to look at in Ovito
 
     if(numberOfArguments > 5){ // making unique filenames for plotting with python
-        string filenameStatistics = "run_plot_python_output/statistics_file_NrOfCells" + to_string(numberOfUnitCells) + "_T" + to_string(int(initialTemperature*1000)) + "_b" + to_string(int(latticeConstant*1000)) + "_dt" + to_string(int(dt*1000)) + "_int" + to_string(integratorNumber) + ".txt";
+        string filenameStatistics = "run_plot_python_output/statistics_file_NrOfCells" + to_string(numberOfUnitCells) + "_T" + to_string(int(initialTemperature*1000)) + "_b" + to_string(int(latticeConstant*1000)) + "_dt" + to_string(int(dt*10000)) + "_int" + to_string(integratorNumber) + ".txt";
         statisticsFile.open(filenameStatistics.c_str());
-        string filenameMovie = "run_plot_python_output/movie_N" + to_string(numberOfUnitCells) + "_T" + to_string(int(initialTemperature*1000)) + "_b" + to_string(int(latticeConstant*1000)) + "_dt" + to_string(int(dt*1000)) + "_int" + to_string(integratorNumber) + ".xyz";
+        string filenameMovie = "run_plot_python_output/movie_N" + to_string(numberOfUnitCells) + "_T" + to_string(int(initialTemperature*1000)) + "_b" + to_string(int(latticeConstant*1000)) + "_dt" + to_string(int(dt*10000)) + "_int" + to_string(integratorNumber) + ".xyz";
         movie.open(filenameMovie.c_str());
     }
     else{
