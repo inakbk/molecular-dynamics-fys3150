@@ -9,6 +9,7 @@
 #include "unitconverter.h"
 #include <iostream>
 #include "time.h"
+#include <string>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ int main(int numberOfArguments, char **argumentList)
     System system;
 
     system.createFCCLattice(numberOfUnitCells, latticeConstant, initialTemperature);
-    system.setPotential(new LennardJones(3.405, 1.0)); // You must insert correct parameters here
+    system.setPotential(new LennardJones(3.405, 1.0));
 
     if(integratorNumber == 1) system.setIntegrator(new EulerCromer());
     else if(integratorNumber == 2) system.setIntegrator(new VelocityVerlet());
@@ -54,9 +55,11 @@ int main(int numberOfArguments, char **argumentList)
     IO statisticsFile; // To write statistics to file for plotting
     IO movie; // To write the state to file to look at in Ovito
 
-    if(numberOfArguments > 5){
-        statisticsFile.open("run_plot_python_output/statistics_file.txt");
-        movie.open("run_plot_python_output/movie.xyz");
+    if(numberOfArguments > 5){ // for plotting with python
+        string filenameStatistics = "run_plot_python_output/statistics_file_N" + to_string(numberOfUnitCells) + "_T" + to_string(initialTemperature) + "_b" + to_string(latticeConstant*100) + "_dt" + to_string(dt*1000) + "_int" + to_string(integratorNumber) + ".txt";
+        statisticsFile.open(filenameStatistics.c_str());
+        string filenameMovie = "run_plot_python_output/movie_N" + to_string(numberOfUnitCells) + "_T" + to_string(initialTemperature) + "_b" + to_string(latticeConstant*100) + "_dt" + to_string(dt*1000) + "_int" + to_string(integratorNumber) + ".xyz";
+        movie.open(filenameMovie.c_str());
     }
     else{
         statisticsFile.open("statistics_file.txt");
@@ -64,7 +67,7 @@ int main(int numberOfArguments, char **argumentList)
     }
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionConstant MeanSquareDisplacement" << endl;
-    for(int timestep=0; timestep<10000; timestep++) {
+    for(int timestep=0; timestep<1000; timestep++) {
         //movie.saveState(&system); //including also the starting position in the movie
 
         system.step(dt); //moving the particle one step

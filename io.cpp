@@ -4,6 +4,7 @@
 #include "unitconverter.h"
 #include "statisticssampler.h"
 #include <cstdlib>
+
 using std::endl; using std::cout;
 
 IO::IO()
