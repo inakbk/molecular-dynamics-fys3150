@@ -23,6 +23,7 @@ int main(int numberOfArguments, char **argumentList)
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
     double dt = UnitConverter::timeFromSI(5e-15); // Measured in seconds
     int integratorNumber = 2; //initially set to Velocity Verlet, 1 is Euler-Cromer
+    int numberOfTimesteps = 1000;
 
     // If a first argument is provided, it is the number of unit cells
     if(numberOfArguments > 1) numberOfUnitCells = atoi(argumentList[1]);
@@ -32,8 +33,10 @@ int main(int numberOfArguments, char **argumentList)
     if(numberOfArguments > 3) latticeConstant = atof(argumentList[3]);
     // If a fourth argument is provided, it is the time step length dt (measured in MD units)
     if(numberOfArguments > 4) dt = atof(argumentList[4]);
-    //If a fifth argument is provided, it is the integrator number
+    // If a fifth argument is provided, it is the integrator number
     if(numberOfArguments > 5) integratorNumber = atoi(argumentList[5]);
+    // If a sixth argument is provided, it is the number of timesteps
+    if(numberOfArguments > 6) integratorNumber = atoi(argumentList[6]);
 
     /*
     cout << "One unit of length is " << UnitConverter::lengthToSI(1.0) << " meters" << endl;
@@ -69,7 +72,7 @@ int main(int numberOfArguments, char **argumentList)
     }
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionConstant MeanSquareDisplacement" << endl;
-    for(int timestep=0; timestep<1000; timestep++) {
+    for(int timestep=0; timestep<numberOfTimesteps; timestep++) {
         //movie.saveState(&system); //including also the starting position in the movie
 
         system.step(dt); //moving the particle one step
