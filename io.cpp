@@ -51,10 +51,11 @@ void IO::saveStatistics(System *system, StatisticsSampler *statisticsSampler, do
             file << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionConstant MeanSquareDisplacement" << endl;
             first_time = false;
         }
-        //should convert units or not? add units in first line?
-        file << system->steps() << "      " << system->time() << "      " << statisticsSampler->temperature() << "      " << statisticsSampler->kineticEnergy() << "      " << statisticsSampler->potentialEnergy() << "      " << statisticsSampler->totalEnergy() << "      " << statisticsSampler->diffusionConstant() << "      " << statisticsSampler->meanSquareDisplacement() << endl;
-//      file << UnitConverter::lengthToAngstroms(atom->position.x()) << " " << UnitConverter::lengthToAngstroms(atom->position.y()) << " " << UnitConverter::lengthToAngstroms(atom->position.z()) << endl;
-
+        if(totalExecutionTime==0){
+            //should convert units or not? add units in first line?
+            file << system->steps() << "      " << system->time() << "      " << statisticsSampler->temperature() << "      " << statisticsSampler->kineticEnergy() << "      " << statisticsSampler->potentialEnergy() << "      " << statisticsSampler->totalEnergy() << "      " << statisticsSampler->diffusionConstant() << "      " << statisticsSampler->meanSquareDisplacement() << endl;
+    //      file << UnitConverter::lengthToAngstroms(atom->position.x()) << " " << UnitConverter::lengthToAngstroms(atom->position.y()) << " " << UnitConverter::lengthToAngstroms(atom->position.z()) << endl;
+        }
         if(totalExecutionTime){
             file << "Execution time in seconds: " << totalExecutionTime << endl;
         }
