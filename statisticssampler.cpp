@@ -25,7 +25,7 @@ void StatisticsSampler::sample(System &system)
 
 void StatisticsSampler::sampleKineticEnergy(System &system)
 {
-    m_kineticEnergy = 0; // Remember to reset the value from the previous timestep
+    m_kineticEnergy = 0; // Reset the value from the previous timestep
     for(Atom *atom : system.atoms()) {
         m_kineticEnergy += 0.5*atom->mass()*atom->velocity.lengthSquared();
     }
@@ -55,7 +55,6 @@ void StatisticsSampler::sampleDensity(System &system)
 
 void StatisticsSampler::sampleDiffusionConstant(System &system)
 {
-    //m_diffusionConstant = 0;
     double sumSquaredR = 0;
     for(Atom *atom : system.atoms()) {
         double x = atom->position[0]; // x(t)

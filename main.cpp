@@ -18,9 +18,9 @@ int main(int numberOfArguments, char **argumentList)
     executionTimeStart = clock();
 
     int numberOfUnitCells = 5;
-    double initialTemperature = UnitConverter::temperatureFromSI(2000.0); // measured in Kelvin
+    double initialTemperature = UnitConverter::temperatureFromSI(1000.0); // measured in Kelvin
     double latticeConstant = UnitConverter::lengthFromAngstroms(5.26); // measured in angstroms
-    double dt = UnitConverter::timeFromSI(1e-15); // Measured in seconds
+    double dt = UnitConverter::timeFromSI(5e-15); // Measured in seconds
     int integratorNumber = 2; //initially set to Velocity Verlet, 1 is Euler-Cromer
 
     // If a first argument is provided, it is the number of unit cells
@@ -65,7 +65,7 @@ int main(int numberOfArguments, char **argumentList)
 
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionConstant" << endl;
-    for(int timestep=0; timestep<1000; timestep++) {
+    for(int timestep=0; timestep<100000; timestep++) {
         //movie.saveState(&system); //including also the starting position in the movie
 
         system.step(dt); //moving the particle one step
