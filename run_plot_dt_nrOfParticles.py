@@ -53,7 +53,7 @@ def read_file_E(filename):
 ------------------------------------------------------------------------------------------
 """
 #plotting sigma_E vs dt:
-"""
+
 #all in MD units!
 numberOfUnitCells = 5
 initialTemperature = 2.5 # measured in Kelvin
@@ -83,30 +83,32 @@ for i in range(length_of_list-1):
     sigmaEnergyVV[i] = sqrt(sum(totalEnergy**2)/len(totalEnergy) - (sum(totalEnergy)/len(totalEnergy))**2)
 
 figure(1)
+subplot(2,1,1)
 plot(dt_list[:-1], sigmaEnergyEuler, 'k-o')
 hold('on')
 plot(dt_list[:-1], sigmaEnergyVV, 'r-o')
-xlabel('dt [MD units]', fontsize=18)
+#xlabel('dt [MD units]', fontsize=18)
 ylabel('$\sigma_E$ [MD units]', fontsize=18)
 legend(['Euler', 'Velocity Verlet'], fontsize=16, loc='upper left')
 title('numberOfUnitCells= %s, initialTemperature= %s\n latticeConstant= %s, numberOfTimesteps= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(totalEnergy)), fontsize=16)
 
 #plotting execution time vs dt:
-figure(3)
+#figure(3)
+subplot(2,1,2)
 plot(dt_list[:-1], executionTimeEuler, 'k-o')
 hold('on')
 plot(dt_list[:-1], executionTimeVV, 'r-o')
 xlabel('dt [MD units]', fontsize=18)
-ylabel('Execution Time [seconds]', fontsize=18)
+ylabel('Execution Time [sec]', fontsize=18)
 legend(['Euler', 'Velocity Verlet'], fontsize=16, loc='upper left')
-title('numberOfUnitCells= %s, initialTemperature= %s\n latticeConstant= %s, numberOfTimesteps= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(totalEnergy)), fontsize=16)
-"""
+#title('numberOfUnitCells= %s, initialTemperature= %s\n latticeConstant= %s, numberOfTimesteps= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(totalEnergy)), fontsize=16)
+
 
 """
 ------------------------------------------------------------------------------------------
 """
 #plotting execution time vs numberOfParticles:
-
+"""
 
 #all in MD units!
 initialTemperature = 2.5 # measured in Kelvin
@@ -137,10 +139,10 @@ plot(numberOfUnitCells_list, executionTimeEuler, 'k-o')
 hold('on')
 plot(numberOfUnitCells_list, executionTimeVV, 'r-o')
 xlabel('Number Of Unit Cells', fontsize=18)
-ylabel('Execution Time [seconds]', fontsize=18)
+ylabel('Execution Time [sec]', fontsize=18)
 legend(['Euler', 'Velocity Verlet'], fontsize=16, loc='upper left')
 title('dt= %s, initialTemperature= %s\n latticeConstant= %s, numberOfTimesteps= %s' %(dt, initialTemperature, latticeConstant, len(totalEnergy)), fontsize=16)
-
+"""
 
 show()
 
