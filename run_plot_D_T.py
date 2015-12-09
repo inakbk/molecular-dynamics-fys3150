@@ -101,17 +101,16 @@ for initialTemperature in initialTemperature_list:
 
 figure(4)
 plot(instantTemperatureEquilibrium, instantTemperatureEquilibrium/initialTemperature_list, '-o')
-xlabel('$T_i$', fontsize=18)
+xlabel('$T$', fontsize=18)
 ylabel(r'$T/T_i$ [MD units]', fontsize=18)
 #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
 title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
 
 figure(5)
 plot(instantTemperatureEquilibrium, diffusionConstantEquilibrium, '-o')
-xlabel('$T_i$', fontsize=18)
+xlabel('$T$', fontsize=18)
 ylabel(r'$D$ [MD units]', fontsize=18)
 #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
 title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
-
 
 show()
