@@ -56,12 +56,12 @@ def read_file_E(filename):
 
 #all in MD units!
 numberOfUnitCells = 5
-initialTemperature = 2.5 # measured in MD approx 2.5=300 Kelvin, 8.35 = 1000 Kelvin, 16.7 = 2000 Kelvin
+initialTemperature = 8.35 # measured in MD approx 2.5=300 Kelvin, 8.35 = 1000 Kelvin, 16.7 = 2000 Kelvin
 latticeConstant = 5.26 # measured in angstroms (MD)
 
 dt = 0.05 # Measured MD units, is about the same as 5e-15 seconds
 integratorNumber = 2 # initially set to Velocity Verlet, 1 is Euler-Cromer
-numberOfTimesteps = 10000
+numberOfTimesteps = 50000
 
 #compiling once:
 #os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -O3 -std=c++11')
@@ -70,12 +70,14 @@ numberOfTimesteps = 10000
 #os.system('./main %s %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, integratorNumber, numberOfTimesteps))
 
 time, instantTemperature, kineticEnergy, potentialEnergy, totalEnergy, diffusionConstant, meanSquareDisplacement = read_file('run_plot_python_output/statistics_file_NrOfCells%s_T%s_b%s_dt%s_int%s.txt' %(numberOfUnitCells, int(initialTemperature*1000), int(latticeConstant*1000), int(dt*10000), integratorNumber))
-#time, instantTemperature, kineticEnergy, potentialEnergy, totalEnergy, diffusionConstant, meanSquareDisplacement = read_file('run_plot_python_output/statistics_file_NrOfCells%s_T%s_b%s_dt%s_int%s.txt' %(numberOfUnitCells, int(initialTemperature*1000), int(latticeConstant*1000), int(dt*10000), integratorNumber))
+#time1, instantTemperature1, kineticEnergy1, potentialEnergy1, totalEnergy1, diffusionConstant1, meanSquareDisplacement1 = read_file('run_plot_python_output/statistics_file_NrOfCells%s_T%s_b%s_dt%s_int%s.txt' %(numberOfUnitCells, int(initialTemperature*1000), int(latticeConstant*1000), int(dt*10000), 1))
 
 print len(totalEnergy)
 
 figure(1)
 plot(time, instantTemperature)
+hold('on')
+#plot(time1, instantTemperature1)
 xlabel('time [MD units]', fontsize=18)
 ylabel('$T_i$ [MD units]', fontsize=18)
 legend(['Velocity Verlet'], fontsize=16, loc='lower left')
@@ -84,27 +86,33 @@ title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, num
 figure(2)
 plot(time, kineticEnergy)
 hold('on')
-#xlabel('time [MD units]', fontsize=18)
-#ylabel(r'$\langle E_k \rangle$ [MD units]', fontsize=18)
-#legend(['Velocity Verlet'], fontsize=16, loc='lower left')
-#title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s,dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
+#plot(time1, kineticEnergy1)
+xlabel('time [MD units]', fontsize=18)
+ylabel(r'$\langle E_k \rangle$ [MD units]', fontsize=18)
+legend(['Velocity Verlet'], fontsize=16, loc='lower left')
+title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s,dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
 
-#figure(3)
+figure(3)
 plot(time, potentialEnergy)
-#xlabel('time [MD units]', fontsize=18)
-#ylabel('$V$ [MD units]', fontsize=18)
-#legend(['Velocity Verlet'], fontsize=16, loc='lower left')
-#title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s,dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
+hold('on')
+#plot(time1, potentialEnergy1)
+xlabel('time [MD units]', fontsize=18)
+ylabel('$V$ [MD units]', fontsize=18)
+legend(['Velocity Verlet'], fontsize=16, loc='lower left')
+title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s,dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
 
-#figure(4)
+figure(4)
 plot(time, totalEnergy)
+hold('on')
+#plot(time1, totalEnergy1)
 xlabel('time [MD units]', fontsize=18)
 ylabel('$E$ [MD units]', fontsize=18)
 legend(['Velocity Verlet'], fontsize=16, loc='lower left')
 title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s,dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
 
 figure(5)
-plot(time, diffusionConstant)
+plot(time[500:], diffusionConstant[500:])
+#plot(time1[500:], diffusionConstant1[500:])
 xlabel('time [MD units]', fontsize=18)
 ylabel('$D$ [MD units]', fontsize=18)
 legend(['Velocity Verlet'], fontsize=16, loc='lower left')
@@ -112,6 +120,7 @@ title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, num
 
 figure(6)
 plot(time, meanSquareDisplacement)
+#plot(time1, meanSquareDisplacement1)
 xlabel('time [MD units]', fontsize=18)
 ylabel(r'$\langle r^2(t) \rangle$ [MD units]', fontsize=18)
 legend(['Velocity Verlet'], fontsize=16, loc='lower left')
