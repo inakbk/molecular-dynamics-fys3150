@@ -9,3 +9,5 @@
 \contentsline {paragraph}{The minimum image convention}{9}{section*.2}
 \contentsline {subsection}{\numberline {3.6}Calculating physical properties of the system}{9}{subsection.3.6}
 \contentsline {paragraph}{The diffusion constant}{10}{section*.3}
+\contentsline {section}{\numberline {4}Results}{10}{section.4}
+\contentsline {subsection}{\numberline {4.1}Comparing the two integrators}{10}{subsection.4.1}

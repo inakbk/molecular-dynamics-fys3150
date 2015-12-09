@@ -8,3 +8,17 @@
 *.txt
 
 *.png
+
+*.aux
+
+*.log
+
+report5/report5.out
+
+*.out
+
+*.pdf
+
+*.gz
+
+*.toc
