@@ -62,7 +62,7 @@ dt = 0.05 # Measured MD units, is about the same as 5e-15 seconds
 integratorNumber = 2 # initially set to Velocity Verlet, 1 is Euler-Cromer
 
 numberOfTimesteps = 10000
-initialTemperature_list = linspace(4.5,6.5,6) # measured in MD approx 2.5=300 Kelvin, 8.35 = 1000 Kelvin, 16.7 = 2000 Kelvin
+initialTemperature_list = linspace(0.5,18.5,55) # measured in MD approx 2.5=300 Kelvin, 8.35 = 1000 Kelvin, 16.7 = 2000 Kelvin
 print initialTemperature_list*1000
 instantTemperatureEquilibrium = zeros(len(initialTemperature_list))
 diffusionConstantEquilibrium = zeros(len(initialTemperature_list))
@@ -73,7 +73,7 @@ i = 0
 
 for initialTemperature in initialTemperature_list:
     #running cpp code
-    os.system('./main %s %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, integratorNumber, numberOfTimesteps))
+    #os.system('./main %s %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, integratorNumber, numberOfTimesteps))
     time, instantTemperature, kineticEnergy, potentialEnergy, totalEnergy, diffusionConstant, meanSquareDisplacement = read_file('run_plot_python_output/statistics_file_NrOfCells%s_T%s_b%s_dt%s_int%s.txt' %(numberOfUnitCells, int(initialTemperature*1000), int(latticeConstant*1000), int(round(dt*10000)), integratorNumber))
     instantTemperatureEquilibrium[i] = instantTemperature[-1]
     diffusionConstantEquilibrium[i] = diffusionConstant[-1]
@@ -94,14 +94,14 @@ for initialTemperature in initialTemperature_list:
     title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
 
 figure(3)
-plot(initialTemperature_list, initialTemperature_list/instantTemperatureEquilibrium)
+plot(initialTemperature_list, initialTemperature_list/instantTemperatureEquilibrium, '-o')
 xlabel('T', fontsize=18)
 ylabel(r'$T/T_i$ [MD units]', fontsize=18)
 #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
 title('numberOfUnitCells= %s, initialTemperature= %s \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature, latticeConstant, len(time), dt), fontsize=16)
 
 figure(4)
-plot(instantTemperatureEquilibrium, diffusionConstantEquilibrium)
+plot(instantTemperatureEquilibrium, diffusionConstantEquilibrium, '-o')
 xlabel('$T_i$', fontsize=18)
 ylabel(r'$D$ [MD units]', fontsize=18)
 #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
