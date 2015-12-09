@@ -320,7 +320,7 @@ Another smart way to make a more efficient code when calculating the forces is t
 
 \begin{figure}
 \centering
-\includegraphics[width = 0.8\textwidth]{plots_theory/force_potential.png}
+\includegraphics[width = 0.8\textwidth]{plots/force_potential.png}
 \caption{\textbf{Top:} The Lennard-Jones potential (red), or the potential energy $U(r_{ij})$ between two atoms $i$ and $j$ plotted against the distance between atom $i$ and $j$, $r_{ij}$. The point $(r_{cut},U(r_{cut}))$ is marked with a  red dot. The shifted potential function is also plotted in green. \textbf{Bottom:}  The force (blue) between two atoms $i$ and $j$ plotted against the distance between atom $i$ and $j$, $r_{ij}$. The point $(r_{cut}, F(r_{cut}))$ is marked with a blue dot.}
 \label{fig: force_potential}
 \end{figure}
@@ -399,9 +399,37 @@ Atoms in a solid will not diffuse (move?) much, so a solid will have a diffusion
 
 
 \section{Results}
+
+\subsection{Testing the implementation of the model and algorithm}
+
+\subsection{Equilibium time?}
+
 \subsection{Comparing the two integrators}
 
+In the top plot in figure \ref{fig: dt} we can see the standard deviation of the total energy $\sigma_E$ plotted versus the timestep dt for the Euler-Cromer and Velocity Verlet integrator . The units on the axis are MN unist explained in section (?do it? explain in caption?) We see that the drift in the energy is significantly larger for the Euler-Cromer method than for the Velocity Verlet integrator and that it increases with increasing dt for the Euler-Cromer method. For the Velocity Verlet integrator the choice of dt does not matter much, the energy drift, or the value for $\sigma_E$ is small for all values of dt. 
+%this is expected
 
+In the bottom plot in figure \ref{fig: dt} we can see the execution time plotted versus the timestep for the Euler-Cromer and Velocity Verlet integrator . We see that there is not much difference in the execution time between the two integrators and that the dependence on the value of dt seems rather random. 
+
+Both plots in figure \ref{fig: dt} where obtained with 5 unit cells in each direction, initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$ and 1000 timesteps in the simulation. Similar plots are obtained when running with 10 unit cells in each direction. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{plots/dt_NrOfCells5_T2500_b5260.png}
+\caption{\textbf{Top:} The standard deviation of the total energy $\sigma_E$ plotted versus the timestep dt for the Euler-Cromer and Velocity Verlet integrator with 5 unit cells in each direction, initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$ and 1000 timesteps in the simulation. \textbf{Bottom:} The execution time plotted versus the the timestep dt for the Euler-Cromer and Velocity Verlet integrator with 5 unit cells in each direction, initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$ and 1000 timesteps in the simulation.}
+\label{fig: dt}
+\end{figure}
+
+In figure \ref{fig: exe_cells} we see the execution time plotted versus the number of unit cells in each direction for the Euler-Cromer and Velocity Verlet integrator. We see that for small number of unit cells the execution time is about the same for both integrators, they are equally fast. For 15 unit cells in each direction the two integrators deviate slightly in the execution time, but the execution time is quite large, $t_{exe} \approx 800 \mathrm{s} \approx 13 \mathrm{min}$ so that the deviation in the execution time between the integrators are small compared to the execution time. Thus the choice of integrator does not affect the execution time much and we should choose the integrator that gives the best physical results. The best physical results are when the drift in the energy or $\sigma_E$ is as small as possible, we should therefore use the Velocity Verlet integrator. The further calculations are done with the Velocity Verlet integrator. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{plots/exeTime_NrOfCells_T2500_b5260.png}
+\caption{The execution time plotted versus the number of unit cells in each direction for the Euler-Cromer and Velocity Verlet integrator with initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$, $dt=0.05\approx  5\cdot 10^{-15}$s and 1000 timesteps in the simulation.}
+\label{fig: exe_cells}
+\end{figure}
+
+number of unit cells is also a measure of how many particles..include?
 
 
 
