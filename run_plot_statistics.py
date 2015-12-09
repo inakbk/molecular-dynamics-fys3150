@@ -56,18 +56,18 @@ def read_file_E(filename):
 
 #all in MD units!
 numberOfUnitCells = 10
-initialTemperature = 2.5 # measured in MD approx 2.5=300 Kelvin, 8.35 = 1000 Kelvin, 16.7 = 2000 Kelvin
+initialTemperature = 16.7 # measured in MD approx 2.5=300 Kelvin, 8.35 = 1000 Kelvin, 16.7 = 2000 Kelvin
 latticeConstant = 5.26 # measured in angstroms (MD)
 
 dt = 0.05 # Measured MD units, is about the same as 5e-15 seconds
 integratorNumber = 2 # initially set to Velocity Verlet, 1 is Euler-Cromer
-numberOfTimesteps = 10000
+numberOfTimesteps = 1000
 
 #compiling once:
 #os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -O3 -std=c++11')
 
 #running cpp code
-os.system('./main %s %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, integratorNumber, numberOfTimesteps))
+#os.system('./main %s %s %s %s %s %s' %(numberOfUnitCells, initialTemperature, latticeConstant, dt, integratorNumber, numberOfTimesteps))
 
 time, instantTemperature, kineticEnergy, potentialEnergy, totalEnergy, diffusionConstant, meanSquareDisplacement = read_file('run_plot_python_output/statistics_file_NrOfCells%s_T%s_b%s_dt%s_int%s.txt' %(numberOfUnitCells, int(initialTemperature*1000), int(latticeConstant*1000), int(dt*10000), integratorNumber))
 

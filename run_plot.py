@@ -119,6 +119,8 @@ executionTimeVV = zeros(len(numberOfUnitCells_list))
 #compiling once:
 #os.system('g++ -o main *.cpp math/*.cpp potentials/*.cpp integrators/*.cpp -I. -O3 -std=c++11')
 
+#-march=native
+
 i = 0
 #running cpp code
 for numberOfUnitCells in numberOfUnitCells_list:
