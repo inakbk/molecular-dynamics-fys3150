@@ -1,4 +1,4 @@
-#program to run and compile cpp code
+#program to run and compile cpp code and plot
 
 from pylab import *
 import os as os
