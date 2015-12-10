@@ -80,24 +80,24 @@ for initialTemperature in initialTemperature_list:
 
     figure(1)
     plot(time[500:], diffusionConstant[500:])
-    xlabel('time [MD units]', fontsize=18)
+    xlabel(r'Time $[1.00224\cdot 10^{-13} \mathrm{s}]$', fontsize=18)
     ylabel('$D$ [MD units]', fontsize=18)
     #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
     title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s,dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
 
     figure(2)
     plot(time, meanSquareDisplacement)
-    xlabel('time [MD units]', fontsize=18)
+    xlabel(r'Time $[1.00224\cdot 10^{-13} \mathrm{s}]$', fontsize=18)
     ylabel(r'$\langle r^2(t) \rangle$ [MD units]', fontsize=18)
     #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
     title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
 
     figure(3)
     plot(time[:500], instantTemperature[:500]/initialTemperature)
-    xlabel('Time', fontsize=18)
+    xlabel(r'Time $[1.00224\cdot 10^{-13} \mathrm{s}]$', fontsize=18)
     ylabel(r'$T/T_i$ $[199.735 K]$', fontsize=18)
     #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
-    title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
+    title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, 500, dt), fontsize=16)
 
 figure(4)
 plot(instantTemperatureEquilibrium, instantTemperatureEquilibrium/initialTemperature_list, '-o')
