@@ -16,3 +16,4 @@
 \contentsline {subsection}{\numberline {4.2}Comparing the two integrators}{12}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Equilibium time? and conserved energy}{12}{subsection.4.3}
 \contentsline {paragraph}{The temperature ratio}{15}{section*.16}
+\contentsline {subsection}{\numberline {4.4}The mean square displacement and the diffusion constant}{15}{subsection.4.4}

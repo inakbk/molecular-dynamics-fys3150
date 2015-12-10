@@ -511,7 +511,7 @@ The ratio $T/T_i$ is not equal for all of the initial temperatures, but it does 
 T/T_i &\approx \frac{1}{2} \\
 \Rightarrow T &\approx \frac{T_i }{2} 
 \end{align*}
-
+so from the initial value the temperature will approximately drop to half after the equilibrium state is reached. 
 
 \begin{figure}[htp]
 \centering
@@ -520,14 +520,34 @@ T/T_i &\approx \frac{1}{2} \\
 \label{fig: TTi_time}
 \end{figure}
 
+\subsection{The mean square displacement and the diffusion constant}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.6\textwidth]{plots/D_r2_time.png}
+\caption{\textbf{Top:} The diffusion constant $D$ plotted versus the time with 10000 timesteps for initial temperatures $T_i \in [0.5, 18.5]$. \textbf{Bottom:} The mean square displacement $\langle r^2(t) \rangle$ of the particles plotted versus the time with 10000 timesteps for initial temperatures $T_i \in [0.5, 18.5]$. The units are the MD units listed in section (ref???!).}
+\label{fig: D_r2_time}
+\end{figure}
+
+In figure \ref{fig: D_r2_time} we see the diffusion constant (top) and the mean square displacement (bottom) for the particles plotted versus the time for initial temperatures $T_i \in [3.5, 6.5]$. We can see that the diffusion constant diverges against a constant value for large values for the time. The highest temperatures have the largest values for all temperatures, but it is difficult to tell the different initial temperatures apart by looking at this plot. After 10000 timesteps the diffusion constant have still not stabilized entirely, but we will take the diffusion constant after 10000 timesteps to be the diffusion constant after equilibrium. 
+
+It is easier to tell the initial temperatures apart in the bottom plot in figure \ref{fig: D_r2_time}. We can see that the mean square displacement of the particles is zero for the low temperatures and that it for higher temperatures starts to grow for larger values of the time. When the system is in a solid state it is expected that the diffusion constant is be zero, or that $\langle r^2(t) \rangle$ is zero. For higher temperatures the diffusion constant would be non-zero giving the slope seen for higher temperatures in the $\langle r^2(t) \rangle$ plot. It is hard to tell eqactly for which instant temperature the system melts, but it must be in the range with initial temperatures $T_i \in [3.5, 6.5]$.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.6\textwidth]{plots/D_T.png}
+\caption{\textbf{Top:} The temperature ratio $T/T-i$ plotted versus the instant temperature $T$ with 10000 timesteps. \textbf{Bottom:} The diffusion constant after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T$ with 10000 timesteps. The units are the MD units listed in section (ref???!).}
+\label{fig: D_T}
+\end{figure}
+
+In figure \ref{fig: D_T} we see the temperature ratio $T/T-i$ (top) and the diffusion constant (bottom) after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T$ with 10000 timesteps. Clearly somerthing is happening at $T=2.3$....but also a lot of noise plobably from that unit cells is 5
 
 
 
+or observations in ovito here?
 
 
-
-
-
+units and experimental data?
 
 \centering
 \rule{0.3\textwidth}{0.4pt}\par % Short horizontal line under the title  

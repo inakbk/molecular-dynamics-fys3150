@@ -3,6 +3,8 @@
 from pylab import *
 import os as os
 
+import sys
+
 """
 ------------------------------------------------------------------------------------------
 """
@@ -77,20 +79,22 @@ for initialTemperature in initialTemperature_list:
     instantTemperatureEquilibrium[i] = instantTemperature[-1]
     diffusionConstantEquilibrium[i] = diffusionConstant[-1]
     i += 1
-
+    """
     figure(1)
+    subplot(2,1,1)
     plot(time[500:], diffusionConstant[500:])
-    xlabel(r'Time $[1.00224\cdot 10^{-13} \mathrm{s}]$', fontsize=18)
+    #xlabel(r'Time $[1.00224\cdot 10^{-13} \mathrm{s}]$', fontsize=18)
     ylabel('$D$ [MD units]', fontsize=18)
     #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
     title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s,dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
 
-    figure(2)
+    #figure(2)
+    subplot(2,1,2)
     plot(time, meanSquareDisplacement)
     xlabel(r'Time $[1.00224\cdot 10^{-13} \mathrm{s}]$', fontsize=18)
     ylabel(r'$\langle r^2(t) \rangle$ [MD units]', fontsize=18)
     #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
-    title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
+    #title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
 
     figure(3)
     plot(time[:500], instantTemperature[:500]/initialTemperature)
@@ -98,19 +102,24 @@ for initialTemperature in initialTemperature_list:
     ylabel(r'$T/T_i$ $[199.735 K]$', fontsize=18)
     #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
     title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, 500, dt), fontsize=16)
+    """
+
 
 figure(4)
-plot(instantTemperatureEquilibrium, instantTemperatureEquilibrium/initialTemperature_list, '-o')
-xlabel('$T$ $[199.735 K]$', fontsize=18)
+subplot(2,1,1)
+plot(instantTemperatureEquilibrium, instantTemperatureEquilibrium/initialTemperature_list, '-ro')
+#xlabel('$T$ $[199.735 K]$', fontsize=18)
 ylabel(r'$T/T_i$ $[199.735 K]$', fontsize=18)
 #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
 title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
 
-figure(5)
-plot(instantTemperatureEquilibrium, diffusionConstantEquilibrium, '-o')
+#figure(5)
+subplot(2,1,2)
+plot(instantTemperatureEquilibrium, diffusionConstantEquilibrium, '-bo')
 xlabel('$T$ $[199.735 K]$', fontsize=18)
-ylabel(r'$D$ [MD units]', fontsize=18)
+ylabel(r'$D_{eq}$ [MD units]', fontsize=18)
 #legend(['Velocity Verlet'], fontsize=16, loc='lower left')
-title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
+#title('numberOfUnitCells= %s, initialTemperature= [%s,%s] \n latticeConstant= %s, numberOfTimesteps= %s, dt= %s' %(numberOfUnitCells, initialTemperature_list[0], initialTemperature_list[-1], latticeConstant, len(time), dt), fontsize=16)
+
 
 show()
