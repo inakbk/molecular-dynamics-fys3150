@@ -15,6 +15,7 @@
 
 \setcounter{tocdepth}{2}
 \usepackage{url} %url + line break
+\usepackage[labelfont=bf]{caption} %for bold captions (figure ++)
 
 \renewcommand{\vec}{\mathbf}
 \newcommand{\dm}[1]{\mathrm{d}#1}
@@ -408,7 +409,7 @@ write something about ovito introduction(?)
 
 \section{Results} %move this to after implementation/testing+
 
-\subsection{Implementation and testing of the algorithm by using Ovito (code?)}
+\subsection{Implementation and testing of the algorithm by using Ovito (code?) and choice of parameters}
 bla bla bla
 
 \subsubsection*{Looking in \texttt{Ovito}}
@@ -461,7 +462,9 @@ number of unit cells is also a measure of how many particles..include?
 (conserved, ref to rcut?)
 In figure \ref{fig: Energy_time1} we see the energy plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K for two different number of unit cells in each direction. We see that the total energy is conserved, or constant. This coresponds well with the low value of $\sigma_E$ found in section \ref{sec: integrators_results} (figure \ref{fig: dt}). We can see that the system is initialized with high kinetic energy and low potential energy and that the two interchanges energy giving that the total energy is conserved. The system stabilizes after a short period of time, it reaches an equilibrium state when the kinetic and potential energy fluctuates around a constant energy. The equilibrium state is reached at least for $t=10$, or after 20 timesteps. 
 
-The top plot in figure \ref{fig: Energy_time1} is obtained with 5 unit cells in each direction and the bottom plot is obtained with 10 unit cells in each direction. We see that the plot with only 5 unit cells fluctuates more after equilibrium thatn the plot with 10 unit cells. 
+The kinetic energy drops below the equilibrium value before it stabilizes. This is because the particles are all initialized with different velocities and move until they are stoped, at about the same time, by the forces of the surrounding particles before they find an equilibrium position and oscillates around this position.  
+
+The top plot in figure \ref{fig: Energy_time1} is obtained with 5 unit cells in each direction and the bottom plot is obtained with 10 unit cells in each direction. We see that the plot with only 5 unit cells fluctuates more after equilibrium than the plot with 10 unit cells. 
 
 \begin{figure}[htp]
 \centering
@@ -470,7 +473,7 @@ The top plot in figure \ref{fig: Energy_time1} is obtained with 5 unit cells in 
 \label{fig: Energy_time1}
 \end{figure}
 
-In figure \ref{fig: Energy_time2} we also see the energy plotted versus the time, but with the initial tempererature $T_i = 8.35 \approx 1000$ K. The initial temperature is a lot larger than in figure \ref{fig: Energy_time1} so the system have a higher initial kinetic and potential energy giving a higher total energy. The total energy is still conserved but a larger amount of the energy now comes from the kinetic energy than in figure \ref{fig: Energy_time1}. The time the system uses to reach equilibrium is about the same as for $T_i=2.5$. We notice that the fluctiations after reaching equilibrium is larger for 5 unit cells (top) than for 10 unit cells (bottom) in figure \ref{fig: Energy_time2}. The flutuations are even larger for $T=8.35$ than for $T=2.5$. It apeares as if the system is more unstable for small temperatures and few unit cells. 
+In figure \ref{fig: Energy_time2} we also see the energy plotted versus the time, but with the initial tempererature $T_i = 8.35 \approx 1000$ K. The initial temperature is a lot larger than in figure \ref{fig: Energy_time1} so the system have a higher initial kinetic and potential energy giving a higher total energy. The total energy is still conserved but a larger amount of the energy now comes from the kinetic energy than in figure \ref{fig: Energy_time1}. The time the system uses to reach equilibrium is about the same as for $T_i=2.5$. We notice that the fluctiations after reaching equilibrium is larger for 5 unit cells (top) than for 10 unit cells (bottom) in figure \ref{fig: Energy_time2}. The flutuations are even larger for $T=8.35$ than for $T=2.5$. 
 
 \begin{figure}[htp]
 \centering
@@ -479,16 +482,11 @@ In figure \ref{fig: Energy_time2} we also see the energy plotted versus the time
 \label{fig: Energy_time2}
 \end{figure}
 
-In figure \ref{fig: T_time1} we see the instant temperature $T$ plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K. As in the plots with the energy the value for the instant temperature stabilizes quicly and oscillates around a constant value. Right after initializing the temperature drops quickly below the equilibrium value. This behaviour can also be observed in the kinetic energy in figure \ref{fig: Energy_time1} and \ref{fig: Energy_time2}. Since the instant temperature is proportional to the kinetic energy (see section \ref{sec: statistics_theory}) it is expected that the two curves have the same behaviour.  (drops?)
+In figure \ref{fig: T_time1} we see the instant temperature $T$ plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K. Right after initializing the temperature drops quickly below the equilibrium value. This behaviour can also be observed in the kinetic energy in figure \ref{fig: Energy_time1} and \ref{fig: Energy_time2}. Since the instant temperature is proportional to the kinetic energy (see section \ref{sec: statistics_theory}) it is expected that the two curves have the same behaviour.
 
-The fluctuations in the temperature is as for the energy larger for the plot with 5 unit cells in each direction than with 10 unit cells. The fluctuations are even larger in figure \ref{fig: T_time2} where the instant temperature $T$ plotted versus the time with initial temperature $T_i = 8.35 \approx 1000$ K.
+As in the plots with the energy the value for the instant temperature stabilizes quicly and oscillates around a constant value. It is therefore safe to assume that the system has reached equilibrium after at least 100 timesteps. In the following calculations we have used 10000 timesteps which is long after the system have reached equilibrium. 
 
-
- it is therefore safe to assume that the system has reached equilibrium after 1000 timesteps. 
-The execution time for 10 unit cells are quite long, we have thererfore chosen to use 5 unit cells in each direction in the calculations in the next 
-high calculation time
-
-
+The fluctuations in the temperature is as for the energy larger for the plot with 5 unit cells in each direction than with 10 unit cells. The fluctuations are even larger in figure \ref{fig: T_time2} where the instant temperature $T$ plotted versus the time with initial temperature $T_i = 8.35 \approx 1000$ K. It apeares as if the system is more unstable and 'noisy' for small temperatures and few unit cells. Even though the trend is that the data obtained with a larger number of unit cells is more stable than with few unit cells, we have chosen to use 5 unit cells in each direction in the following calculations. This is to save time, the execution time for 10 unit cells are quite long compared with the execution time for 5 unit cells. 
 
 \begin{figure}[htp]
 \centering
@@ -506,18 +504,6 @@ high calculation time
 
 
 
-Number of timesteps
-and number of unit cells
-energy conservation
-
-interactions (conserved energy) ---> statistics
-have seen in ovito that 300K is solid
-
-
-
-include plot of instant T, total E and $E_k$ and V with focus on euilibrium and what happens at the very beginning (for many T?)
-
-why does the values drop after initializing?
 
 ratio $T/T_i$
 

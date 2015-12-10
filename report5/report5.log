@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  10 DEC 2015 18:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  10 DEC 2015 19:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -319,7 +319,25 @@ Package: SIunits 2007/12/02 v1.36 Support for the International System of units
 \symgreek=\mathgroup6
 (/usr/local/texlive/2014/texmf-dist/tex/latex/SIunits/SIunits.cfg)
 Option `squaren' provided!
-) (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen130
+\captionmargin@=\dimen131
+\captionwidth=\dimen132
+\caption@tempdima=\dimen133
+\caption@indent=\dimen134
+\caption@parindent=\dimen135
+\caption@hangindent=\dimen136
+)
+\c@ContinuedFloat=\count118
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -344,40 +362,40 @@ LaTeX Warning: Unused global option(s):
 (./report5.aux)
 \openout1 = `report5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
-LaTeX Font Info:    ... okay on input line 93.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 93.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 94.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 93.
-\c@lstlisting=\count118
+LaTeX Font Info:    ... okay on input line 94.
+\c@lstlisting=\count119
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
-\scratchdimen=\dimen130
+\scratchcounter=\count120
+\scratchdimen=\dimen137
 \scratchbox=\box31
-\nofMPsegments=\count120
-\nofMParguments=\count121
+\nofMPsegments=\count121
+\nofMParguments=\count122
 \everyMPshowfont=\toks23
-\MPscratchCnt=\count122
-\MPscratchDim=\dimen131
-\MPnumerator=\count123
-\makeMPintoPDFobject=\count124
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen138
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
 \everyMPtoPDFconversion=\toks24
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -395,7 +413,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 93.
+Package hyperref Info: Link coloring OFF on input line 94.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -403,11 +421,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count125
+\c@section@level=\count126
 )
-LaTeX Info: Redefining \ref on input line 93.
-LaTeX Info: Redefining \pageref on input line 93.
-LaTeX Info: Redefining \nameref on input line 93.
+LaTeX Info: Redefining \ref on input line 94.
+LaTeX Info: Redefining \pageref on input line 94.
+LaTeX Info: Redefining \nameref on input line 94.
 
 (./report5.out) (./report5.out)
 \@outlinefile=\write3
@@ -417,27 +435,29 @@ LaTeX Info: Redefining \nameref on input line 93.
 Option `squaren' provided! 
  Command \squaren defined by SIunits package!
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 \drop=\skip48
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 95--95
+Overfull \hbox (17.0pt too wide) in paragraph at lines 96--96
 [][] 
  []
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 95--95
+Overfull \hbox (17.0pt too wide) in paragraph at lines 96--96
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 95.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 96.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 95.
+LaTeX Font Info:    Try loading font information for U+msa on input line 96.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 95.
+LaTeX Font Info:    Try loading font information for U+msb on input line 96.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -450,69 +470,69 @@ rt5.toc)
 
 
 [2] [3]
-Overfull \hbox (2.1308pt too wide) in paragraph at lines 146--179
+Overfull \hbox (2.1308pt too wide) in paragraph at lines 147--180
 []$[]$ $[]$ $[]$ $[]$
  []
 
 <plots/crystal.jpg, id=105, 963.6pt x 963.6pt>
 File: plots/crystal.jpg Graphic file (type jpg)
  <use plots/crystal.jpg>
-Package pdftex.def Info: plots/crystal.jpg used on input line 182.
+Package pdftex.def Info: plots/crystal.jpg used on input line 183.
 (pdftex.def)             Requested size: 132.79747pt x 132.7858pt.
  [4 <./plots/crystal.jpg>] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 233--233
+Underfull \hbox (badness 10000) in paragraph at lines 234--234
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Periodic _ bo
 undary _ conditions # Practical _ implementation :
  []
 
 
-Overfull \hbox (23.62245pt too wide) in paragraph at lines 258--260
+Overfull \hbox (23.62245pt too wide) in paragraph at lines 259--261
 []\T1/cmr/m/n/10.95 (discussed in the lec-ture notes.?) see []$\T1/cmtt/m/n/10.
 95 https : / / en . wikipedia . org / wiki / Verlet _ integration #
  []
 
 [6]
 
-LaTeX Warning: Reference `sec:units' on page 7 undefined on input line 279.
+LaTeX Warning: Reference `sec:units' on page 7 undefined on input line 280.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 298.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 299.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 298.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 299.
  [7]
 <plots/force_potential.png, id=160, 578.16pt x 433.62pt>
 File: plots/force_potential.png Graphic file (type png)
 
 <use plots/force_potential.png>
-Package pdftex.def Info: plots/force_potential.png used on input line 331.
+Package pdftex.def Info: plots/force_potential.png used on input line 332.
 (pdftex.def)             Requested size: 354.12434pt x 265.59291pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 341--341
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Periodic _ bo
 undary _ conditions # Practical _ implementation :
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 346.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 347.
 [8] [9 <./plots/force_potential.png>] [10]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 414.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 415.
 
 <plots/OneUnitCell.png, id=204, 653.44125pt x 654.445pt>
 File: plots/OneUnitCell.png Graphic file (type png)
 
 <use plots/OneUnitCell.png>
-Package pdftex.def Info: plots/OneUnitCell.png used on input line 420.
+Package pdftex.def Info: plots/OneUnitCell.png used on input line 421.
 (pdftex.def)             Requested size: 127.11642pt x 127.3181pt.
 
 <plots/10UnitCells.png, id=205, 669.50125pt x 584.1825pt>
 File: plots/10UnitCells.png Graphic file (type png)
 
 <use plots/10UnitCells.png>
-Package pdftex.def Info: plots/10UnitCells.png used on input line 421.
+Package pdftex.def Info: plots/10UnitCells.png used on input line 422.
 (pdftex.def)             Requested size: 145.9116pt x 127.3181pt.
  [11 <./plots/OneUnitCell.png> <./plots/10UnitCells.png>] <plots/dt_NrOfCells5_
 T2500_b5260.png, id=219, 578.16pt x 433.62pt>
@@ -520,7 +540,7 @@ File: plots/dt_NrOfCells5_T2500_b5260.png Graphic file (type png)
 
 <use plots/dt_NrOfCells5_T2500_b5260.png>
 Package pdftex.def Info: plots/dt_NrOfCells5_T2500_b5260.png used on input line
- 443.
+ 444.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
 <plots/exeTime_NrOfCells_T2500_b5260.png, id=221, 578.16pt x 433.62pt>
@@ -528,7 +548,7 @@ File: plots/exeTime_NrOfCells_T2500_b5260.png Graphic file (type png)
 
 <use plots/exeTime_NrOfCells_T2500_b5260.png>
 Package pdftex.def Info: plots/exeTime_NrOfCells_T2500_b5260.png used on input 
-line 452.
+line 453.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
  [12] [13 <./plots/dt_NrOfCells5_T2500_b5260.png> <./plots/exeTime_NrOfCells_T2
 500_b5260.png>]
@@ -536,50 +556,54 @@ line 452.
 File: plots/Energy_time_T25.png Graphic file (type png)
 
 <use plots/Energy_time_T25.png>
-Package pdftex.def Info: plots/Energy_time_T25.png used on input line 467.
+Package pdftex.def Info: plots/Energy_time_T25.png used on input line 471.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
 <plots/Energy_time_T835.png, id=245, 578.16pt x 433.62pt>
 File: plots/Energy_time_T835.png Graphic file (type png)
 
 <use plots/Energy_time_T835.png>
-Package pdftex.def Info: plots/Energy_time_T835.png used on input line 476.
+Package pdftex.def Info: plots/Energy_time_T835.png used on input line 480.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
-
-<plots/T_time_T25.png, id=251, 578.16pt x 433.62pt>
+ [14 <./plots/Energy_time_T25.png>]
+<plots/T_time_T25.png, id=258, 578.16pt x 433.62pt>
 File: plots/T_time_T25.png Graphic file (type png)
  <use plots/T_time_T25.png>
-Package pdftex.def Info: plots/T_time_T25.png used on input line 494.
+Package pdftex.def Info: plots/T_time_T25.png used on input line 493.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/T_time_T835.png, id=252, 578.16pt x 433.62pt>
+<plots/T_time_T835.png, id=259, 578.16pt x 433.62pt>
 File: plots/T_time_T835.png Graphic file (type png)
 
 <use plots/T_time_T835.png>
-Package pdftex.def Info: plots/T_time_T835.png used on input line 501.
+Package pdftex.def Info: plots/T_time_T835.png used on input line 500.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [14 <./plots/Energy_time_T25.png>] [15 <./plots/Energy_time_T835.png> <./plots
-/T_time_T25.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 533.
- [16 <./plots/T_time_T835.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 533.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 520.
+ [15 <./plots/Energy_time_T835.png>] [16 <./plots/T_time_T25.png> <./plots/T_ti
+me_T835.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 520.
+ (./report5.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 520.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 520.
 
-(./report5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 533.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 533.
-Package rerunfilecheck Info: File `report5.out' has not changed.
-(rerunfilecheck)             Checksum: 98944BF620BA079E87621571511EB17B;988.
 
+Package rerunfilecheck Warning: File `report5.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `report5.out':
+(rerunfilecheck)             Before: 98944BF620BA079E87621571511EB17B;988
+(rerunfilecheck)             After:  2023C4A61D4A7D22C40F5DFBD52FBAB8;1013.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 533.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 520.
  ) 
 Here is how much of TeX's memory you used:
- 8714 strings out of 493117
- 124634 string characters out of 6135433
- 259162 words of memory out of 5000000
- 11932 multiletter control sequences out of 15000+600000
+ 9719 strings out of 493117
+ 143149 string characters out of 6135433
+ 278455 words of memory out of 5000000
+ 12931 multiletter control sequences out of 15000+600000
  30142 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,12n,58p,996b,1342s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -610,7 +634,7 @@ ts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2014/texmf-dist/fonts
 ype1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
 e1/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
 /public/cm-super/sftt1095.pfb>
-Output written on report5.pdf (16 pages, 983908 bytes).
+Output written on report5.pdf (16 pages, 985285 bytes).
 PDF statistics:
  375 PDF objects out of 1000 (max. 8388607)
  308 compressed objects within 4 object streams

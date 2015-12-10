@@ -6,12 +6,12 @@
 \contentsline {subsection}{\numberline {3.3}Periodic boundaryconditions (PBCs)}{5}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Intergration methods}{6}{subsection.3.4}
 \contentsline {subsection}{\numberline {3.5}The Lennard-Jones potential (interaction/forces)}{6}{subsection.3.5}
-\contentsline {paragraph}{The minimum image convention}{8}{section*.2}
+\contentsline {paragraph}{The minimum image convention}{8}{section*.4}
 \contentsline {subsection}{\numberline {3.6}Calculating physical properties of the system}{10}{subsection.3.6}
-\contentsline {paragraph}{The diffusion constant}{10}{section*.3}
+\contentsline {paragraph}{The diffusion constant}{10}{section*.5}
 \contentsline {section}{\numberline {4}Results}{11}{section.4}
-\contentsline {subsection}{\numberline {4.1}Implementation and testing of the algorithm by using Ovito (code?)}{11}{subsection.4.1}
-\contentsline {paragraph}{Initial positions}{11}{section*.5}
-\contentsline {paragraph}{Before forces}{11}{section*.6}
+\contentsline {subsection}{\numberline {4.1}Implementation and testing of the algorithm by using Ovito (code?) and choice of parameters}{11}{subsection.4.1}
+\contentsline {paragraph}{Initial positions}{11}{section*.7}
+\contentsline {paragraph}{Before forces}{11}{section*.9}
 \contentsline {subsection}{\numberline {4.2}Comparing the two integrators}{12}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Equilibium time? and conserved energy}{12}{subsection.4.3}
