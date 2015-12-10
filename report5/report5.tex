@@ -125,7 +125,7 @@ see 'Areas of application and limitations' at \url{https://en.wikipedia.org/wiki
 \section{Numerical methods}
 
 
-\subsection{Creating the lattice}
+\subsection{Creating the lattice} \label{sec: creating_lattice_theory}
 We want to start out the simulation with the atoms in a crystal structure. We will choose the face-centered cubic (FCC) lattice which is a stable structure for the Lennard-Jones potential that will be used. The lattice is build up by unit cells, a group of attoms, so that a larger system can be created by repeating these cells in space. The FFC lattice unit cell is of size $b \angstrom $ and consists of four atoms with local coordinates
 \begin{align}
 	\vec r_1 &= 0 \ihat + 0 \jhat + 0 \khat,\\
@@ -141,7 +141,6 @@ where $i=0,1,..., N_x-1, j=0,1,..., N_y-1, k=0,1,..., N_z-1$. The unit vectors o
 \begin{align}
 	\hat{\textbf{u}}_1 = b\ihat, \quad \hat{\textbf{u}}_2 = b\jhat, \quad \hat{\textbf{u}}_3 = b\khat.
 \end{align}
-
 The coordinates of particle one to four is then given by:
 
 \begin{minipage}{0.2\textwidth}
@@ -176,6 +175,15 @@ z_4 &= \frac{1}{2} + kb
 \end{align*}
 \smallskip
 \end{minipage}
+In figure \ref{fig: ar_crystal} we see an illustration of two unit cells placed side by side. A cubic lattice is formed by placing $N\times N \times N$ such unit cells side by side. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.3\textwidth]{plots/crystal}
+\caption{An illustration of the desired crystal structure when simulation an Argon crystal. The length of the sides of the unit cells used in this paper have half the length of the yellow box marked in the drawing.}
+\label{fig: ar_crystal}
+\end{figure}
+
 
 Each of the sides of the simulation box has the length $L = bN$ so that the size of the whole system or the volume of the cubic lattice is given by $V = L^3 = (bN)^3$. The density of the system is then:
 \[
@@ -392,19 +400,43 @@ D = \frac{\langle r^2(t) \rangle}{6t} =
 
 Atoms in a solid will not diffuse (move?) much, so a solid will have a diffusion constant close to zero. A plot of the diffusion constant as a function of temperature will therefore reveale the melting temperature because the solid melts when the diffusion constant is non zero.
 
-
+write something about ovito introduction(?)
 
 %\centering
 \rule{0.3\textwidth}{0.4pt}\par % Short horizontal line under the title  
 
 
-\section{Results}
+\section{Results} %move this to after implementation/testing+
 
-\subsection{Testing the implementation of the model and algorithm}
+\subsection{Implementation and testing of the algorithm by using Ovito (code?)}
+bla bla bla
+
+\subsubsection*{Looking in \texttt{Ovito}}
+\paragraph{Initial positions}
+To the left in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with one unit cell from \texttt{Ovito} (ref?). We see that this is exactly the unit cell introduced in section \ref{sec: creating_lattice_theory} and figure \ref{fig: ar_crystal}. To the right in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with 10 unit cells from \texttt{Ovito}, creating a cubic lattice. After looking at the initial frame of the simulation box in \texttt{Ovito} it seems safe to assume that the program produces the desired initial positions for the Argon atoms. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[height=0.2\textheight]{plots/OneUnitCell}
+\includegraphics[height=0.2\textheight]{plots/10UnitCells}
+\caption{\textbf{Left:} A screen shot of the initial frame of the simulation box with one unit cell from \texttt{Ovito}. \textbf{Right:} A screen shot of the initial frame of the simulation box with 10 unit cells from \texttt{Ovito}, creating a cubic lattice.}
+\label{fig: unitCellsOvito}
+\end{figure}
+
+\paragraph{Before forces}
+At first the particles was unaffected by forces in the simulation. Before the Lennard-Jones potential and the calculation of the forces was implemented the particles was only given an initial speed by the maxwell boltzmann distrubution and should thus move in a straight line. In \texttt{Ovito} the particles moved in a straight line, and the simulation box expanded as the particels reached further out. After the periodic boundary conditions was implemented in the code the simulation box maintained a constant size when looked at in \texttt{Ovito}. One could also see that the particles still moved in a straight line, but they would jump to the oposite side of the box if they where to move out of the box. 
+
+After the implementation of the forces one could easy see (in \texttt{Ovito}) that the particles was contained inside the initial crystal structure, for instance at the temperature $T_i =300$K. Just by looking at the simulation one could determine that the atoms formed a solid. At a high temperature, for instance $T_i = 1000K$ one could see that the atoms moved freely and that the crystal or solid most likely had melted. 
+
+
+
+%integrators after first statistics about energy
+
+interactions (conserved energy) ---> statistics
 have seen in ovito that 300K is solid
 
 
-\subsection{Equilibium time?}
+%\subsection{Equilibium time?}
 include plot of instant T, total E and $E_k$ and V with focus on euilibrium and what happens at the very beginning (for meny T?)
 
 why does the values drop after initializing?
