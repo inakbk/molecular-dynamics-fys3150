@@ -360,7 +360,7 @@ An atom which has passed through one face of the simulation box should re-enter 
 
   
   
-\subsection{Calculating physical properties of the system}
+\subsection{Calculating physical properties of the system} \label{sec: statistics_theory}
 The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once) 
 \begin{align}
 	V = \sum_{i>j} U(r_{ij}).
@@ -426,10 +426,10 @@ To the left in figure \ref{fig: unitCellsOvito} we see a screen shot of the init
 \paragraph{Before forces}
 At first the particles was unaffected by forces in the simulation. Before the Lennard-Jones potential and the calculation of the forces was implemented the particles was only given an initial speed by the maxwell boltzmann distrubution and should thus move in a straight line. In \texttt{Ovito} the particles moved in a straight line, and the simulation box expanded as the particels reached further out. After the periodic boundary conditions was implemented in the code the simulation box maintained a constant size when looked at in \texttt{Ovito}. One could also see that the particles still moved in a straight line, but they would jump to the oposite side of the box if they where to move out of the box. 
 
-After the implementation of the forces one could easy see (in \texttt{Ovito}) that the particles was contained inside the initial crystal structure, for instance at the temperature $T_i =300$K. Just by looking at the simulation one could determine that the atoms formed a solid. At a high temperature, for instance $T_i = 1000K$ one could see that the atoms moved freely and that the crystal or solid most likely had melted. 
+After the implementation of the forces one could easy see (in \texttt{Ovito}) that the particles was contained inside the initial crystal structure, for instance at the temperature $T_i =300$K. Just by looking at the simulation one could determine that the atoms formed a solid. At a high temperature, for instance $T_i = 1000K$ one could see that the atoms moved freely and that the crystal or solid most likely had melted. Screen shots igjen??
 
 
-\subsection{Comparing the two integrators}
+\subsection{Comparing the two integrators} \label{sec: integrators_results}
 
 In the top plot in figure \ref{fig: dt} we can see the standard deviation of the total energy $\sigma_E$ plotted versus the timestep dt for the Euler-Cromer and Velocity Verlet integrator . The units on the axis are MN unist explained in section (?do it? explain in caption?) We see that the drift in the energy is significantly larger for the Euler-Cromer method than for the Velocity Verlet integrator and that it increases with increasing dt for the Euler-Cromer method. For the Velocity Verlet integrator the choice of dt does not matter much, the energy drift, or the value for $\sigma_E$ is small for all values of dt. In the further calculations we have therefore chosen dt=0.05.  
 %this is expected
@@ -440,7 +440,7 @@ Both plots in figure \ref{fig: dt} where obtained with 5 unit cells in each dire
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{plots/dt_NrOfCells5_T2500_b5260.png}
+\includegraphics[width=0.6\textwidth]{plots/dt_NrOfCells5_T2500_b5260.png}
 \caption{\textbf{Top:} The standard deviation of the total energy $\sigma_E$ plotted versus the timestep dt for the Euler-Cromer and Velocity Verlet integrator with 5 unit cells in each direction, initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$ and 1000 timesteps in the simulation. \textbf{Bottom:} The execution time plotted versus the the timestep dt for the Euler-Cromer and Velocity Verlet integrator with 5 unit cells in each direction, initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$ and 1000 timesteps in the simulation.}
 \label{fig: dt}
 \end{figure}
@@ -449,7 +449,7 @@ In figure \ref{fig: exe_cells} we see the execution time plotted versus the numb
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{plots/exeTime_NrOfCells_T2500_b5260.png}
+\includegraphics[width=0.6\textwidth]{plots/exeTime_NrOfCells_T2500_b5260.png}
 \caption{The execution time plotted versus the number of unit cells in each direction for the Euler-Cromer and Velocity Verlet integrator with initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$, $dt=0.05\approx  5\cdot 10^{-15}$s and 1000 timesteps in the simulation.}
 \label{fig: exe_cells}
 \end{figure}
@@ -457,9 +457,56 @@ In figure \ref{fig: exe_cells} we see the execution time plotted versus the numb
 number of unit cells is also a measure of how many particles..include?
 
 
-%integrators after first statistics about energy
+\subsection{Equilibium time? and conserved energy}
+(conserved, ref to rcut?)
+In figure \ref{fig: Energy_time1} we see the energy plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K for two different number of unit cells in each direction. We see that the total energy is conserved, or constant. This coresponds well with the low value of $\sigma_E$ found in section \ref{sec: integrators_results} (figure \ref{fig: dt}). We can see that the system is initialized with high kinetic energy and low potential energy and that the two interchanges energy giving that the total energy is conserved. The system stabilizes after a short period of time, it reaches an equilibrium state when the kinetic and potential energy fluctuates around a constant energy. The equilibrium state is reached at least for $t=10$, or after 20 timesteps. 
 
-\paragraph{Number of timesteps}
+The top plot in figure \ref{fig: Energy_time1} is obtained with 5 unit cells in each direction and the bottom plot is obtained with 10 unit cells in each direction. We see that the plot with only 5 unit cells fluctuates more after equilibrium thatn the plot with 10 unit cells. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.6\textwidth]{plots/Energy_time_T25.png}
+\caption{The kinetic (blue), potential (green) and total (red) energy plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$, $dt=0.05\approx  5\cdot 10^{-15}$s and 1000 timesteps in the simulation. \textbf{Top:} 5 unit cells in each direction. \textbf{Bottom:} 10 unit cells in each direction.}
+\label{fig: Energy_time1}
+\end{figure}
+
+In figure \ref{fig: Energy_time2} we also see the energy plotted versus the time, but with the initial tempererature $T_i = 8.35 \approx 1000$ K. The initial temperature is a lot larger than in figure \ref{fig: Energy_time1} so the system have a higher initial kinetic and potential energy giving a higher total energy. The total energy is still conserved but a larger amount of the energy now comes from the kinetic energy than in figure \ref{fig: Energy_time1}. The time the system uses to reach equilibrium is about the same as for $T_i=2.5$. We notice that the fluctiations after reaching equilibrium is larger for 5 unit cells (top) than for 10 unit cells (bottom) in figure \ref{fig: Energy_time2}. The flutuations are even larger for $T=8.35$ than for $T=2.5$. It apeares as if the system is more unstable for small temperatures and few unit cells. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.6\textwidth]{plots/Energy_time_T835.png}
+\caption{The kinetic (blue), potential (green) and total (red) energy plotted versus the time with initial temperature $T_i = 8.35 \approx 1000$ K, lattice constant $b=5.26 \angstrom$, $dt=0.05\approx  5\cdot 10^{-15}$s and 1000 timesteps in the simulation. \textbf{Top:} 5 unit cells in each direction. \textbf{Bottom:} 10 unit cells in each direction.}
+\label{fig: Energy_time2}
+\end{figure}
+
+In figure \ref{fig: T_time1} we see the instant temperature $T$ plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K. As in the plots with the energy the value for the instant temperature stabilizes quicly and oscillates around a constant value. Right after initializing the temperature drops quickly below the equilibrium value. This behaviour can also be observed in the kinetic energy in figure \ref{fig: Energy_time1} and \ref{fig: Energy_time2}. Since the instant temperature is proportional to the kinetic energy (see section \ref{sec: statistics_theory}) it is expected that the two curves have the same behaviour.  (drops?)
+
+The fluctuations in the temperature is as for the energy larger for the plot with 5 unit cells in each direction than with 10 unit cells. The fluctuations are even larger in figure \ref{fig: T_time2} where the instant temperature $T$ plotted versus the time with initial temperature $T_i = 8.35 \approx 1000$ K.
+
+
+ it is therefore safe to assume that the system has reached equilibrium after 1000 timesteps. 
+The execution time for 10 unit cells are quite long, we have thererfore chosen to use 5 unit cells in each direction in the calculations in the next 
+high calculation time
+
+
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.6\textwidth]{plots/T_time_T25.png}
+\caption{The instant temperature $T$ plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$, $dt=0.05\approx  5\cdot 10^{-15}$s and 1000 timesteps in the simulation. \textbf{Top:} 5 unit cells in each direction. \textbf{Bottom:} 10 unit cells in each direction.}
+\label{fig: T_time1}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.6\textwidth]{plots/T_time_T835.png}
+\caption{The instant temperature $T$ plotted versus the time with initial temperature $T_i = 8.35 \approx 1000$ K, lattice constant $b=5.26 \angstrom$, $dt=0.05\approx  5\cdot 10^{-15}$s and 1000 timesteps in the simulation. \textbf{Top:} 5 unit cells in each direction. \textbf{Bottom:} 10 unit cells in each direction.}
+\label{fig: T_time2}
+\end{figure}
+
+
+
+Number of timesteps
 and number of unit cells
 energy conservation
 
@@ -467,7 +514,7 @@ interactions (conserved energy) ---> statistics
 have seen in ovito that 300K is solid
 
 
-%\subsection{Equilibium time?}
+
 include plot of instant T, total E and $E_k$ and V with focus on euilibrium and what happens at the very beginning (for many T?)
 
 why does the values drop after initializing?

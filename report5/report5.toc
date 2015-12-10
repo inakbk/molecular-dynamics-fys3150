@@ -14,4 +14,4 @@
 \contentsline {paragraph}{Initial positions}{11}{section*.5}
 \contentsline {paragraph}{Before forces}{11}{section*.6}
 \contentsline {subsection}{\numberline {4.2}Comparing the two integrators}{12}{subsection.4.2}
-\contentsline {paragraph}{Number of timesteps}{12}{section*.7}
+\contentsline {subsection}{\numberline {4.3}Equilibium time? and conserved energy}{12}{subsection.4.3}
