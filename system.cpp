@@ -71,7 +71,7 @@ void System::applyPeriodicBoundaryConditions() {
 }
 
 void System::removeTotalMomentum() {
-    // Find the total momentum and remove momentum equally on each atom so the total momentum becomes zero.
+    // Finds the total momentum and removes momentum equally on each atom so the total momentum becomes zero.
 
     vec3 average_velocity = vec3(0,0,0);
 

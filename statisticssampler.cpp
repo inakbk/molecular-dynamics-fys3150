@@ -7,20 +7,14 @@ StatisticsSampler::StatisticsSampler()
 
 }
 
-//void StatisticsSampler::saveToFile(System &system)
-//{
-//    // Save the statistical properties for each timestep for plotting etc.
-//}
-
 void StatisticsSampler::sample(System &system)
 {
-    // Here you should measure different kinds of statistical properties and save it to a file (done in IO class).
+    // Here you should measure different kinds of statistical properties, save to a file is done in IO class.
     sampleKineticEnergy(system);
     samplePotentialEnergy(system);
     sampleTemperature(system);
     sampleDensity(system);
     sampleDiffusionConstant(system);
-    //saveToFile(system);
 }
 
 void StatisticsSampler::sampleKineticEnergy(System &system)
@@ -29,11 +23,6 @@ void StatisticsSampler::sampleKineticEnergy(System &system)
     for(Atom *atom : system.atoms()) {
         m_kineticEnergy += 0.5*atom->mass()*atom->velocity.lengthSquared();
     }
-
-//    for(int i=0; i<system.atoms().size(); i++) {
-//        Atom *atom = system.atoms()[i];
-
-//    }
 }
 
 void StatisticsSampler::samplePotentialEnergy(System &system)

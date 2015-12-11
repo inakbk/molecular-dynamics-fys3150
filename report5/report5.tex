@@ -16,6 +16,7 @@
 \setcounter{tocdepth}{2}
 \usepackage{url} %url + line break
 \usepackage[labelfont=bf]{caption} %for bold captions (figure ++)
+\usepackage{float}
 
 \renewcommand{\vec}{\mathbf}
 \newcommand{\dm}[1]{\mathrm{d}#1}
@@ -187,7 +188,7 @@ where $m$ is the mass of one atom and is equal for all the atoms. The particle d
 \]
 We can see that both the mass and particle density will be constant as long as the mass and the lattice constant is held constant in the simulation. We therefore see that we have constructed a NVE ensemble since the number of particles and the volume is constant in the simulation. The system will not interact with any surroundings implying a conserved total energy. 
 
-\subsection{Giving the particles initial velocities}
+\subsection{Initial velocities}
 The atoms are usually given velocities according to the Maxwell-Boltzmann distribution:
 \begin{align}
 	\label{eq:maxwell_boltzmann}
@@ -195,7 +196,7 @@ The atoms are usually given velocities according to the Maxwell-Boltzmann distri
 \end{align}
 where $m$ is the mass of the atom, $k_B$ is Boltzmann's constant and $T$ is the temperature. We recognize this as a normal distribution with zero mean and standard deviation $\sigma = \sqrt{k_B T/m}$. 
 
-The Maxwell-Boltzmann distribution describes particle speeds of ideal gasses where the particles move freely inside a stationary container. An ideal gass is an simplification of real gasses where the particles is assumed to not interact with one another except for very brief collisions in which they exchange energy and momentum with each other or with their thermal environment. The system of particles is also assumed to have reached thermodynamic equilibrium\footnote{\url{https://en.wikipedia.org/wiki/Maxwell–Boltzmann\_distribution}}.
+The Maxwell-Boltzmann distribution describes particle speeds of ideal gasses where the particles move freely inside a stationary container. An ideal gass is an simplification of real gasses where the particles is assumed to not interact with one another except for very brief collisions in which they exchange energy and momentum with each other or with their thermal environment. The system of particles is also assumed to have reached thermodynamic equilibrium\footnote{\url{https://en.wikipedia.org/wiki/Maxwell–Boltzmann\_distribution} 11.dec 12:30}.
 
 In real gases and in the Argon gass that we will study there are various effects such as van der Waals interactions. These effects imply that the gass does not fulfill the asumptions of an ideal gas. However the ideal gas is often a good approximation implying that the Maxwell speed distribution is also an good approximation. The distribution also depends on the temperature of the system and the mass of the particle which is beneficial in our case. We will therefore use the Maxwell-Boltzmann distribution to give initial velocities to the particles in the simulation. 
 
@@ -223,58 +224,27 @@ mv_i' &= mv_i - \frac{m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})}{n} \\
 \end{align*}
 we see that to remove the total momentum one only have to substract the average velocity from each of the particles velocity. 
 
-\subsection{Periodic boundaryconditions (PBCs)} 
-To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
+\subsection{Periodic boundaryconditions (PBCs)} \label{sec: PBCs}
+To avoid problems with boundary effects and to simulate a system with infinite size we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it should enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
 
-MD simulations that use periodic boundary conditions have a large number of unit cells (defined above?), a group of atoms, so that a larger system can be created by repeating these cells in space. 
-
-The size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell (a few atoms) might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}.
+When using PBCs the size of the simulation box will be constant because particles that move outside the box will be placed inside again on the oposite side of the box. But the size of the simulation box must also be large enough to prevent unphysical behaviour. If the box is too small one unit cell might interact with itself. In the Snake analogy this would mean that the "head" interacts with or bites its own "tail" trough the wall which is allowed in the game, but not very physical. Thus the box size have to be large enough relative to the size of a unit cell, length of the simulation and the desired accuracy\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention} 11.dec 13:30}.
 
 
-\subsection{Intergration methods} \label{sec: int_methods}
-During the first implementation of the MD code we have used the Euler-Cromer method to find the next time step for the atoms. (bla bla legge til likninger?)
+\subsection{Interactions and forces: The Lennard-Jones potential} \label{sec: L-Jpot_forces}
 
-In MD the Velocity Verlet integrator is usually used. This is because other integration algorithms tend to drift the energy over time, which we want to avoid. The Velocity Verlet algorithm consists of three steps (in addition to computing the forces, see section \ref{sec: L-Jpot_forces})
-\begin{align}
-	\vec v(t + \Delta t/2) &= \vec v(t) + \frac{\vec F(t)}{m}\frac{\Delta t}{2}\\
-	\vec r(t + \Delta t) &= \vec r(t) + \vec v(t + \Delta t/2)\Delta t\\
-	\vec v(t + \Delta t) &= \vec v(t + \Delta t/2) + \frac{\vec F(t + \Delta t)}{m}\frac{\Delta t}{2}.
-\end{align}
-
-sympletic integrator bla bla bla?
-
-To measure the drift of the energy we will use the standard deviation of the total energy $E$:
-\[
-\sigma_E = \sqrt{\langle E^2 \rangle - \langle E \rangle^2}
-\]
-that we will calculate using the Euler-Cromer method and the Velocity-Verlet integrator and compare the results.
-
-Will also compare cumputing time (plot this!?)
-
-say something more about energy drift?
-
-(discussed in the lecture notes.?)
-  see \url{https://en.wikipedia.org/wiki/Verlet\_integration\#Velocity\_Verlet} on conserved quantities
-  
-bla bla bla  
-
-\subsection{The Lennard-Jones potential (interaction/forces)} \label{sec: L-Jpot_forces}
-
-In this project we will use the Lennard-Jones potential which is a mathematically simple model that approximates the interaction between a pair of neutral atoms or molecules. Due to its computational simplicity, the Lennard-Jones potential is used extensively in computer simulations even though more accurate potentials exist\footnote{\url{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}.
+In this project we will use the Lennard-Jones potential which is a mathematically simple model that approximates the interaction between a pair of neutral atoms or molecules. Due to its computational simplicity, the Lennard-Jones potential is used extensively in computer simulations even though more accurate potentials exist\footnote{\url{http://en.wikipedia.org/wiki/Lennard-Jones\_potential} 11.dec 13:40}.
 
 The potential calculates the energy between two atoms $i$ and $j$ as
 \begin{align}
 	U(r_{ij}) = 4\epsilon\left[\left(\frac{\sigma}{r_{ij}}\right)^{12} - \left(\frac{\sigma}{r_{ij}}\right)^6\right],
 \end{align}
-where $r_{ij} = |\vec r_i - \vec r_j|$ is the distance from atom $i$ to atom $j$, $\epsilon$ is the depth of the potential well (units energy) and $\sigma$ is the distance at which the potential is zero. 
-
-The parameters in the potential can be fitted to reproduce experimental data. For argon, optimal values of the parameters are:
+where $r_{ij} = |\vec r_i - \vec r_j|$ is the distance from atom $i$ to atom $j$, $\epsilon$ is the depth of the potential well (units energy) and $\sigma$ is the distance at which the potential is zero. The parameters in the potential can be fitted to reproduce experimental data. For argon, optimal values of the parameters are:
 \begin{align}
 	\frac{\epsilon}{k_B} = \unit{119.8}{\kelvin}, \sigma=\unit{3.405}{\angstrom}.
 \end{align}
-With these parameters the L-J potential reproduces equilibrium thermodynamic properties that are in good agreement with experimental values for argon.
+With these parameters the L-J potential reproduces equilibrium thermodynamic properties that are in good agreement with experimental values for argon\footnote{\url{https://github.com/CompPhysics/ComputationalPhysics1/blob/master/doc/Projects/Project5/project5\_md.pdf} 11.dec 13:45, page 4}.
 
-In our code, we use the so called MD units (see appendix \ref{sec:units}). (finne enheten og verdier til parameterne?)
+
 
 %The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and everything which is remarkable.(?)
 
@@ -282,7 +252,7 @@ The force is calculated by taking the negative gradient of the potential
 \begin{align}
 	\vec F(r_{ij}) = -\nabla U(r_{ij}),
 \end{align}
-giving the $x$-component (the other components are calculated the same way)
+with $x$-component (the other components are calculated the same way)
 \begin{align}
 	F_x(r_{ij}) = -\frac{\partial U}{\partial r_{ij}}\frac{\partial r_{ij}}{\partial x_{ij}},
 \end{align}
@@ -299,19 +269,142 @@ gives
 F_x(r_{ij}) &= -\frac{24\epsilon}{\sigma} \Big[\Big(\frac{\sigma}{r_{ij}}\Big)^{7} - 2\Big(\frac{\sigma}{r_{ij}}\Big)^{13} \Big]\cdot \frac{x_{ij}}{r_{ij}} \\
 &= \frac{24\epsilon}{\sigma^2} \Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{14} - \Big(\frac{\sigma}{r_{ij}}\Big)^{8} \Big]x_{ij}
 \end{align*}
-The force in y and z direction can be calculated the same way giving:
+The force in y and z direction can be calculated the same way giving a total force
 \begin{align*}
 \vec F &= F_x\ihat + F_y \jhat + F_z\khat \\
-&= \frac{24\epsilon}{\sigma^2} \Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{14} - \Big(\frac{\sigma}{r_{ij}}\Big)^{8} \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)
+&= \frac{24\epsilon}{\sigma^2} \Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{14} - \Big(\frac{\sigma}{r_{ij}}\Big)^{8} \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big).
 \end{align*}
 
+\subsection{Physical and statistical properties of the system} \label{sec: statistics_theory}
+In this project and in the numerical calculations we have use the so called MD units (see appendix \ref{sec:units}). (finne enheten og verdier til parameterne?)
+
+%inserte here**(?)
 
 
-(another section???)
+The potential energy for one particle-pair $U(r_{ij})$ is given by the Lennard-Jones potential introduced in section \ref{sec: L-Jpot_forces} The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once) 
+\begin{align}
+	V = \sum_{i>j} U(r_{ij}).
+\end{align}
+The kinetic energy is defined as
+\begin{align}
+	E_k = \sum_{i=1}^{N_\text{atoms}} \frac{1}{2} m_i v_i^2,
+\end{align}
+where $m_i$ and $v_i$ is the mass and the speed of atom $i$. The total energy of the system is then $E = V + E_k$. We will also calculate an estimate of the temperature through the equipartition theorem\footnote{See for example D. Schroeder's \textit{An Introduction to Thermal Physics} for details fix!!!? se list ?how books.}
+\begin{align}
+	\langle E_k \rangle = \frac{3}{2}N_\text{atoms} k_B T.
+\end{align}
+We can use this to define an \textit{instantaneous} temperature
+\begin{align}
+	\label{eq:temperature}
+	T = \frac{2}{3}\frac{E_k}{N_\text{atoms} k_B}.
+\end{align}
 
-In section \ref{sec: int_methods} we see that to calculate the next time step for the particles we need to calculate the forces. This is very time consuming because we have to sum over all pairs of particles to find the force for one particle. Therefore a lot of time can be saved if the code for the calculation of forces is as efficient as possible.
+We use the Einstein relation that relates the so called mean square displacement (MSD) $\langle r^2(t) \rangle$ to the diffusion constant $D$
+\begin{align}
+	\langle r^2(t) \rangle = 6Dt,
+\end{align}
+where $t$ is time. The square displacement for atom $i$ is calculated as
+\begin{align}
+	r_i^2(t) &= |\vec r_i(t) - \vec r_i(0)|^2 \\
+	&= (x_i(t)-x_i(0))^2 + (y_i(t)-y_i(0))^2 + (z_i(t)-z_i(0))^2 \\
+	&= x_i^2 + y_i^2 + z_i^2,
+\end{align}
+where $\vec r_i(t)$ is the position of atom $i$ at time $t$. The diffusion constant is then given by
+\begin{align*}
+D = \frac{\langle r^2(t) \rangle}{6t} = \frac{r_1(t)^2 + r_r(t)^2 + \dots + r_n(t)^2}{6tn}
+\end{align*}
+for a given initial temperature $T_i$.
 
-A better numerical expression for the force is
+The diffusion constant of the system can be used to measure the melting temperature. Atoms in a solid will not move much giving a mean square displacement close to zero and thus a diffusion constant close to zero. When the solid melts we would expect the MSD and the diffusion constant to increase from zero revealing the melting temperature of the crystal. 
+
+
+\section{Numerical methods and approximations}
+\subsection{Folder structure}
+
+The source code in this project was developes from a skeleton code that can be found at \url{https://github.com/andeplane/molecular-dynamics-fys3150/tree/master}. This skeleton code includes a structure of classes and subclasses that creates particles uniformely distrubuted inside the box with initial velocities given by the Maxwell-Boltzmann distrubution. The code does not account for  interactions between the particles and there is no periodic boundary conditions, but the structure needed to implement these methods are included. The skeleton code also integrates with the Euler-Cromer method and converts between the SI and MD units. 
+
+The source code developed in this project can be found at: \url{https://github.com/inakbk/molecular-dynamics-fys3150}. The source code is structured in the following way (boldface for folder): 
+\begin{itemize}
+\item \textbf{integrators}
+\begin{itemize}
+\item eulercromer.cpp (subclass)
+\item integrator.cpp
+\item velocityverlet.cpp (subclass)
+\end{itemize}
+\item \textbf{math}
+\begin{itemize}
+\item random.cpp
+\item vec3.cpp
+\end{itemize}
+\item \textbf{potentials}
+\begin{itemize}
+\item lennardjones.cpp (subclass)
+\item potential.cpp
+\end{itemize}
+\item atom.cpp
+\item io.cpp
+\item main.cpp
+\item statisticssampler.cpp
+\item system.cpp
+\item unitconverter.cpp
+\end{itemize}
+there is also corresponding folders and files with header files and python scripts for plotting the data \texttt{run\_plot'$\dots$'.py}. 
+
+
+\subsection{Program flow}
+The execution flow from \texttt{main.cpp} can briefly be described as follows:
+
+\begin{tabular}{cc}
+\begin{minipage}{0.45\textwidth}
+\begin{itemize}
+\item Recive standard input parameters or input from command line
+\item Create FFC lattice
+\item Set potential and integrator
+\item Remove total momentum
+\item Open files to save data; \texttt{movie.xyz}, \texttt{statistics\_file.txt} (or unicque filenames with inputparameters).
+\item For all timesteps:
+\begin{itemize}
+\item Print positions to \texttt{movie.xyz}
+\item Do a timestep (integrate)
+\item Sample data from system
+\item Print data to \texttt{statistics\_file.txt}
+\item Print data in terminal every 100 timesteps
+\end{itemize}
+\item Close \texttt{movie.xyz}
+\item Save execution time to \texttt{statistics\_file.txt}
+\item Close \texttt{statistics\_file.txt}
+\end{itemize}
+\end{minipage}
+&
+\begin{minipage}{0.45\textwidth}
+\includegraphics[width=\textwidth]{plots/programStructure}
+\end{minipage}
+
+\end{tabular}
+
+\medskip
+The figure roughly illustrates the program flow, what the different functions (black) do and which classes (red) they belong to. We can see that the first step is to create the FFC lattice so the positions and initial velocities are set for all the atoms via the \texttt{atom} class. The atoms are stored in the array \texttt{m\_atoms}, the system size is stored and the initial positions are stored in a separete variable \texttt{initialPosition} in the atom class to calculate the mean square displacement later.
+
+The \texttt{step} function moves the particles to the next position by using the \texttt{integrator} class. Most of the time is spent in the \texttt{calculateForces} function in the \texttt{lennardJones} class that calculates and set the forces in the \texttt{atom} class. Then the \texttt{integrator} class moves the particles to a new position and the \texttt{applyPeriodicBoundaryConditions} checks if the particles have left the simulation box. If so they are moved to the other side of the box and the initial position is moved to be able to calculate the mean square displacement properly (as if there where no PBCs).When the particles have been moved one step the \texttt{statisticsSampler} class sample the statistical properties introduced in section \ref{sec: statistics_theory} and at last the statistics is saved to a file to plot the data with a python script. 
+
+The program can also produce a file called \texttt{movie.xyz}\footnote{Read more about the file format here: \url{https://en.wikipedia.org/wiki/XYZ\_file\_format}} that can be used to visulize the simulation in a visualization program. In this project we have used \texttt{Ovito - The Open Visualization Tool}\footnote{\url{http://www.ovito.org} 11.dec 19:30} to look at the system development in time.
+
+
+\subsection{Intergration methods} \label{sec: int_methods}
+In the skeleton code the Euler-Cromer method is used to find the next timestep. In MD the Velocity Verlet integrator is usually used. This is because other integration algorithms tend to drift the energy over time, which we want to avoid\footnote{See for instance \url{https://en.wikipedia.org/wiki/Verlet\_integration\#Velocity\_Verlet} about conserved quantities.}. The Velocity Verlet algorithm consists of three steps (in addition to computing the forces)
+\begin{align}
+	\vec v(t + \Delta t/2) &= \vec v(t) + \frac{\vec F(t)}{m}\frac{\Delta t}{2}\\
+	\vec r(t + \Delta t) &= \vec r(t) + \vec v(t + \Delta t/2)\Delta t\\
+	\vec v(t + \Delta t) &= \vec v(t + \Delta t/2) + \frac{\vec F(t + \Delta t)}{m}\frac{\Delta t}{2}.
+\end{align}
+To measure the drift of the energy we will use the standard deviation of the total energy $E$:
+\[
+\sigma_E = \sqrt{\langle E^2 \rangle - \langle E \rangle^2}
+\]
+that we will calculate using the Euler-Cromer method and the Velocity-Verlet integrator and compare the results. We will also compare the execution time for both of the integrators.
+
+\subsection{Implementation of the \texttt{calculateForces} function}
+In section \ref{sec: int_methods} we see that to calculate the next time step for the particles we need to calculate the forces. This is very time consuming because we have to sum over all pairs of particles to find the force for one particle (see section \ref{sec: statistics_theory}). Therefore a lot of time can be saved if the code for the calculation of forces is as efficient as possible. A better numerical expression for the force is
 \begin{align*}
 \vec F(r_{ij}) &= \frac{24\epsilon}{\sigma^2} \Big(\frac{\sigma}{r_{ij}}\Big)^2\Big(\frac{\sigma}{r_{ij}}\Big)^6\Big[2\Big(\frac{\sigma}{r_{ij}}\Big)^{6} - 1 \Big]\Big(x_{ij}\ihat + y_{ij}\jhat + z_{ij}\khat \Big)\\
 &= 24\epsilon\sigma^6r_{ij}^{-2}r_{ij}^{-6}\big(2\sigma^6r_{ij}^{-6} - 1\big)
@@ -320,9 +413,9 @@ and for the potential energy
 \begin{align*}
 U(r_{ij}) = 4\epsilon\sigma^6r_{ij}^{-6}\big(\sigma^6r_{ij}^{-6} - 1\big)
 \end{align*}
-so that the powers of $r_{ij}$ is calculated as few times as possible, $r_{ij}^{-6}$ can be calculated just once for each loop (define?).  
+so that the powers of $r_{ij}$ is calculated as few times as possible. With these expressions $r_{ij}^{-6}$ can be calculated only once for each loop over the particle pairs.  
 
-Another smart way to make a more efficient code when calculating the forces is to realize that in the limit $r_{ij}\rightarrow \infty$ both the force and the potential energy is zero. In figure \ref{fig: force_potential} the potential energy (red) and the force (blue) plotted against the distance between two atoms $r_{ij}$. We can see that the energy and the force reaches zero for large values of $r_{ij}$.  The point for which the potential energy and the force is nearly zero, $r_{cut}$, is marked with a dot in the figure. A good approximation is therefore to stop calculating forces and energies for distances larger than $r_{cut}$ and set all forces and energies for $r_{ij} > r_{cut}$ to zero.
+Another smart way to make a more efficient code when calculating the forces is to realize that in the limit $r_{ij}\rightarrow \infty$ both the force and the potential energy is zero. In figure \ref{fig: force_potential} the potential energy (red) and the force (blue) plotted against the distance between two atoms $r_{ij}$. We can see that the energy and the force reaches zero for large values of $r_{ij}$.  The point for which the potential energy and the force is nearly zero, $r_{cut}$, is marked with a dot in the figure. A good approximation is to stop calculating forces and energies for distances larger than $r_{cut}$ and set all forces and energies for $r_{ij} > r_{cut}$ to zero.
 
 \begin{figure}
 \centering
@@ -334,8 +427,8 @@ Another smart way to make a more efficient code when calculating the forces is t
 The implementation of $r_{cut}$ will save the algorithm a lot of time and still be a good approximation since the force and the potential energy is esensially zero anyway. The only problem is that the potential energy function will be discontinuously at the point $r_{cut}$ when the energy is set to zero after $r_{cut}$. A solution to this is to shift the potential function slightly so that the energy is zero at $r_{cut}$ and still set to zero for $r_{ij}>r_{cut}$. The shifted potential function is marked with green in figure \ref{fig: force_potential}. This will only shift the values for the potential and total energy, but it will not affect the physics of the problem. The statistical properties of the system will not be affected by the shift in energy. 
 
 
-\paragraph{The minimum image convention} (due to calculation of forces)
-When an atom leave the simulation box it must re-enter the box on the opposite side. An atom at the edge of the simulation box must also interact with an atom at the other side of the box 'through' the wall, or interact with the image of the simulation box. But this atom is also contained inside the box so the atoms interact twice, once through the wall and once from across the box. To avoid counting this interaction twice we will apply the minimum image convention. An atom will interact with the other atoms only once and then choose the image (or the simulation box) that gives the minimum distance\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}}:
+\subsubsection*{The minimum image convention} 
+When an atom leave the simulation box it must re-enter the box on the opposite side, as described in section \ref{sec: PBCs}. An atom at the edge of the simulation box must also interact with an atom at the other side of the box 'through' the wall, or interact with the image of the simulation box. But this atom is also contained inside the box so the atoms interact 'twice', once through the wall and once from across the box. To avoid counting this interaction twice we will apply the minimum image convention. An atom will interact with the other atoms only once by choosing the image (or the simulation box) that gives the minimum distance\footnote{\url{https://en.wikipedia.org/wiki/Periodic\_boundary\_conditions\#Practical\_implementation:\_continuity\_and\_the\_minimum\_image\_convention}} dx. A psudo-code is listed here:
 %This is because we want to avoid extensive mathematical calculations of pairwise interactions with all particle inside or outside the box. MIC is a way of providing a cutoff distance over which we are not calculating pairwise potential. The cutoff is usually half the box length. This means if distance between particle i and particle j is more than L/2, you will neglect the pairwise potential between i & j, instead you will consider potential between i & neareset image of j, hence the term Minimum Image.
 
 \begin{lstlisting}
@@ -345,69 +438,10 @@ if(periodic_x) then
   if (dx <= -x_size * 0.5) dx = dx + x_size
 endif
 \end{lstlisting}
-
-(include drawing??)
-
-This leads to two possible strategic choices: (A) 'fold back' particles into the simulation box when they leave it, or (B) let them go on into the other side of the box?
-
-....ahh, this is relevant for computing forces/potentials!
-An atom which has passed through one face of the simulation box should re-enter through the opposite face-or its image should do it. Evidently, a strategic decision must be made: Do we (A) “fold back” particles into the simulation box when they leave it, or do we (B) let them go on (but compute interactions with the nearest images)? The decision has no effect on the course of the simulation, but if the user in interested in mean displacements, diffusion lenghts, etc., the second option is preferable.
+where \texttt{x\_size} is the lengt of the simulation box in x-direction.
 
 
 
-
-  
-  
-\subsection{Calculating physical properties of the system} \label{sec: statistics_theory}
-The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once) 
-\begin{align}
-	V = \sum_{i>j} U(r_{ij}).
-\end{align}
-where $U(r_{ij})$ are the Lennard-Jones potential given in section \ref{sec: L-Jpot_forces}. The kinetic energy is defined as
-\begin{align}
-	E_k = \sum_{i=1}^{N_\text{atoms}} \frac{1}{2} m_i v_i^2,
-\end{align}
-where $m_i$ and $v_i$ is the mass and the speed of atom $i$. The total energy of the system is then $E = V + E_k$. (which we will study if is conserved or not, see $\sigma_E$ ??)
-
-We will also calculate an estimate of the temperature through the equipartition theorem\footnote{See for example D. Schroeder's \textit{An Introduction to Thermal Physics} for details. better reference?}
-\begin{align}
-	\langle E_k \rangle = \frac{3}{2}N_\text{atoms} k_B T.
-\end{align}
-We can use this to define an \textit{instantaneous} temperature
-\begin{align}
-	\label{eq:temperature}
-	T = \frac{2}{3}\frac{E_k}{N_\text{atoms} k_B}.
-\end{align}
-
-
-\paragraph{The diffusion constant} of the system can be used to measure the melting temperature. We use the Einstein relation that relates the so called mean square displacement (MSD) to the diffusion constant
-\begin{align}
-	\langle r^2(t) \rangle = 6Dt,
-\end{align}
-where $D$ is the diffusion constant, $t$ is time. The mean square displacement for atom $i$ is calculated as
-\begin{align}
-	r_i^2(t) = |\vec r_i(t) - \vec r_i(0)|^2,
-\end{align}
-where $\vec r_i(t)$ is the position of atom $i$ at time $t$. 
-
-The diffusion constant is then given by
-\begin{align*}
-D = \frac{\langle r^2(t) \rangle}{6t} = 
-\end{align*}
-(for a given temperature ($T_i$ ?).)
-
-Atoms in a solid will not diffuse (move?) much, so a solid will have a diffusion constant close to zero. A plot of the diffusion constant as a function of temperature will therefore reveale the melting temperature because the solid melts when the diffusion constant is non zero.
-
-write something about ovito introduction(?)
-
-%\centering
-\rule{0.3\textwidth}{0.4pt}\par % Short horizontal line under the title  
-
-\section{Program flow and folder structure}
-
-
-
-\section{Numerical methods and approximations}
 
 
 \section{Results} %move this to after implementation/testing+

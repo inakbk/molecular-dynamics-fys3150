@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  11 DEC 2015 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  11 DEC 2015 19:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -337,6 +337,14 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count119
+\float@exts=\toks23
+\float@box=\box31
+\@float@everytoks=\toks24
+\@floatcapt=\box32
+)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
@@ -362,41 +370,41 @@ LaTeX Warning: Unused global option(s):
 (./report5.aux)
 \openout1 = `report5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 95.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 94.
-\c@lstlisting=\count119
+LaTeX Font Info:    ... okay on input line 95.
+\c@lstlisting=\count120
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
+\scratchcounter=\count121
 \scratchdimen=\dimen137
-\scratchbox=\box31
-\nofMPsegments=\count121
-\nofMParguments=\count122
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count123
+\scratchbox=\box33
+\nofMPsegments=\count122
+\nofMParguments=\count123
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count124
 \MPscratchDim=\dimen138
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
-\everyMPtoPDFconversion=\toks24
+\MPnumerator=\count125
+\makeMPintoPDFobject=\count126
+\everyMPtoPDFconversion=\toks26
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -412,8 +420,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 94.
+\AtBeginShipoutBox=\box34
+Package hyperref Info: Link coloring OFF on input line 95.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -421,11 +429,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count126
+\c@section@level=\count127
 )
-LaTeX Info: Redefining \ref on input line 94.
-LaTeX Info: Redefining \pageref on input line 94.
-LaTeX Info: Redefining \nameref on input line 94.
+LaTeX Info: Redefining \ref on input line 95.
+LaTeX Info: Redefining \pageref on input line 95.
+LaTeX Info: Redefining \nameref on input line 95.
 
 (./report5.out) (./report5.out)
 \@outlinefile=\write3
@@ -436,28 +444,29 @@ Option `squaren' provided!
  Command \squaren defined by SIunits package!
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \drop=\skip48
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 96--96
+Overfull \hbox (17.0pt too wide) in paragraph at lines 97--97
 [][] 
  []
 
 
-Overfull \hbox (17.0pt too wide) in paragraph at lines 96--96
+Overfull \hbox (17.0pt too wide) in paragraph at lines 97--97
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 96.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 97.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 96.
+LaTeX Font Info:    Try loading font information for U+msa on input line 97.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 96.
+LaTeX Font Info:    Try loading font information for U+msb on input line 97.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -470,163 +479,179 @@ rt5.toc)
 
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 105--105
+Underfull \hbox (badness 10000) in paragraph at lines 106--106
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Molecular _ d
 ynamics # Areas _ of _ application _ and _ limitations$[]\T1/cmr/m/n/9 ,
  []
 
 [3]
-Overfull \hbox (2.1308pt too wide) in paragraph at lines 138--171
+Overfull \hbox (2.1308pt too wide) in paragraph at lines 139--172
 []$[]$ $[]$ $[]$ $[]$
  []
 
-<plots/crystal.jpg, id=123, 963.6pt x 963.6pt>
+<plots/crystal.jpg, id=134, 963.6pt x 963.6pt>
 File: plots/crystal.jpg Graphic file (type jpg)
  <use plots/crystal.jpg>
-Package pdftex.def Info: plots/crystal.jpg used on input line 174.
+Package pdftex.def Info: plots/crystal.jpg used on input line 175.
 (pdftex.def)             Requested size: 132.79747pt x 132.7858pt.
  [4]
 [5 <./plots/crystal.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 231--231
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Periodic _ bo
 undary _ conditions # Practical _ implementation :
  []
 
 [6]
-Overfull \hbox (23.62245pt too wide) in paragraph at lines 256--258
-[]\T1/cmr/m/n/10.95 (discussed in the lec-ture notes.?) see []$\T1/cmtt/m/n/10.
-95 https : / / en . wikipedia . org / wiki / Verlet _ integration #
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
+[][][][]$\T1/cmtt/m/n/9 https : / / github . com / CompPhysics / ComputationalP
+hysics1 / blob / master / doc / Projects / Project5 /
  []
 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 266.
 
-LaTeX Warning: Reference `sec:units' on page 7 undefined on input line 277.
-
-[7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 296.
-
- (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 296.
- [8]
-<plots/force_potential.png, id=187, 578.16pt x 433.62pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 266.
+ [7]
+
+LaTeX Warning: Reference `sec:units' on page 8 undefined on input line 279.
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
+[]\T1/cmr/m/n/10.95 Print data to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--375
+[]\T1/cmr/m/n/10.95 Save ex-e-cu-tion time to
+ []
+
+<plots/programStructure.png, id=208, 409.53pt x 722.7pt>
+File: plots/programStructure.png Graphic file (type png)
+
+<use plots/programStructure.png>
+Package pdftex.def Info: plots/programStructure.png used on input line 380.
+(pdftex.def)             Requested size: 199.19283pt x 351.5236pt.
+ [9] [10 <./plots/programStructure.png>]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 406.
+
+<plots/force_potential.png, id=232, 578.16pt x 433.62pt>
 File: plots/force_potential.png Graphic file (type png)
 
 <use plots/force_potential.png>
-Package pdftex.def Info: plots/force_potential.png used on input line 329.
+Package pdftex.def Info: plots/force_potential.png used on input line 422.
 (pdftex.def)             Requested size: 354.12434pt x 265.59291pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
+ [11] [12 <./plots/force_potential.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Periodic _ bo
 undary _ conditions # Practical _ implementation :
  []
 
-[9 <./plots/force_potential.png>]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 344.
- [10]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 437.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 418.
-
-<plots/OneUnitCell.png, id=224, 653.44125pt x 654.445pt>
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 452.
+<plots/OneUnitCell.png, id=257, 653.44125pt x 654.445pt>
 File: plots/OneUnitCell.png Graphic file (type png)
 
 <use plots/OneUnitCell.png>
-Package pdftex.def Info: plots/OneUnitCell.png used on input line 424.
+Package pdftex.def Info: plots/OneUnitCell.png used on input line 458.
 (pdftex.def)             Requested size: 127.11642pt x 127.3181pt.
 
-<plots/10UnitCells.png, id=225, 669.50125pt x 584.1825pt>
+<plots/10UnitCells.png, id=258, 669.50125pt x 584.1825pt>
 File: plots/10UnitCells.png Graphic file (type png)
 
 <use plots/10UnitCells.png>
-Package pdftex.def Info: plots/10UnitCells.png used on input line 425.
+Package pdftex.def Info: plots/10UnitCells.png used on input line 459.
 (pdftex.def)             Requested size: 145.9116pt x 127.3181pt.
- [11]
-<plots/dt_NrOfCells5_T2500_b5260.png, id=240, 578.16pt x 433.62pt>
+ [13]
+<plots/dt_NrOfCells5_T2500_b5260.png, id=281, 578.16pt x 433.62pt>
 File: plots/dt_NrOfCells5_T2500_b5260.png Graphic file (type png)
 
 <use plots/dt_NrOfCells5_T2500_b5260.png>
 Package pdftex.def Info: plots/dt_NrOfCells5_T2500_b5260.png used on input line
- 447.
+ 481.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [12 <./plots/OneUnitCell.png> <./plots/10UnitCells.png>]
-<plots/exeTime_NrOfCells_T2500_b5260.png, id=250, 578.16pt x 433.62pt>
+ [14 <./plots/OneUnitCell.png> <./plots/10UnitCells.png>]
+<plots/exeTime_NrOfCells_T2500_b5260.png, id=291, 578.16pt x 433.62pt>
 File: plots/exeTime_NrOfCells_T2500_b5260.png Graphic file (type png)
 
 <use plots/exeTime_NrOfCells_T2500_b5260.png>
 Package pdftex.def Info: plots/exeTime_NrOfCells_T2500_b5260.png used on input 
-line 456.
+line 490.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
-
-<plots/Energy_time_T25.png, id=255, 578.16pt x 433.62pt>
+ [15 <./plots/dt_NrOfCells5_T2500_b5260.png>] <plots/Energy_time_T25.png, id=30
+2, 578.16pt x 433.62pt>
 File: plots/Energy_time_T25.png Graphic file (type png)
 
 <use plots/Energy_time_T25.png>
-Package pdftex.def Info: plots/Energy_time_T25.png used on input line 474.
+Package pdftex.def Info: plots/Energy_time_T25.png used on input line 508.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [13 <./plots/dt_NrOfCells5_T2500_b5260.png>]
-[14 <./plots/exeTime_NrOfCells_T2500_b5260.png> <./plots/Energy_time_T25.png>]
-<plots/Energy_time_T835.png, id=273, 578.16pt x 433.62pt>
+
+<plots/Energy_time_T835.png, id=307, 578.16pt x 433.62pt>
 File: plots/Energy_time_T835.png Graphic file (type png)
 
 <use plots/Energy_time_T835.png>
-Package pdftex.def Info: plots/Energy_time_T835.png used on input line 483.
+Package pdftex.def Info: plots/Energy_time_T835.png used on input line 517.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/T_time_T25.png, id=279, 578.16pt x 433.62pt>
+<plots/T_time_T25.png, id=313, 578.16pt x 433.62pt>
 File: plots/T_time_T25.png Graphic file (type png)
  <use plots/T_time_T25.png>
-Package pdftex.def Info: plots/T_time_T25.png used on input line 496.
+Package pdftex.def Info: plots/T_time_T25.png used on input line 530.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/T_time_T835.png, id=280, 578.16pt x 433.62pt>
+<plots/T_time_T835.png, id=314, 578.16pt x 433.62pt>
 File: plots/T_time_T835.png Graphic file (type png)
 
 <use plots/T_time_T835.png>
-Package pdftex.def Info: plots/T_time_T835.png used on input line 503.
+Package pdftex.def Info: plots/T_time_T835.png used on input line 537.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [15 <./plots/Energy_time_T835.png>] [16 <./plots/T_time_T25.png> <./plots/T_ti
-me_T835.png>]
-<plots/TTi_time.png, id=297, 578.16pt x 433.62pt>
+ [16 <./plots/exeTime_NrOfCells_T2500_b5260.png>]
+[17 <./plots/Energy_time_T25.png> <./plots/Energy_time_T835.png>] [18 <./plots/
+T_time_T25.png> <./plots/T_time_T835.png>]
+<plots/TTi_time.png, id=336, 578.16pt x 433.62pt>
 File: plots/TTi_time.png Graphic file (type png)
  <use plots/TTi_time.png>
-Package pdftex.def Info: plots/TTi_time.png used on input line 521.
+Package pdftex.def Info: plots/TTi_time.png used on input line 555.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/D_r2_time.png, id=298, 578.16pt x 433.62pt>
+<plots/D_r2_time.png, id=337, 578.16pt x 433.62pt>
 File: plots/D_r2_time.png Graphic file (type png)
  <use plots/D_r2_time.png>
-Package pdftex.def Info: plots/D_r2_time.png used on input line 530.
+Package pdftex.def Info: plots/D_r2_time.png used on input line 564.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-[17 <./plots/TTi_time.png>] <plots/D_T.png, id=309, 578.16pt x 433.62pt>
+[19 <./plots/TTi_time.png>] <plots/D_T.png, id=349, 578.16pt x 433.62pt>
 File: plots/D_T.png Graphic file (type png)
 
 <use plots/D_T.png>
-Package pdftex.def Info: plots/D_T.png used on input line 541.
+Package pdftex.def Info: plots/D_T.png used on input line 575.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 561.
- [18 <./plots/D_r2_time.png>] [19 <./plots/D_T.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 561.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 595.
+ [20 <./plots/D_r2_time.png>] [21 <./plots/D_T.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 595.
 
 (./report5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 561.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 561.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 595.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 595.
 Package rerunfilecheck Info: File `report5.out' has not changed.
-(rerunfilecheck)             Checksum: 09E6F9B838C19F3EB4F25716FCA99E29;1273.
+(rerunfilecheck)             Checksum: B829AC585D1F2630B5A07A06D621647D;1413.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 561.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 595.
  ) 
 Here is how much of TeX's memory you used:
- 9753 strings out of 493117
- 143665 string characters out of 6135433
- 276455 words of memory out of 5000000
- 12949 multiletter control sequences out of 15000+600000
- 30142 words of font info for 81 fonts, out of 8000000 for 9000
+ 9821 strings out of 493117
+ 144656 string characters out of 6135433
+ 276786 words of memory out of 5000000
+ 13002 multiletter control sequences out of 15000+600000
+ 30455 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,12n,58p,1142b,1342s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
@@ -655,11 +680,12 @@ ts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2014/texmf-dist/fonts
 /type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
 ype1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
 e1/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
-/public/cm-super/sftt1095.pfb>
-Output written on report5.pdf (19 pages, 1289625 bytes).
+/public/cm-super/sftt1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/p
+ublic/cm-super/sftt1200.pfb>
+Output written on report5.pdf (21 pages, 1348143 bytes).
 PDF statistics:
- 427 PDF objects out of 1000 (max. 8388607)
- 351 compressed objects within 4 object streams
- 89 named destinations out of 1000 (max. 500000)
- 194 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 471 PDF objects out of 1000 (max. 8388607)
+ 390 compressed objects within 4 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 215 words of extra memory for PDF output out of 10000 (max. 10000000)
 

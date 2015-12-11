@@ -73,7 +73,7 @@ int main(int numberOfArguments, char **argumentList)
 
     cout << "Timestep Time Temperature KineticEnergy PotentialEnergy TotalEnergy DiffusionConstant MeanSquareDisplacement" << endl;
     for(int timestep=0; timestep<numberOfTimesteps; timestep++) {
-        //movie.saveState(&system); //including also the starting position in the movie
+        //movie.saveState(&system); //including also the starting position in the movie, uncomment to write to movie file
 
         system.step(dt); //moving the particle one step
 
