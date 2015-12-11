@@ -14,6 +14,7 @@
 \usepackage[squaren]{SIunits}
 
 \setcounter{tocdepth}{2}
+\usepackage[toc,page]{appendix}
 \usepackage{url} %url + line break
 \usepackage[labelfont=bf]{caption} %for bold captions (figure ++)
 \usepackage{float}
@@ -107,13 +108,11 @@ Molecular dynamics (MD) is a computer simulation method used to study atoms and 
 
 Molecular dynamics is often used to study stastistical properties of a system consisting of a large number of atoms or molecules and thus MD is a a type of N-body simulation. For systems that obey the ergodic hypothesis\footnote{\url{https://en.wikipedia.org/wiki/Ergodic\_hypothesis} 11.dec 11:30} the evolution of a single molecular dynamics simulation may be used to determine macroscopic thermodynamic properties of the system. This is because the time averages of an ergodic system correspond to microcanonical (NVE) ensemble averages\footnote{\url{https://en.wikipedia.org/wiki/Molecular\_dynamics} 3.dec 11:25}. In this paper we wil study one such NVE ensemple, a system with constant number of particles (N), constant volume (V) and constant total energy (E). 
 
-Often the main motivation to use Molecular dynamics is that it is not possible to determine the properties of the system analytically, mainly because of the large number of particles. Therefore one have to apply numerical methods to be able to solve the problem. One of the main limitation for the numerical simulation is the computer recources available limiting the number of particles and the system size. The latter problem can be solved by applying periodic boundary conditions so that it is possible to simulate a system with infinite size. The first problem might be solved with a very efficient code and good approximations. Another problem with the numerical simulation is cumulative errors in the numerical integration when evolving the system in time, often drift in the total energy. This error can be avoided by proper selection of parameters and integration algorithms. In this paper we will have a look at two numerical integration methods; the Euler-Cromer method and the Velocity Verlet integrator. We will also use a set of units that we will refer to as 'MD units' to aviod calculations with small exponents. 
+Often the main motivation to use Molecular dynamics is that it is not possible to determine the properties of the system analytically, mainly because of the large number of particles. Therefore one have to apply numerical methods to be able to solve the problem. One of the main limitation for the numerical simulation is the computer recources available limiting the number of particles and the system size. The latter problem can be solved by applying periodic boundary conditions so that it is possible to simulate a system with infinite size. The first problem might be solved with a very efficient code and good approximations. Another problem with the numerical simulation is cumulative errors in the numerical integration when evolving the system in time, often drift in the total energy. This error can be avoided by proper selection of parameters and integration algorithms. In this paper we will have a look at two numerical integration methods; the Euler-Cromer method and the Velocity Verlet integrator. We will also use a set of units that we will refer to as 'MD units' listed in appendix \ref{sec:units} to aviod calculations with small exponents.
 
 In this project we will study the properties of a large system consisting of Argon atoms initially placed in a cubic lattice and try to determine the melting temperature of the solid. We are interested in the statistical properties of the system such as the mean square displacement and the diffusion constant. We will also have a quick look at the energy development in time. The individual motion of each particle is not of any physical interest, but we will look at the simulation with an visualization program to gain physical understanding of the system and to verify the implementation of the models and algorithms. 
 
-This report is organizen in bla bla...sections (??)
-first the theory with the equations used to biuld up the algorithm
-%And compare with experimental data(?).  
+This report is organized into three parts. First we will look at the theory and the equations giving the physical properties of the system. Then we will look at the numerical methods and approximations used, the structureof the source code and program flow. But most importantly we will study the results obtained.
 
 \newpage
 \section{Theory}
@@ -244,10 +243,6 @@ where $r_{ij} = |\vec r_i - \vec r_j|$ is the distance from atom $i$ to atom $j$
 \end{align}
 With these parameters the L-J potential reproduces equilibrium thermodynamic properties that are in good agreement with experimental values for argon\footnote{\url{https://github.com/CompPhysics/ComputationalPhysics1/blob/master/doc/Projects/Project5/project5\_md.pdf} 11.dec 13:45, page 4}.
 
-
-
-%The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and everything which is remarkable.(?)
-
 The force is calculated by taking the negative gradient of the potential
 \begin{align}
 	\vec F(r_{ij}) = -\nabla U(r_{ij}),
@@ -276,12 +271,7 @@ The force in y and z direction can be calculated the same way giving a total for
 \end{align*}
 
 \subsection{Physical and statistical properties of the system} \label{sec: statistics_theory}
-In this project and in the numerical calculations we have use the so called MD units (see appendix \ref{sec:units}). (finne enheten og verdier til parameterne?)
-
-%inserte here**(?)
-
-
-The potential energy for one particle-pair $U(r_{ij})$ is given by the Lennard-Jones potential introduced in section \ref{sec: L-Jpot_forces} The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once) 
+The potential energy for one particle-pair $U(r_{ij})$ is given by the Lennard-Jones potential introduced in section \ref{sec: L-Jpot_forces}. The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once) 
 \begin{align}
 	V = \sum_{i>j} U(r_{ij}).
 \end{align}
@@ -289,7 +279,7 @@ The kinetic energy is defined as
 \begin{align}
 	E_k = \sum_{i=1}^{N_\text{atoms}} \frac{1}{2} m_i v_i^2,
 \end{align}
-where $m_i$ and $v_i$ is the mass and the speed of atom $i$. The total energy of the system is then $E = V + E_k$. We will also calculate an estimate of the temperature through the equipartition theorem\footnote{See for example D. Schroeder's \textit{An Introduction to Thermal Physics} for details fix!!!? se list ?how books.}
+where $m_i$ and $v_i$ is the mass and the speed of atom $i$. The total energy of the system is then $E = V + E_k$. We will also calculate an estimate of the temperature through the equipartition theorem\footnote{See for example D. Schroeder's \textit{An Introduction to Thermal Physics} for details.}
 \begin{align}
 	\langle E_k \rangle = \frac{3}{2}N_\text{atoms} k_B T.
 \end{align}
@@ -316,7 +306,6 @@ D = \frac{\langle r^2(t) \rangle}{6t} = \frac{r_1(t)^2 + r_r(t)^2 + \dots + r_n(
 for a given initial temperature $T_i$.
 
 The diffusion constant of the system can be used to measure the melting temperature. Atoms in a solid will not move much giving a mean square displacement close to zero and thus a diffusion constant close to zero. When the solid melts we would expect the MSD and the diffusion constant to increase from zero revealing the melting temperature of the crystal. 
-
 
 \section{Numerical methods and approximations}
 \subsection{Folder structure}
@@ -442,6 +431,8 @@ where \texttt{x\_size} is the lengt of the simulation box in x-direction. We do 
 
 
 \section{Results} 
+All unitless numbers are in the so called MD units listed in appendix \ref{sec:units}.
+
 \subsection{Verifying the implementation of the code by using Ovito and choice of parameters}
 
 To the left in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with one unit cell from \texttt{Ovito}. We see that this is exactly the unit cell introduced in section \ref{sec: creating_lattice_theory} and figure \ref{fig: ar_crystal}. To the right in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with 10 unit cells from \texttt{Ovito}, creating a cubic lattice. After looking at the initial frame of the simulation box in \texttt{Ovito} it seems safe to assume that the program produces the desired initial positions for the Argon atoms. 
@@ -460,7 +451,7 @@ After the implementation of the forces one could easy see (in \texttt{Ovito}) th
 
 \subsection{Comparing the two integrators} \label{sec: integrators_results}
 
-In the top plot in figure \ref{fig: dt} we can see the standard deviation of the total energy $\sigma_E$ plotted versus the timestep dt for the Euler-Cromer and Velocity Verlet integrator . The units on the axis are MN unist explained in section (?do it? explain in caption?) We see that the drift in the energy is significantly larger for the Euler-Cromer method than for the Velocity Verlet integrator and that it increases with increasing dt for the Euler-Cromer method. For the Velocity Verlet integrator the choice of dt does not matter much, the energy drift, or the value for $\sigma_E$ is small for all values of dt. In the further calculations we have therefore chosen dt=0.05.  
+In the top plot in figure \ref{fig: dt} we can see the standard deviation of the total energy $\sigma_E$ plotted versus the timestep dt for the Euler-Cromer and Velocity Verlet integrator. The units on the axis are the MD units explained in appendix \ref{sec:units}. We see that the drift in the energy is significantly larger for the Euler-Cromer method than for the Velocity Verlet integrator and that it increases with increasing dt for the Euler-Cromer method. For the Velocity Verlet integrator the choice of dt does not matter much, the energy drift, or the value for $\sigma_E$ is small for all values of dt. In the further calculations we have therefore chosen dt=0.05.  
 %this is expected
 
 In the bottom plot in figure \ref{fig: dt} we can see the execution time plotted versus the timestep for the Euler-Cromer and Velocity Verlet integrator. We see that there is not much difference in the execution time between the two integrators and that the dependence on the value of dt seems rather random. 
@@ -547,7 +538,7 @@ The initial value for the temperature will approximately drop to half after the 
 \begin{figure}[htp]
 \centering
 \includegraphics[width=0.6\textwidth]{plots/D_r2_time.png}
-\caption{\textbf{Top:} The diffusion constant $D$ plotted versus the time with 10000 timesteps for initial temperatures $T_i \in [0.5, 18.5]$. \textbf{Bottom:} The mean square displacement $\langle r^2(t) \rangle$ of the particles plotted versus the time with 10000 timesteps for initial temperatures $T_i \in [0.5, 18.5]$. The units are the MD units listed in section (ref???!).}
+\caption{\textbf{Top:} The diffusion constant $D$ plotted versus the time with 10000 timesteps for initial temperatures $T_i \in [0.5, 18.5]$. \textbf{Bottom:} The mean square displacement $\langle r^2(t) \rangle$ of the particles plotted versus the time with 10000 timesteps for initial temperatures $T_i \in [0.5, 18.5]$. The units are the MD units listed in appendix \ref{sec:units}.}
 \label{fig: D_r2_time}
 \end{figure}
 
@@ -558,7 +549,7 @@ It is easier to tell the initial temperatures apart in the bottom plot in figure
 \begin{figure}[htp]
 \centering
 \includegraphics[width=0.6\textwidth]{plots/D_T.png}
-\caption{\textbf{Top:} The temperature ratio $T/T-i$ plotted versus the instant temperature $T$ with 10000 timesteps. \textbf{Bottom:} The diffusion constant after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T$ with 10000 timesteps. The units are the MD units listed in section (ref???!).}
+\caption{\textbf{Top:} The temperature ratio $T/T-i$ plotted versus the instant temperature $T$ with 10000 timesteps. \textbf{Bottom:} The diffusion constant after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T$ with 10000 timesteps. The units are the MD units listed in appendix \ref{sec:units}.}
 \label{fig: D_T}
 \end{figure}
 
@@ -573,11 +564,37 @@ When looking in \texttt{Ovito} one can try to see if the mean square displacemen
 \end{itemize}
 
 \newpage
-\section{Conclusions and further perspectices}
+\section{Conclusions and further perspectives}
 In figure \ref{fig: D_T} we clearly see discontinuously points in both the diffusion constant and in the temperature ratio. We see that the diffusion constant is zero for low themperatures, but starts to grow at $T = 275$ K. The melting temperature of the Argon crystal must therefore be at $T = 275$K. This is also consistent with the observations in \textbf{Ovito}. 
 
 The next step would have been to compare this melting temperature with experimental data for Argon. Most likely one would have to adjust the density in the simulation to match the density in the experimental setup. This is easily done by adjusting the lattice constant $b$ because the pressure is proportional to the inverse of the lattice constant cubed. If one where to run the simulations again for a different lattice constant it would have been interesting to run the simulation with a larger number of unit cells to see if this would affect the uncertainties, or noise in the results. 
 
+
+\newpage
+\begin{appendices}
+\section{Units}
+\label{sec:units}
+The program uses by default from the skeleton code a set of units that we will call MD units.The chosen units are the following:
+\begin{align}
+	\text{1 unit of mass } &= 1 \text{ a.m.u} = \unit{1.661\e{-27}}{\kilogram},\\
+	\text{1 unit of length } &= \unit{1.0}{\angstrom} = \unit{1.0\e{-10}}{\meter},\\
+	\text{1 unit of energy } &= \unit{1.651\e{-21}}{\joule},\\
+	\text{1 unit of temperature} &= \unit{119.735}{\kelvin}.
+\end{align}
+Boltzmann's constant is then equal to one, and other units can be derived by using known relations. We can for example find the unit of time by using $E=mc^2$. We have that
+\begin{align}
+	\text{Energy} = \text{Mass} \times \frac{\text{Length}^2}{\text{Time}^2},
+\end{align}
+which can be solved for time
+\begin{align}
+	\text{Time} = \text{Length} \times \sqrt{\frac{\text{Mass}}{\text{Energy}}}.
+\end{align}
+By inserting the values above, we get 
+\begin{align}
+	\text{1 unit of time } &= 1.0 \e{-10}\sqrt{\frac{1.661\e{-27}}{1.651\e{-21}}} \text{ s} = \unit{1.00224\e{-13}}{\second}.
+\end{align}
+This way, we can continue working out the values of the other units. In the skeleton code, the \texttt{unitConverter} class calculates transitions between the SI units and the MD units.
+\end{appendices}
 
 \end{document}
 
