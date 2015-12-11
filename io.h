@@ -1,7 +1,6 @@
 #ifndef IO_H
 #define IO_H
 #include <fstream>
-//#include <string>
 class System;
 class StatisticsSampler;
 using std::ofstream;

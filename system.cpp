@@ -31,7 +31,6 @@ void System::applyPeriodicBoundaryConditions() {
         double x0 = atom->initialPosition[0];
         double y0 = atom->initialPosition[1];
         double z0 = atom->initialPosition[2];
-        //std::cout << "Before, x: " << x << " y: " << y << " z: " << z << std::endl;
 
         // checking if particle has left the system, if so, placing on oposite side
         // of box and moving initial position for the diffusion constant
@@ -91,7 +90,7 @@ void System::removeTotalMomentum() {
         atom->velocity[2] = atom->velocity[2] - average_velocity[2];
     }
 
-    //testing implementation
+    // to test implementation:
 //    average_velocity = vec3(0,0,0);
 //    for(Atom *atom : m_atoms) {
 //        average_velocity[0] += atom->velocity[0];
@@ -108,7 +107,6 @@ void System::resetForcesOnAllAtoms() {
 }
 
 void System::createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant, double temperature) {
-    // You should implement this function properly. Right now, 100 atoms are created uniformly placed in the system of size (10, 10, 10).
 
     for(int i=0; i<numberOfUnitCellsEachDimension; i++) {
         for(int j=0; j<numberOfUnitCellsEachDimension; j++){
@@ -118,7 +116,6 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 double x = latticeConstant*i;
                 double y = latticeConstant*j;
                 double z = latticeConstant*k;
-                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom1->position.set(x,y,z);
                 atom1->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom1);
@@ -127,7 +124,6 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 x = latticeConstant*(0.5 + i);
                 y = latticeConstant*(0.5 + j);
                 z = latticeConstant*k;
-                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom2->position.set(x,y,z);
                 atom2->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom2);
@@ -136,7 +132,6 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 x = latticeConstant*i;
                 y = latticeConstant*(0.5 + j);
                 z = latticeConstant*(0.5 + k);
-                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom3->position.set(x,y,z);
                 atom3->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom3);
@@ -145,7 +140,6 @@ void System::createFCCLattice(int numberOfUnitCellsEachDimension, double lattice
                 x = latticeConstant*(0.5 + i);
                 y = latticeConstant*j;
                 z = latticeConstant*(0.5 + k);
-                //std::cout << "x: " << x << " y: " << y << " z: " << z << std::endl;
                 atom4->position.set(x,y,z);
                 atom4->resetVelocityMaxwellian(temperature);
                 m_atoms.push_back(atom4);

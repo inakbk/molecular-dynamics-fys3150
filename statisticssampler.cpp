@@ -9,7 +9,7 @@ StatisticsSampler::StatisticsSampler()
 
 void StatisticsSampler::sample(System &system)
 {
-    // Here you should measure different kinds of statistical properties, save to a file is done in IO class.
+    // Measuring different kinds of statistical properties, saving to file is done in IO class.
     sampleKineticEnergy(system);
     samplePotentialEnergy(system);
     sampleTemperature(system);
@@ -38,7 +38,7 @@ void StatisticsSampler::sampleTemperature(System &system)
 
 void StatisticsSampler::sampleDensity(System &system)
 {
-    //the (mass)density is constant 4m/b^3, but this is particle desity:
+    //the (mass)density is constant 4m/b^3, this is particle desity:
     m_density = system.atoms().size() / ( system.systemSize().x()*system.systemSize().y()*system.systemSize().z() );
 }
 

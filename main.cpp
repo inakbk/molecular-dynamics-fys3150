@@ -38,7 +38,7 @@ int main(int numberOfArguments, char **argumentList)
     // If a sixth argument is provided, it is the number of timesteps
     if(numberOfArguments > 6) numberOfTimesteps = atoi(argumentList[6]);
 
-    /*
+    /* // Possible to print the MD units used in the simulation
     cout << "One unit of length is " << UnitConverter::lengthToSI(1.0) << " meters" << endl;
     cout << "One unit of velocity is " << UnitConverter::velocityToSI(1.0) << " meters/second" << endl;
     cout << "One unit of time is " << UnitConverter::timeToSI(1.0) << " seconds" << endl;

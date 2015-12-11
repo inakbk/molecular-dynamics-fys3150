@@ -13,7 +13,6 @@ private:
     double m_diffusionConstant = 0;
 public:
     StatisticsSampler();
-//    void saveToFile(System &system); // dont need this, doing it in the IO class
     void sample(System &system);
     void sampleKineticEnergy(System &system);
     void samplePotentialEnergy(System &system);
