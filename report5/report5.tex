@@ -528,10 +528,11 @@ The fluctuations in the temperature is, as for the energy plot, larger for the p
 
 \subsubsection*{The temperature ratio}
 In figure \ref{fig: TTi_time} we see the ratio between the instant temperature $T$ and the initial temperature $T_i$ plotted versus the time for the initial temperatures $T_i \in [0.5, 18.5]$. We see that the eqiulibrium state is reached for all of the temperatures after the time $t=10$, as also seen in the energy plots. The ratio $T/T_i$ is not equal for all of the initial temperatures, but it does center around the value 0.5 so that:
-\begin{align*}
-T/T_i &\approx \frac{1}{2} \\
+\begin{align}
+T/T_i &\approx \frac{1}{2} \nonumber \\ 
 \Rightarrow T &\approx \frac{T_i }{2} 
-\end{align*}
+\label{eq: T_ratio}
+\end{align}
 The initial value for the temperature will approximately drop to half after the equilibrium state is reached. 
 
 \begin{figure}[htp]
@@ -561,21 +562,21 @@ It is easier to tell the initial temperatures apart in the bottom plot in figure
 \label{fig: D_T}
 \end{figure}
 
-In figure \ref{fig: D_T} we see the temperature ratio $T_{eq}/T_i$ (top) and the diffusion constant (bottom) after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T_{eq}$ where$T_{eq}$ is the instant temperature after 10000 timesteps. We see that the diffusion constant is zero for all temperatures $T_{eq}$ up to a point where it suddenly grows. It apeares as if the gowth is quite linear, but there is a lot of noice in the datapoints. We can also see that the lines cross at one point for high temperatures. In the top plot
+In figure \ref{fig: D_T} we see the temperature ratio $T_{eq}/T_i$ (top) and the diffusion constant (bottom) after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T_{eq}$ where$T_{eq}$ is the instant temperature after 10000 timesteps. We see that the diffusion constant is zero for all temperatures $T_{eq}$ up to the point $T = 2.3 \approx 275.4$K where it suddenly grows. It apeares as if the gowth is quite linear, but there is a lot of noise in the datapoints. We can also see that the 'lines cross' at one point for high temperatures. In the top plot in figure \ref{fig: D_T} we see that the temperature ratio for low temperatures is approximately 0.5 and follows equation \ref{eq: T_ratio}. For the temperature $T = 2.3 \approx 275.4$K we see that the ratio suddenly drops to 0.4 before it starts growing again. 
 
-Clearly somerthing is happening at $T=2.3$....but also a lot of noise plobably from that unit cells is 5
+It appeares to be a lot of noise in the datapoints in both plots in figure \ref{fig: D_T} as well, at least for high temperatures. This might be explained in the fact that we have only used 5 unit cells in each direction. We saw the same 'noise' effects in the energy plots that apeared to be due to the small system size. 
 
-2.3 in corrrect units!
+When looking in \texttt{Ovito} one can try to see if the mean square displacement appeares to be small for temperatures below and high above $T=2.3$. One can sligtly see a change in the movement of the particles around $T=2.3$, but it is hard to tell a change exactly with the eyes. The following was observed in \texttt{Ovito}:
+\begin{itemize}
+\item $T=2.2$: The atoms are containes in a crystal structure. The atoms moves quite a lot, but it apeares as if none of the atoms 'escapes' the crystal structure. The crystal appeares to be contained and the system a solid. 
+\item $T=2.5$: The atoms moves a lot, but one can see vaguely a 'left over' from the crystal structure. The atoms seems to be contained inside an area, and a few atoms 'escape' from the structure giving defects in the crystal. It appeares as if the solid has melted. 
+\end{itemize}
 
-or observations in ovito here?
+\newpage
+\section{Conclusions and further perspectices}
+In figure \ref{fig: D_T} we clearly see discontinuously points in both the diffusion constant and in the temperature ratio. We see that the diffusion constant is zero for low themperatures, but starts to grow at $T = 275$ K. The melting temperature of the Argon crystal must therefore be at $T = 275$K. This is also consistent with the observations in \textbf{Ovito}. 
 
-
-units and experimental data?
-
-\section{Conclusions and further perspectices/experiences}
-2.3 in corrrect units! With pressure bla bla bla
-
-
+The next step would have been to compare this melting temperature with experimental data for Argon. Most likely one would have to adjust the density in the simulation to match the density in the experimental setup. This is easily done by adjusting the lattice constant $b$ because the pressure is proportional to the inverse of the lattice constant cubed. If one where to run the simulations again for a different lattice constant it would have been interesting to run the simulation with a larger number of unit cells to see if this would affect the uncertainties, or noise in the results. 
 
 
 \end{document}
