@@ -11,11 +11,8 @@
 \contentsline {subsection}{\numberline {3.3}Intergration methods}{11}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Implementation of the \texttt {calculateForces} function}{11}{subsection.3.4}
 \contentsline {section}{\numberline {4}Results}{13}{section.4}
-\contentsline {subsection}{\numberline {4.1}Implementation and testing of the algorithm by using Ovito (code?) and choice of parameters}{13}{subsection.4.1}
-\contentsline {paragraph}{Initial positions}{13}{section*.6}
-\contentsline {paragraph}{Before forces}{13}{section*.8}
+\contentsline {subsection}{\numberline {4.1}Verifying the implementation of the code by using Ovito and choice of parameters}{13}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Comparing the two integrators}{14}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Equilibium time? and conserved energy}{15}{subsection.4.3}
-\contentsline {paragraph}{The temperature ratio}{19}{section*.15}
+\contentsline {subsection}{\numberline {4.3}Equilibium time and energy conservation}{15}{subsection.4.3}
 \contentsline {subsection}{\numberline {4.4}The mean square displacement and the diffusion constant}{19}{subsection.4.4}
 \contentsline {section}{\numberline {5}Conclusions and further perspectices/experiences}{20}{section.5}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  11 DEC 2015 19:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  11 DEC 2015 20:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -489,7 +489,7 @@ Overfull \hbox (2.1308pt too wide) in paragraph at lines 139--172
 []$[]$ $[]$ $[]$ $[]$
  []
 
-<plots/crystal.jpg, id=134, 963.6pt x 963.6pt>
+<plots/crystal.jpg, id=133, 963.6pt x 963.6pt>
 File: plots/crystal.jpg Graphic file (type jpg)
  <use plots/crystal.jpg>
 Package pdftex.def Info: plots/crystal.jpg used on input line 175.
@@ -528,7 +528,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 374--375
 []\T1/cmr/m/n/10.95 Save ex-e-cu-tion time to
  []
 
-<plots/programStructure.png, id=208, 409.53pt x 722.7pt>
+<plots/programStructure.png, id=207, 409.53pt x 722.7pt>
 File: plots/programStructure.png Graphic file (type png)
 
 <use plots/programStructure.png>
@@ -538,7 +538,7 @@ Package pdftex.def Info: plots/programStructure.png used on input line 380.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 406.
 
-<plots/force_potential.png, id=232, 578.16pt x 433.62pt>
+<plots/force_potential.png, id=231, 578.16pt x 433.62pt>
 File: plots/force_potential.png Graphic file (type png)
 
 <use plots/force_potential.png>
@@ -552,105 +552,103 @@ undary _ conditions # Practical _ implementation :
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 437.
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 452.
-<plots/OneUnitCell.png, id=257, 653.44125pt x 654.445pt>
+<plots/OneUnitCell.png, id=256, 653.44125pt x 654.445pt>
 File: plots/OneUnitCell.png Graphic file (type png)
 
 <use plots/OneUnitCell.png>
-Package pdftex.def Info: plots/OneUnitCell.png used on input line 458.
+Package pdftex.def Info: plots/OneUnitCell.png used on input line 451.
 (pdftex.def)             Requested size: 127.11642pt x 127.3181pt.
 
-<plots/10UnitCells.png, id=258, 669.50125pt x 584.1825pt>
+<plots/10UnitCells.png, id=257, 669.50125pt x 584.1825pt>
 File: plots/10UnitCells.png Graphic file (type png)
 
 <use plots/10UnitCells.png>
-Package pdftex.def Info: plots/10UnitCells.png used on input line 459.
+Package pdftex.def Info: plots/10UnitCells.png used on input line 452.
 (pdftex.def)             Requested size: 145.9116pt x 127.3181pt.
  [13]
-<plots/dt_NrOfCells5_T2500_b5260.png, id=281, 578.16pt x 433.62pt>
+<plots/dt_NrOfCells5_T2500_b5260.png, id=276, 578.16pt x 433.62pt>
 File: plots/dt_NrOfCells5_T2500_b5260.png Graphic file (type png)
 
 <use plots/dt_NrOfCells5_T2500_b5260.png>
 Package pdftex.def Info: plots/dt_NrOfCells5_T2500_b5260.png used on input line
- 481.
+ 472.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
  [14 <./plots/OneUnitCell.png> <./plots/10UnitCells.png>]
-<plots/exeTime_NrOfCells_T2500_b5260.png, id=291, 578.16pt x 433.62pt>
+<plots/exeTime_NrOfCells_T2500_b5260.png, id=287, 578.16pt x 433.62pt>
 File: plots/exeTime_NrOfCells_T2500_b5260.png Graphic file (type png)
 
 <use plots/exeTime_NrOfCells_T2500_b5260.png>
 Package pdftex.def Info: plots/exeTime_NrOfCells_T2500_b5260.png used on input 
-line 490.
+line 481.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [15 <./plots/dt_NrOfCells5_T2500_b5260.png>] <plots/Energy_time_T25.png, id=30
-2, 578.16pt x 433.62pt>
+
+<plots/Energy_time_T25.png, id=292, 578.16pt x 433.62pt>
 File: plots/Energy_time_T25.png Graphic file (type png)
 
 <use plots/Energy_time_T25.png>
-Package pdftex.def Info: plots/Energy_time_T25.png used on input line 508.
+Package pdftex.def Info: plots/Energy_time_T25.png used on input line 495.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
-
-<plots/Energy_time_T835.png, id=307, 578.16pt x 433.62pt>
+ [15 <./plots/dt_NrOfCells5_T2500_b5260.png>]
+[16 <./plots/exeTime_NrOfCells_T2500_b5260.png> <./plots/Energy_time_T25.png>]
+<plots/Energy_time_T835.png, id=310, 578.16pt x 433.62pt>
 File: plots/Energy_time_T835.png Graphic file (type png)
 
 <use plots/Energy_time_T835.png>
-Package pdftex.def Info: plots/Energy_time_T835.png used on input line 517.
+Package pdftex.def Info: plots/Energy_time_T835.png used on input line 504.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/T_time_T25.png, id=313, 578.16pt x 433.62pt>
+<plots/T_time_T25.png, id=316, 578.16pt x 433.62pt>
 File: plots/T_time_T25.png Graphic file (type png)
  <use plots/T_time_T25.png>
-Package pdftex.def Info: plots/T_time_T25.png used on input line 530.
+Package pdftex.def Info: plots/T_time_T25.png used on input line 517.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/T_time_T835.png, id=314, 578.16pt x 433.62pt>
+<plots/T_time_T835.png, id=317, 578.16pt x 433.62pt>
 File: plots/T_time_T835.png Graphic file (type png)
 
 <use plots/T_time_T835.png>
-Package pdftex.def Info: plots/T_time_T835.png used on input line 537.
+Package pdftex.def Info: plots/T_time_T835.png used on input line 524.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [16 <./plots/exeTime_NrOfCells_T2500_b5260.png>]
-[17 <./plots/Energy_time_T25.png> <./plots/Energy_time_T835.png>] [18 <./plots/
-T_time_T25.png> <./plots/T_time_T835.png>]
-<plots/TTi_time.png, id=336, 578.16pt x 433.62pt>
+ [17 <./plots/Energy_time_T835.png>] [18 <./plots/T_time_T25.png> <./plots/T_ti
+me_T835.png>]
+<plots/TTi_time.png, id=332, 578.16pt x 433.62pt>
 File: plots/TTi_time.png Graphic file (type png)
  <use plots/TTi_time.png>
-Package pdftex.def Info: plots/TTi_time.png used on input line 555.
+Package pdftex.def Info: plots/TTi_time.png used on input line 539.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/D_r2_time.png, id=337, 578.16pt x 433.62pt>
+<plots/D_r2_time.png, id=333, 578.16pt x 433.62pt>
 File: plots/D_r2_time.png Graphic file (type png)
  <use plots/D_r2_time.png>
-Package pdftex.def Info: plots/D_r2_time.png used on input line 564.
+Package pdftex.def Info: plots/D_r2_time.png used on input line 548.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-[19 <./plots/TTi_time.png>] <plots/D_T.png, id=349, 578.16pt x 433.62pt>
+[19 <./plots/TTi_time.png>] <plots/D_T.png, id=345, 578.16pt x 433.62pt>
 File: plots/D_T.png Graphic file (type png)
 
 <use plots/D_T.png>
-Package pdftex.def Info: plots/D_T.png used on input line 575.
+Package pdftex.def Info: plots/D_T.png used on input line 559.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 595.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 582.
  [20 <./plots/D_r2_time.png>] [21 <./plots/D_T.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 595.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 582.
 
 (./report5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 595.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 595.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 582.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 582.
 Package rerunfilecheck Info: File `report5.out' has not changed.
-(rerunfilecheck)             Checksum: B829AC585D1F2630B5A07A06D621647D;1413.
+(rerunfilecheck)             Checksum: A12F8C4B5E051AFE92A6EED6A95E3A15;1402.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 595.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 582.
  ) 
 Here is how much of TeX's memory you used:
- 9821 strings out of 493117
- 144656 string characters out of 6135433
+ 9817 strings out of 493117
+ 144605 string characters out of 6135433
  276786 words of memory out of 5000000
- 13002 multiletter control sequences out of 15000+600000
+ 13001 multiletter control sequences out of 15000+600000
  30455 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,12n,58p,1142b,1342s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -682,10 +680,10 @@ ype1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
 e1/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
 /public/cm-super/sftt1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/p
 ublic/cm-super/sftt1200.pfb>
-Output written on report5.pdf (21 pages, 1348143 bytes).
+Output written on report5.pdf (21 pages, 1348346 bytes).
 PDF statistics:
- 471 PDF objects out of 1000 (max. 8388607)
- 390 compressed objects within 4 object streams
- 98 named destinations out of 1000 (max. 500000)
+ 466 PDF objects out of 1000 (max. 8388607)
+ 385 compressed objects within 4 object streams
+ 95 named destinations out of 1000 (max. 500000)
  215 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -438,20 +438,13 @@ if(periodic_x) then
   if (dx <= -x_size * 0.5) dx = dx + x_size
 endif
 \end{lstlisting}
-where \texttt{x\_size} is the lengt of the simulation box in x-direction.
+where \texttt{x\_size} is the lengt of the simulation box in x-direction. We do a cut-off, or choose the image of the particle when the distance is longer than the length of the simulation box.
 
 
+\section{Results} 
+\subsection{Verifying the implementation of the code by using Ovito and choice of parameters}
 
-
-
-\section{Results} %move this to after implementation/testing+
-
-\subsection{Implementation and testing of the algorithm by using Ovito (code?) and choice of parameters}
-bla bla bla
-
-\subsubsection*{Looking in \texttt{Ovito}}
-\paragraph{Initial positions}
-To the left in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with one unit cell from \texttt{Ovito} (ref?). We see that this is exactly the unit cell introduced in section \ref{sec: creating_lattice_theory} and figure \ref{fig: ar_crystal}. To the right in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with 10 unit cells from \texttt{Ovito}, creating a cubic lattice. After looking at the initial frame of the simulation box in \texttt{Ovito} it seems safe to assume that the program produces the desired initial positions for the Argon atoms. 
+To the left in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with one unit cell from \texttt{Ovito}. We see that this is exactly the unit cell introduced in section \ref{sec: creating_lattice_theory} and figure \ref{fig: ar_crystal}. To the right in figure \ref{fig: unitCellsOvito} we see a screen shot of the initial frame of the simulation box with 10 unit cells from \texttt{Ovito}, creating a cubic lattice. After looking at the initial frame of the simulation box in \texttt{Ovito} it seems safe to assume that the program produces the desired initial positions for the Argon atoms. 
 
 \begin{figure}[htp]
 \centering
@@ -461,11 +454,9 @@ To the left in figure \ref{fig: unitCellsOvito} we see a screen shot of the init
 \label{fig: unitCellsOvito}
 \end{figure}
 
-\paragraph{Before forces}
-At first the particles was unaffected by forces in the simulation. Before the Lennard-Jones potential and the calculation of the forces was implemented the particles was only given an initial speed by the maxwell boltzmann distrubution and should thus move in a straight line. In \texttt{Ovito} the particles moved in a straight line, and the simulation box expanded as the particels reached further out. After the periodic boundary conditions was implemented in the code the simulation box maintained a constant size when looked at in \texttt{Ovito}. One could also see that the particles still moved in a straight line, but they would jump to the oposite side of the box if they where to move out of the box. 
+In the skeleton code the particles was unaffected by forces in the simulation. Before the Lennard-Jones potential and the calculation of the forces was implemented the particles was only given an initial speed by the maxwell boltzmann distrubution and should thus move in a straight line. In \texttt{Ovito} one could see that the particles moved in a straight line, and the simulation box expanded as the particels reached further out. After the periodic boundary conditions was implemented the simulation box maintained a constant size when looked at in \texttt{Ovito}. One could see that the particles still moved in a straight line, but they would jump to the oposite side of the box if they where to move out of the box. 
 
-After the implementation of the forces one could easy see (in \texttt{Ovito}) that the particles was contained inside the initial crystal structure, for instance at the temperature $T_i =300$K. Just by looking at the simulation one could determine that the atoms formed a solid. At a high temperature, for instance $T_i = 1000K$ one could see that the atoms moved freely and that the crystal or solid most likely had melted. Screen shots igjen??
-
+After the implementation of the forces one could easy see (in \texttt{Ovito}) that the particles was contained inside the initial crystal structure, for instance at the temperature $T_i =300$K. Just by looking at the simulation one could determine that the atoms formed a solid. At a high temperature, for instance $T_i = 1000K$ one could see that the atoms moved freely and that the crystal or solid most likely had melted. The implementation of the PBCs and the \texttt{calculateForces} function appears to be correct.
 
 \subsection{Comparing the two integrators} \label{sec: integrators_results}
 
@@ -474,7 +465,7 @@ In the top plot in figure \ref{fig: dt} we can see the standard deviation of the
 
 In the bottom plot in figure \ref{fig: dt} we can see the execution time plotted versus the timestep for the Euler-Cromer and Velocity Verlet integrator. We see that there is not much difference in the execution time between the two integrators and that the dependence on the value of dt seems rather random. 
 
-Both plots in figure \ref{fig: dt} where obtained with 5 unit cells in each direction, initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$ and 1000 timesteps in the simulation. Similar plots are obtained when running with 10 unit cells in each direction. 
+Both plots in figure \ref{fig: dt} where obtained with 5 unit cells in each direction, initial temperature $T_i = 2.5 \approx 300$ K, lattice constant $b=5.26 \angstrom$ and 1000 timesteps in the simulation. Similar plots where obtained when running with 10 unit cells in each direction. 
 
 \begin{figure}[htp]
 \centering
@@ -492,12 +483,8 @@ In figure \ref{fig: exe_cells} we see the execution time plotted versus the numb
 \label{fig: exe_cells}
 \end{figure}
 
-number of unit cells is also a measure of how many particles..include?
-
-
-\subsection{Equilibium time? and conserved energy}
-(conserved, ref to rcut?)
-In figure \ref{fig: Energy_time1} we see the energy plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K for two different number of unit cells in each direction. We see that the total energy is conserved, or constant. This coresponds well with the low value of $\sigma_E$ found in section \ref{sec: integrators_results} (figure \ref{fig: dt}). We can see that the system is initialized with high kinetic energy and low potential energy and that the two interchanges energy giving that the total energy is conserved. The system stabilizes after a short period of time, it reaches an equilibrium state when the kinetic and potential energy fluctuates around a constant energy. The equilibrium state is reached at least for $t=10$, or after 20 timesteps. 
+\subsection{Equilibium time and energy conservation}
+In figure \ref{fig: Energy_time1} we see the energy plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K for two different number of unit cells in each direction. We see that the total energy is conserved, or constant and thus the implementation of $r_{cut}$ appeares to be correct. This coresponds well with the low value of $\sigma_E$ found in section \ref{sec: integrators_results} (figure \ref{fig: dt}). We can see that the system is initialized with high kinetic energy and low potential energy and that the two interchanges energy giving that the total energy is conserved. The system stabilizes after a short period of time, it reaches an equilibrium state when the kinetic and potential energy fluctuates around a constant energy. The equilibrium state is reached at least for $t=10$, or after 20 timesteps. 
 
 The kinetic energy drops below the equilibrium value before it stabilizes. This is because the particles are all initialized with different velocities and move until they are stoped, at about the same time, by the forces of the surrounding particles before they find an equilibrium position and oscillates around this position.  
 
@@ -521,9 +508,9 @@ In figure \ref{fig: Energy_time2} we also see the energy plotted versus the time
 
 In figure \ref{fig: T_time1} we see the instant temperature $T$ plotted versus the time with initial temperature $T_i = 2.5 \approx 300$ K. Right after initializing the temperature drops quickly below the equilibrium value. This behaviour can also be observed in the kinetic energy in figure \ref{fig: Energy_time1} and \ref{fig: Energy_time2}. Since the instant temperature is proportional to the kinetic energy (see section \ref{sec: statistics_theory}) it is expected that the two curves have the same behaviour.
 
-As in the plots with the energy the value for the instant temperature stabilizes quicly and oscillates around a constant value. It is therefore safe to assume that the system has reached equilibrium after at least 100 timesteps. In the following calculations we have used 10000 timesteps which is long after the system have reached equilibrium. 
+The value for the instant temperature stabilizes quicly and oscillates around a constant value, just as in the energy plots. It is therefore safe to assume that the system has reached equilibrium after at least 100 timesteps. In the following calculations we have used 10000 timesteps which is long after the system have reached equilibrium. 
 
-The fluctuations in the temperature is as for the energy larger for the plot with 5 unit cells in each direction than with 10 unit cells. The fluctuations are even larger in figure \ref{fig: T_time2} where the instant temperature $T$ plotted versus the time with initial temperature $T_i = 8.35 \approx 1000$ K. It apeares as if the system is more unstable and 'noisy' for small temperatures and few unit cells. Even though the trend is that the data obtained with a larger number of unit cells is more stable than with few unit cells, we have chosen to use 5 unit cells in each direction in the following calculations. This is to save time, the execution time for 10 unit cells are quite long compared with the execution time for 5 unit cells. 
+The fluctuations in the temperature is, as for the energy plot, larger for the plot with 5 unit cells in each direction than with 10 unit cells. The fluctuations are even larger in figure \ref{fig: T_time2} where the instant temperature $T$ plotted versus the time with initial temperature $T_i = 8.35 \approx 1000$ K. It apeares as if the system is more unstable and 'noisy' for large temperatures and few unit cells. Even though the trend is that the data obtained with a larger number of unit cells is more stable than with few unit cells, we have chosen to use 5 unit cells in each direction in the following calculations. This is to save time, the execution time for 10 unit cells are quite long compared with the execution time for 5 unit cells. 
 
 \begin{figure}[htp]
 \centering
@@ -539,16 +526,13 @@ The fluctuations in the temperature is as for the energy larger for the plot wit
 \label{fig: T_time2}
 \end{figure}
 
-\paragraph{The temperature ratio}
-
-In figure \ref{fig: TTi_time} we see the ratio between the instant temperature $T$ and the initial temperature $T_i$ plotted versus the time for the initial temperatures $T_i \in [0.5, 18.5]$. We see that the eqiulibrium state is reached for all of the temperatures after the time $t=10$, as also seen in the energy plots. 
-
-The ratio $T/T_i$ is not equal for all of the initial temperatures, but it does center around the value 0.5 so that:
+\subsubsection*{The temperature ratio}
+In figure \ref{fig: TTi_time} we see the ratio between the instant temperature $T$ and the initial temperature $T_i$ plotted versus the time for the initial temperatures $T_i \in [0.5, 18.5]$. We see that the eqiulibrium state is reached for all of the temperatures after the time $t=10$, as also seen in the energy plots. The ratio $T/T_i$ is not equal for all of the initial temperatures, but it does center around the value 0.5 so that:
 \begin{align*}
 T/T_i &\approx \frac{1}{2} \\
 \Rightarrow T &\approx \frac{T_i }{2} 
 \end{align*}
-so from the initial value the temperature will approximately drop to half after the equilibrium state is reached. 
+The initial value for the temperature will approximately drop to half after the equilibrium state is reached. 
 
 \begin{figure}[htp]
 \centering
@@ -566,7 +550,7 @@ so from the initial value the temperature will approximately drop to half after 
 \label{fig: D_r2_time}
 \end{figure}
 
-In figure \ref{fig: D_r2_time} we see the diffusion constant (top) and the mean square displacement (bottom) for the particles plotted versus the time for initial temperatures $T_i \in [3.5, 6.5]$. We can see that the diffusion constant diverges against a constant value for large values for the time. The highest temperatures have the largest values for all temperatures, but it is difficult to tell the different initial temperatures apart by looking at this plot. After 10000 timesteps the diffusion constant have still not stabilized entirely, but we will take the diffusion constant after 10000 timesteps to be the diffusion constant after equilibrium. 
+In figure \ref{fig: D_r2_time} we see the diffusion constant (top) and the mean square displacement (bottom) for the particles plotted versus the time for initial temperatures $T_i \in [3.5, 6.5]$. We can see that the diffusion constant diverges against a constant value for large values for the time. The highest temperatures have the largest values for all temperatures, but it is difficult to tell the different initial temperatures apart by looking at this plot. After 10000 timesteps the diffusion constant have still not stabilized entirely, but we will take the diffusion constant after 10000 timesteps to be the diffusion constant after equilibrium $D_{eq}$. 
 
 It is easier to tell the initial temperatures apart in the bottom plot in figure \ref{fig: D_r2_time}. We can see that the mean square displacement of the particles is zero for the low temperatures and that it for higher temperatures starts to grow for larger values of the time. When the system is in a solid state it is expected that the diffusion constant is be zero, or that $\langle r^2(t) \rangle$ is zero. For higher temperatures the diffusion constant would be non-zero giving the slope seen for higher temperatures in the $\langle r^2(t) \rangle$ plot. It is hard to tell eqactly for which instant temperature the system melts, but it must be in the range with initial temperatures $T_i \in [3.5, 6.5]$.
 
@@ -577,7 +561,9 @@ It is easier to tell the initial temperatures apart in the bottom plot in figure
 \label{fig: D_T}
 \end{figure}
 
-In figure \ref{fig: D_T} we see the temperature ratio $T/T-i$ (top) and the diffusion constant (bottom) after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T$ with 10000 timesteps. Clearly somerthing is happening at $T=2.3$....but also a lot of noise plobably from that unit cells is 5
+In figure \ref{fig: D_T} we see the temperature ratio $T_{eq}/T_i$ (top) and the diffusion constant (bottom) after reaching equilibrium $D_{eq}$ plotted versus the instant temperature $T_{eq}$ where$T_{eq}$ is the instant temperature after 10000 timesteps. We see that the diffusion constant is zero for all temperatures $T_{eq}$ up to a point where it suddenly grows. It apeares as if the gowth is quite linear, but there is a lot of noice in the datapoints. We can also see that the lines cross at one point for high temperatures. In the top plot
+
+Clearly somerthing is happening at $T=2.3$....but also a lot of noise plobably from that unit cells is 5
 
 2.3 in corrrect units!
 
@@ -589,8 +575,8 @@ units and experimental data?
 \section{Conclusions and further perspectices/experiences}
 2.3 in corrrect units! With pressure bla bla bla
 
-\centering
-\rule{0.3\textwidth}{0.4pt}\par % Short horizontal line under the title  
+
+
 
 \end{document}
 
