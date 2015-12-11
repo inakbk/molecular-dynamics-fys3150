@@ -108,26 +108,24 @@ Molecular dynamics is often used to study stastistical properties of a system co
 
 Often the main motivation to use Molecular dynamics is that it is not possible to determine the properties of the system analytically, mainly because of the large number of particles. Therefore one have to apply numerical methods to be able to solve the problem. One of the main limitation for the numerical simulation is the computer recources available limiting the number of particles and the system size. The latter problem can be solved by applying periodic boundary conditions so that it is possible to simulate a system with infinite size. The first problem might be solved with a very efficient code and good approximations. Another problem with the numerical simulation is cumulative errors in the numerical integration when evolving the system in time, often drift in the total energy. This error can be avoided by proper selection of parameters and integration algorithms. In this paper we will have a look at two numerical integration methods; the Euler-Cromer method and the Velocity Verlet integrator. We will also use a set of units that we will refer to as 'MD units' to aviod calculations with small exponents. 
 
-In this project we will study the properties of a large system consisting of Argon atoms placed in a cubic lattice and try to determine the melting temperature of the solid. We are interested in the statistical properties of the system such as the mean square displacement and the diffusion constant. We will also have a quick look at the energy development in time. The individual motion of each particle is not of any physical interest, but we will look at the simulation with an visualization program to gain physical understanding of the system and to verify the implementation of the models and algorithms. 
+In this project we will study the properties of a large system consisting of Argon atoms initially placed in a cubic lattice and try to determine the melting temperature of the solid. We are interested in the statistical properties of the system such as the mean square displacement and the diffusion constant. We will also have a quick look at the energy development in time. The individual motion of each particle is not of any physical interest, but we will look at the simulation with an visualization program to gain physical understanding of the system and to verify the implementation of the models and algorithms. 
 
 This report is organizen in bla bla...sections (??)
-
+first the theory with the equations used to biuld up the algorithm
 %And compare with experimental data(?).  
 
-
+\newpage
 \section{Theory}
 
-
-
-\subsection{Creating the lattice} \label{sec: creating_lattice_theory}
-We want to start out the simulation with the atoms in a crystal structure. We will choose the face-centered cubic (FCC) lattice which is a stable structure for the Lennard-Jones potential that will be used. The lattice is build up by unit cells, a group of attoms, so that a larger system can be created by repeating these cells in space. The FFC lattice unit cell is of size $b \angstrom $ and consists of four atoms with local coordinates
+\subsection{Creating the lattice} \label{sec: creating_lattice_theory} 
+We want to start out the simulation with the atoms in a crystal structure and will choose the face-centered cubic (FCC) lattice. Later we will learn that the FFC lattice is a stable structure for the Lennard-Jones potential that we will use in the simulation. The lattice is build up by unit cells, a group of attoms, so that a larger system can be created by repeating these cells in space. The FFC lattice unit cell is of size $b \angstrom $ and consists of four atoms with local coordinates
 \begin{align}
 	\vec r_1 &= 0 \ihat + 0 \jhat + 0 \khat,\\
 	\vec r_2 &= \frac{b}{2} \ihat + \frac{b}{2} \jhat + 0 \khat,\\
 	\vec r_3 &= 0 \ihat + \frac{b}{2} \jhat + \frac{b}{2} \khat,\\
 	\vec r_4 &= \frac{b}{2} \ihat + 0 \jhat + \frac{b}{2} \khat.
 \end{align}
-where $b=5.26$ is the lattice constant. We want to construct a larger system with $N\times N\times N$ such unit cells next to each other. The orgin of unit cell $(i,j,k)$ is
+where $b=5.26 \angstrom$ is the lattice constant. We want to construct a larger system with $N\times N\times N$ such unit cells next to each other. The orgin of unit cell $(i,j,k)$ is
 \begin{align}
 	\vec R_{i,j,k} = i \hat{\textbf{u}}_1 + j \hat{\textbf{u}}_2 + k \hat{\textbf{u}}_3,
 \end{align}
@@ -179,25 +177,31 @@ In figure \ref{fig: ar_crystal} we see an illustration of two unit cells placed 
 \end{figure}
 
 
-Each of the sides of the simulation box has the length $L = bN$ so that the size of the whole system or the volume of the cubic lattice is given by $V = L^3 = (bN)^3$. The density of the system is then:
+Each of the sides of the simulation box has the length $L = bN$ so that the size of the whole system or the volume of the cubic lattice is given by $V = L^3 = (bN)^3$ which is constant as long as $b$ and $N$ is constant. The number of unit cells in each direction $N$ is also a measure of the number of particles in the system because it is 4 particles in each unit cells. The total number of particles in the simulation box is therefore $4N^3$. The mass density of the system is then:
 \[
-\rho = \frac{M_{tot}}{V} = \frac{4*N^3*m}{(bN)^3} = \frac{4m}{b^3}
+\rho_m = \frac{M_{tot}}{V} = \frac{4*N^3*m}{(bN)^3} = \frac{4m}{b^3}
 \]
-where $m$ is the mass of one atom and is equal for all the atoms. We can see that the density will be constant as long as the mass and the lattice constant is held constant. 
+where $m$ is the mass of one atom and is equal for all the atoms. The particle density is then:
+\[
+\rho = \frac{4N^3}{(bN)^3} = \frac{4}{b^3}
+\]
+We can see that both the mass and particle density will be constant as long as the mass and the lattice constant is held constant in the simulation. We therefore see that we have constructed a NVE ensemble since the number of particles and the volume is constant in the simulation. The system will not interact with any surroundings implying a conserved total energy. 
 
-should include particle density not mass density! (?)
-
-
-\subsection{The Maxwell-Boltzmann distrubution (giving velocities)}
-The atoms are usually given velocities according to the Maxwell-Boltzmann distribution so that
+\subsection{Giving the particles initial velocities}
+The atoms are usually given velocities according to the Maxwell-Boltzmann distribution:
 \begin{align}
 	\label{eq:maxwell_boltzmann}
 	P(v_i)\dm{v_i} = \left(\frac{m}{2\pi k_B T}\right)^{1/2} \exp\left(-\frac{m v_i^2}{2k_B T}\right) \dm{v_i},
 \end{align}
-where $m$ is the mass of the atom, $k_B$ is Boltzmann's constant and $T$ is the temperature. We recognize this as a normal distribution with zero mean and standard deviation $\sigma = \sqrt{k_B T/m}$. This is a good choice because bla bla bla bla (?) 
+where $m$ is the mass of the atom, $k_B$ is Boltzmann's constant and $T$ is the temperature. We recognize this as a normal distribution with zero mean and standard deviation $\sigma = \sqrt{k_B T/m}$. 
 
+The Maxwell-Boltzmann distribution describes particle speeds of ideal gasses where the particles move freely inside a stationary container. An ideal gass is an simplification of real gasses where the particles is assumed to not interact with one another except for very brief collisions in which they exchange energy and momentum with each other or with their thermal environment. The system of particles is also assumed to have reached thermodynamic equilibrium\footnote{\url{https://en.wikipedia.org/wiki/Maxwell–Boltzmann\_distribution}}.
 
-But this will result in a nonzero net momentum in the system which we will remove. The momentum in a given direction for one atom is $p_{i} = mv_i$ where the mass is $m$ and $v_i$ is the velocity in direction $i$. The total momentum in one direction, assuming that all particles have the same mass, is given by:
+In real gases and in the Argon gass that we will study there are various effects such as van der Waals interactions. These effects imply that the gass does not fulfill the asumptions of an ideal gas. However the ideal gas is often a good approximation implying that the Maxwell speed distribution is also an good approximation. The distribution also depends on the temperature of the system and the mass of the particle which is beneficial in our case. We will therefore use the Maxwell-Boltzmann distribution to give initial velocities to the particles in the simulation. 
+
+Using the Maxwell-Boltzmann distribution to give initial velocities to the particles will result in a nonzero net momentum in the system. We will therefore remove this total momentum right after the initial velocities have been given. 
+
+The momentum in a given direction $i$ for one atom is $p_{i} = mv_i$ where the mass is $m$ and $v_i$ is the velocity in direction $i$. The total momentum in one direction, assuming that all particles have the same mass, is given by:
 \[
 p_{tot} = m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})
 \]
@@ -209,7 +213,7 @@ p_{rm} = \frac{p_{tot}}{n}
 \]
 so that $p_i'$ is the momentum for one particle after removing the total momentum:
 \[
-p_i' = p_i - p_{rm} 
+p_i' = p_i - p_{rm}.
 \]
 If we write this out
 \begin{align*}
@@ -217,7 +221,7 @@ mv_i' &= mv_i - \frac{m(v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n})}{n} \\
 \Rightarrow v_i' &= v_i - \frac{v_{i,1} + v_{i,2} + v_{i,3} + \dots + v_{i,n}}{n} \\
 &= v_i - \overline{v_i}
 \end{align*}
-We see that to remove the total momentum we only have to substract the average velocity from each of the particles velocity. 
+we see that to remove the total momentum one only have to substract the average velocity from each of the particles velocity. 
 
 \subsection{Periodic boundaryconditions (PBCs)} 
 To avoid problems with boundary effects we will apply periodic boundary conditions. This has a great analogy to 'old' video games such as Snake 2. If the snake head passes through one side of box, it re-appears on the opposite side with the same velocity. In the system of atoms this would mean that if an atom should leave the simulation box at one side it will enter on the oposite side with the same values for the physical parameters as it had before it left. This also implies that an attom at the edge of the box will interact with an atom at the opposite side of the box so that every atom have the same number of 'neighbours'. 
