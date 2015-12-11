@@ -1,20 +1,21 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}
 \contentsline {section}{\numberline {2}Theory}{3}{section.2}
-\contentsline {section}{\numberline {3}Numerical methods}{3}{section.3}
-\contentsline {subsection}{\numberline {3.1}Creating the lattice}{3}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}The Maxwell-Boltzmann distrubution (giving velocities)}{5}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Periodic boundaryconditions (PBCs)}{5}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Intergration methods}{6}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}The Lennard-Jones potential (interaction/forces)}{6}{subsection.3.5}
+\contentsline {subsection}{\numberline {2.1}Creating the lattice}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}The Maxwell-Boltzmann distrubution (giving velocities)}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Periodic boundaryconditions (PBCs)}{6}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Intergration methods}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}The Lennard-Jones potential (interaction/forces)}{7}{subsection.2.5}
 \contentsline {paragraph}{The minimum image convention}{8}{section*.4}
-\contentsline {subsection}{\numberline {3.6}Calculating physical properties of the system}{10}{subsection.3.6}
+\contentsline {subsection}{\numberline {2.6}Calculating physical properties of the system}{10}{subsection.2.6}
 \contentsline {paragraph}{The diffusion constant}{10}{section*.5}
-\contentsline {section}{\numberline {4}Results}{11}{section.4}
-\contentsline {subsection}{\numberline {4.1}Implementation and testing of the algorithm by using Ovito (code?) and choice of parameters}{11}{subsection.4.1}
+\contentsline {section}{\numberline {3}Program flow and folder structure}{11}{section.3}
+\contentsline {section}{\numberline {4}Numerical methods and approximations}{11}{section.4}
+\contentsline {section}{\numberline {5}Results}{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}Implementation and testing of the algorithm by using Ovito (code?) and choice of parameters}{11}{subsection.5.1}
 \contentsline {paragraph}{Initial positions}{11}{section*.7}
 \contentsline {paragraph}{Before forces}{11}{section*.9}
-\contentsline {subsection}{\numberline {4.2}Comparing the two integrators}{12}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Equilibium time? and conserved energy}{12}{subsection.4.3}
+\contentsline {subsection}{\numberline {5.2}Comparing the two integrators}{12}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Equilibium time? and conserved energy}{13}{subsection.5.3}
 \contentsline {paragraph}{The temperature ratio}{15}{section*.16}
-\contentsline {subsection}{\numberline {4.4}The mean square displacement and the diffusion constant}{15}{subsection.4.4}
-\contentsline {section}{\numberline {5}Conclusions and further perspectices/experiences}{18}{section.5}
+\contentsline {subsection}{\numberline {5.4}The mean square displacement and the diffusion constant}{17}{subsection.5.4}
+\contentsline {section}{\numberline {6}Conclusions and further perspectices/experiences}{19}{section.6}

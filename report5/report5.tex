@@ -102,28 +102,21 @@ When we have found a estimate for the critical temperature we will compare it to
 
 \section{Introduction}
 
-Molecular dynamics (MD) is a computer simulation method used to study atoms and molecule structure and movement. In a MD simulation the atoms or molecules are allowed to interact trough a force given by a potential for a given time. This makes it possible to study the systems development over time. 
+Molecular dynamics (MD) is a computer simulation method used to study atoms and molecule structure and movement. In a MD simulation the atoms or molecules are allowed to interact through a force given by a potential for a limited time. This makes it possible to study the system evolving in time. The applications of MD is many ranging from chemical physics, materials science and the modelling of biomolecules\footnote{\url{https://en.wikipedia.org/wiki/Molecular\_dynamics\#Areas\_of\_application\_and\_limitations}, 11.dec 12:00}.
 
-MD is a a type of N-body simulation since the simulation often consists of a large number of atoms or molecules. It is therefore possible to use MD to study stastistical properties of a large system consisting of N such atoms or molecules. For systems that obey the ergodic hypothesis the evolution of a single molecular dynamics simulation may be used to determine macroscopic thermodynamic properties of the system. This is because the time averages of an ergodic system correspond to microcanonical ensemble averages\footnote{\url{https://en.wikipedia.org/wiki/Molecular\_dynamics} 3.dec 11:25}.
+Molecular dynamics is often used to study stastistical properties of a system consisting of a large number of atoms or molecules and thus MD is a a type of N-body simulation. For systems that obey the ergodic hypothesis\footnote{\url{https://en.wikipedia.org/wiki/Ergodic\_hypothesis} 11.dec 11:30} the evolution of a single molecular dynamics simulation may be used to determine macroscopic thermodynamic properties of the system. This is because the time averages of an ergodic system correspond to microcanonical (NVE) ensemble averages\footnote{\url{https://en.wikipedia.org/wiki/Molecular\_dynamics} 3.dec 11:25}. In this paper we wil study one such NVE ensemple, a system with constant number of particles (N), constant volume (V) and constant total energy (E). 
 
-Often the main motivation to use Molecular dynamics is that it is not possible to determine properties of the system analytically because of the large number of particles. The main limitation for the numerical simulation is the computer recources available, but also cumulative errors in the numerical integration. The first is solved by applying periodic boundary conditions while the latter is solved by proper selection of algorithms and parameters. In this paper we will have a look at two numerical integration methods; the Euler-Cromer method and the Velocity Verlet integrator. 
+Often the main motivation to use Molecular dynamics is that it is not possible to determine the properties of the system analytically, mainly because of the large number of particles. Therefore one have to apply numerical methods to be able to solve the problem. One of the main limitation for the numerical simulation is the computer recources available limiting the number of particles and the system size. The latter problem can be solved by applying periodic boundary conditions so that it is possible to simulate a system with infinite size. The first problem might be solved with a very efficient code and good approximations. Another problem with the numerical simulation is cumulative errors in the numerical integration when evolving the system in time, often drift in the total energy. This error can be avoided by proper selection of parameters and integration algorithms. In this paper we will have a look at two numerical integration methods; the Euler-Cromer method and the Velocity Verlet integrator. We will also use a set of units that we will refer to as 'MD units' to aviod calculations with small exponents. 
 
+In this project we will study the properties of a large system consisting of Argon atoms placed in a cubic lattice and try to determine the melting temperature of the solid. We are interested in the statistical properties of the system such as the mean square displacement and the diffusion constant. We will also have a quick look at the energy development in time. The individual motion of each particle is not of any physical interest, but we will look at the simulation with an visualization program to gain physical understanding of the system and to verify the implementation of the models and algorithms. 
 
-In this paper we will study the properties of a large system consisting of Argon atoms. And compare with experimental data(?). We will have a constant number of particles, a constant volume and a more or less constant engergy (depending on the integrator). We are more interested in the statistical properties of the system than in the individual motion of each of the particles. We want to sample microstates from the microcanonical ensemble (NVE).
-(?se over avsnittet over?)
+This report is organizen in bla bla...sections (??)
 
-
-The applications of MD is many ranging from chemical physics, materials science and the modelling of biomolecules.
-What areas of physics can it be used in? Chemistry and biology?(fra oppg)
-see 'Areas of application and limitations' at \url{https://en.wikipedia.org/wiki/Molecular\_dynamics} and google
-
-
+%And compare with experimental data(?).  
 
 
 \section{Theory}
 
-
-\section{Numerical methods}
 
 
 \subsection{Creating the lattice} \label{sec: creating_lattice_theory}
@@ -406,6 +399,12 @@ write something about ovito introduction(?)
 %\centering
 \rule{0.3\textwidth}{0.4pt}\par % Short horizontal line under the title  
 
+\section{Program flow and folder structure}
+
+
+
+\section{Numerical methods and approximations}
+
 
 \section{Results} %move this to after implementation/testing+
 
@@ -550,7 +549,7 @@ or observations in ovito here?
 units and experimental data?
 
 \section{Conclusions and further perspectices/experiences}
-2.3 in corrrect units!
+2.3 in corrrect units! With pressure bla bla bla
 
 \centering
 \rule{0.3\textwidth}{0.4pt}\par % Short horizontal line under the title  

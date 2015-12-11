@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  10 DEC 2015 23:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.8.22)  11 DEC 2015 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -469,141 +469,149 @@ rt5.toc)
 \openout4 = `report5.toc'.
 
 
-[2] [3]
-Overfull \hbox (2.1308pt too wide) in paragraph at lines 147--180
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
+[][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Molecular _ d
+ynamics # Areas _ of _ application _ and _ limitations$[]\T1/cmr/m/n/9 ,
+ []
+
+[3]
+Overfull \hbox (2.1308pt too wide) in paragraph at lines 140--173
 []$[]$ $[]$ $[]$ $[]$
  []
 
-<plots/crystal.jpg, id=111, 963.6pt x 963.6pt>
+<plots/crystal.jpg, id=125, 963.6pt x 963.6pt>
 File: plots/crystal.jpg Graphic file (type jpg)
  <use plots/crystal.jpg>
-Package pdftex.def Info: plots/crystal.jpg used on input line 183.
+Package pdftex.def Info: plots/crystal.jpg used on input line 176.
 (pdftex.def)             Requested size: 132.79747pt x 132.7858pt.
  [4 <./plots/crystal.jpg>] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 234--234
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Periodic _ bo
 undary _ conditions # Practical _ implementation :
  []
 
 
-Overfull \hbox (23.62245pt too wide) in paragraph at lines 259--261
+Overfull \hbox (23.62245pt too wide) in paragraph at lines 252--254
 []\T1/cmr/m/n/10.95 (discussed in the lec-ture notes.?) see []$\T1/cmtt/m/n/10.
 95 https : / / en . wikipedia . org / wiki / Verlet _ integration #
  []
 
 [6]
 
-LaTeX Warning: Reference `sec:units' on page 7 undefined on input line 280.
+LaTeX Warning: Reference `sec:units' on page 7 undefined on input line 273.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 299.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 292.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 299.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 292.
  [7]
-<plots/force_potential.png, id=166, 578.16pt x 433.62pt>
+<plots/force_potential.png, id=185, 578.16pt x 433.62pt>
 File: plots/force_potential.png Graphic file (type png)
 
 <use plots/force_potential.png>
-Package pdftex.def Info: plots/force_potential.png used on input line 332.
+Package pdftex.def Info: plots/force_potential.png used on input line 325.
 (pdftex.def)             Requested size: 354.12434pt x 265.59291pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--341
+Underfull \hbox (badness 10000) in paragraph at lines 334--334
 [][][][]$\T1/cmtt/m/n/9 https : / / en . wikipedia . org / wiki / Periodic _ bo
 undary _ conditions # Practical _ implementation :
  []
 
+[8] [9 <./plots/force_potential.png>]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 347.
-[8] [9 <./plots/force_potential.png>] [10]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 340.
+ [10]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 415.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 414.
 
-<plots/OneUnitCell.png, id=210, 653.44125pt x 654.445pt>
+<plots/OneUnitCell.png, id=229, 653.44125pt x 654.445pt>
 File: plots/OneUnitCell.png Graphic file (type png)
 
 <use plots/OneUnitCell.png>
-Package pdftex.def Info: plots/OneUnitCell.png used on input line 421.
+Package pdftex.def Info: plots/OneUnitCell.png used on input line 420.
 (pdftex.def)             Requested size: 127.11642pt x 127.3181pt.
 
-<plots/10UnitCells.png, id=211, 669.50125pt x 584.1825pt>
+<plots/10UnitCells.png, id=230, 669.50125pt x 584.1825pt>
 File: plots/10UnitCells.png Graphic file (type png)
 
 <use plots/10UnitCells.png>
-Package pdftex.def Info: plots/10UnitCells.png used on input line 422.
+Package pdftex.def Info: plots/10UnitCells.png used on input line 421.
 (pdftex.def)             Requested size: 145.9116pt x 127.3181pt.
- [11 <./plots/OneUnitCell.png> <./plots/10UnitCells.png>] <plots/dt_NrOfCells5_
-T2500_b5260.png, id=225, 578.16pt x 433.62pt>
+ [11]
+<plots/dt_NrOfCells5_T2500_b5260.png, id=243, 578.16pt x 433.62pt>
 File: plots/dt_NrOfCells5_T2500_b5260.png Graphic file (type png)
 
 <use plots/dt_NrOfCells5_T2500_b5260.png>
 Package pdftex.def Info: plots/dt_NrOfCells5_T2500_b5260.png used on input line
- 444.
+ 443.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/exeTime_NrOfCells_T2500_b5260.png, id=227, 578.16pt x 433.62pt>
+<plots/exeTime_NrOfCells_T2500_b5260.png, id=245, 578.16pt x 433.62pt>
 File: plots/exeTime_NrOfCells_T2500_b5260.png Graphic file (type png)
 
 <use plots/exeTime_NrOfCells_T2500_b5260.png>
 Package pdftex.def Info: plots/exeTime_NrOfCells_T2500_b5260.png used on input 
-line 453.
+line 452.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [12] [13 <./plots/dt_NrOfCells5_T2500_b5260.png> <./plots/exeTime_NrOfCells_T2
-500_b5260.png>]
-<plots/Energy_time_T25.png, id=246, 578.16pt x 433.62pt>
+ [12 <./plots/OneUnitCell.png> <./plots/10UnitCells.png>]
+<plots/Energy_time_T25.png, id=258, 578.16pt x 433.62pt>
 File: plots/Energy_time_T25.png Graphic file (type png)
 
 <use plots/Energy_time_T25.png>
-Package pdftex.def Info: plots/Energy_time_T25.png used on input line 471.
+Package pdftex.def Info: plots/Energy_time_T25.png used on input line 470.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
-
-<plots/Energy_time_T835.png, id=251, 578.16pt x 433.62pt>
+ [13 <./plots/dt_NrOfCells5_T2500_b5260.png>]
+[14 <./plots/exeTime_NrOfCells_T2500_b5260.png> <./plots/Energy_time_T25.png>]
+<plots/Energy_time_T835.png, id=277, 578.16pt x 433.62pt>
 File: plots/Energy_time_T835.png Graphic file (type png)
 
 <use plots/Energy_time_T835.png>
-Package pdftex.def Info: plots/Energy_time_T835.png used on input line 480.
-(pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- [14 <./plots/Energy_time_T25.png>]
-<plots/T_time_T25.png, id=264, 578.16pt x 433.62pt>
-File: plots/T_time_T25.png Graphic file (type png)
- <use plots/T_time_T25.png>
-Package pdftex.def Info: plots/T_time_T25.png used on input line 493.
+Package pdftex.def Info: plots/Energy_time_T835.png used on input line 479.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
 
-<plots/T_time_T835.png, id=265, 578.16pt x 433.62pt>
+<plots/T_time_T25.png, id=283, 578.16pt x 433.62pt>
+File: plots/T_time_T25.png Graphic file (type png)
+ <use plots/T_time_T25.png>
+Package pdftex.def Info: plots/T_time_T25.png used on input line 492.
+(pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
+
+<plots/T_time_T835.png, id=284, 578.16pt x 433.62pt>
 File: plots/T_time_T835.png Graphic file (type png)
 
 <use plots/T_time_T835.png>
-Package pdftex.def Info: plots/T_time_T835.png used on input line 500.
-(pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- <plots/TTi_time.png, id=267, 578.16pt x 433.62pt>
-File: plots/TTi_time.png Graphic file (type png)
-
-<use plots/TTi_time.png>
-Package pdftex.def Info: plots/TTi_time.png used on input line 518.
-(pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
- <plots/D_r2_time.png, id=268, 578.16pt x 433.62pt>
-File: plots/D_r2_time.png Graphic file (type png)
-
-<use plots/D_r2_time.png>
-Package pdftex.def Info: plots/D_r2_time.png used on input line 527.
+Package pdftex.def Info: plots/T_time_T835.png used on input line 499.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
  [15 <./plots/Energy_time_T835.png>] [16 <./plots/T_time_T25.png> <./plots/T_ti
-me_T835.png>] [17 <./plots/TTi_time.png> <./plots/D_r2_time.png>] <plots/D_T.pn
-g, id=293, 578.16pt x 433.62pt>
+me_T835.png>]
+<plots/TTi_time.png, id=302, 578.16pt x 433.62pt>
+File: plots/TTi_time.png Graphic file (type png)
+ <use plots/TTi_time.png>
+Package pdftex.def Info: plots/TTi_time.png used on input line 517.
+(pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
+
+<plots/D_r2_time.png, id=303, 578.16pt x 433.62pt>
+File: plots/D_r2_time.png Graphic file (type png)
+ <use plots/D_r2_time.png>
+Package pdftex.def Info: plots/D_r2_time.png used on input line 526.
+(pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
+
+<plots/D_T.png, id=306, 578.16pt x 433.62pt>
 File: plots/D_T.png Graphic file (type png)
  <use plots/D_T.png>
-Package pdftex.def Info: plots/D_T.png used on input line 538.
+Package pdftex.def Info: plots/D_T.png used on input line 537.
 (pdftex.def)             Requested size: 265.59494pt x 199.19633pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 558.
+ [17 <./plots/TTi_time.png>] [18 <./plots/D_r2_time.png> <./plots/D_T.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 557.
+ [19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 557.
 
-[18 <./plots/D_T.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 558.
- (./report5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 558.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 558.
+(./report5.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 557.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 557.
 
 
 Package rerunfilecheck Warning: File `report5.out' has changed.
@@ -611,52 +619,73 @@ Package rerunfilecheck Warning: File `report5.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `report5.out':
-(rerunfilecheck)             Before: 3097362E808BBDF0C44826543FDEE1E7;1118
-(rerunfilecheck)             After:  0E15EB0E4B7566C61CB87C70CD7765AA;1202.
+(rerunfilecheck)             Before: A43D159246FE4DAA0D86A7189E9264DA;1290
+(rerunfilecheck)             After:  3664D74541323D90342298AB3A19C5D8;1290.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 558.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 557.
  ) 
 Here is how much of TeX's memory you used:
- 9746 strings out of 493117
- 143594 string characters out of 6135433
- 278455 words of memory out of 5000000
- 12947 multiletter control sequences out of 15000+600000
+ 9758 strings out of 493117
+ 143738 string characters out of 6135433
+ 276455 words of memory out of 5000000
+ 12949 multiletter control sequences out of 15000+600000
  30142 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,12n,58p,996b,1342s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
-ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/
-texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2
-014/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/201
-4/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb></usr/local/texlive/2014/
-texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/texlive/2014/te
-xmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2014/texm
-f-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/texmf-
-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2014/texmf-di
-st/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2014/texmf-dist
-/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2014/texmf-dist/f
-onts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2014/texmf-dist/fonts
-/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
-ype1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
-e1/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
-/public/cm-super/sftt1095.pfb>
-Output written on report5.pdf (18 pages, 1276994 bytes).
+ 36i,12n,58p,1142b,2058s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{subsection.3.6} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.5} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.4} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.3.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
+/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
+live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texli
+ve/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2
+014/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/201
+4/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb></usr/local/texlive/2014/te
+xmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/texlive/2014/texm
+f-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/texmf-di
+st/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2014/texmf-dist
+/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2014/texmf-dist/f
+onts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2014/texmf-dist/fon
+ts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2014/texmf-dist/fonts
+/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2014/texmf-dist/fonts/t
+ype1/public/cm-super/sfti1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
+e1/public/cm-super/sftt0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
+/public/cm-super/sftt0900.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/p
+ublic/cm-super/sftt1095.pfb>
+Output written on report5.pdf (19 pages, 1285153 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 330 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 178 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 355 compressed objects within 4 object streams
+ 94 named destinations out of 1000 (max. 500000)
+ 194 words of extra memory for PDF output out of 10000 (max. 10000000)
 
