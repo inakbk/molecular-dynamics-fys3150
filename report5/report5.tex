@@ -53,7 +53,7 @@
 \vspace{0.5\drop} % Whitespace between the top lines and title
 \centering % Center all text
 \textcolor{black}{ % Red font color
-{\Huge Atomic modeling of argon}\\[0.75\baselineskip] % Title line 1
+{\Huge Using Molecular dynamics to calculate the melting temperature of a face centered cubic lattice crystal consisting of Argon atoms}\\[0.75\baselineskip] % Title line 1
 %{\Large Tema:}\\[0.75\baselineskip] % Title line 2
 %{\Huge Lydmåling og hørselstesting} % Title line 3
 } 
@@ -72,11 +72,11 @@
 \vspace{0.25\drop} % Whitespace between the thin horizontal line and the author name
 
 \begin{abstract}
-Goal: Find the melting temperature of the solid.
+The aim of this project is to study Argon atoms in a face centered lattice crystal by developing a fully working Molecular dynamics code with the final goal to find the melting temperature of the solid. 
 
-The aim of this project is to numerically find the critical temperature for the two dimentional Ising model by using the metropolis algorithm. We will first test the implementation of the algorithm carefully, first by comparing with theoretical values calculated for a small system. Then we will see if the algorithm behaves as expected according to our physical intuition for a larger system.
+We have started working from a skeleton code consisting of a network of classes and subclassen and implemented the remaining functions needed to calculate the statistical properties of the system. We have tested the implementation of the code by looking at the simulation in a visualization program and seen if the simulation behaved as expected according to our physical intuition. We have also compared two numerical integration methods and studyed the tecnical aspects and approximations of the numerical simulation.
 
-When we have found a estimate for the critical temperature we will compare it to Lars Onsagers analytical result.
+Finally we found the melting temperature to be at $T = 275$ K with the lattice constant $b= 5.26\angstrom$, a system with high particle density and pressure. 
 
 \end{abstract}
 \vspace*{0.25\drop} % Whitespace under the publisher text
@@ -342,6 +342,7 @@ there is also corresponding folders and files with header files and python scrip
 
 \subsection{Program flow}
 The execution flow from \texttt{main.cpp} can briefly be described as follows:
+\bigskip
 
 \begin{tabular}{cc}
 \begin{minipage}{0.45\textwidth}
@@ -371,7 +372,7 @@ The execution flow from \texttt{main.cpp} can briefly be described as follows:
 
 \end{tabular}
 
-\medskip
+\bigskip
 The figure roughly illustrates the program flow, what the different functions (black) do and which classes (red) they belong to. We can see that the first step is to create the FFC lattice so the positions and initial velocities are set for all the atoms via the \texttt{atom} class. The atoms are stored in the array \texttt{m\_atoms}, the system size is stored and the initial positions are stored in a separete variable \texttt{initialPosition} in the atom class to calculate the mean square displacement later.
 
 The \texttt{step} function moves the particles to the next position by using the \texttt{integrator} class. Most of the time is spent in the \texttt{calculateForces} function in the \texttt{lennardJones} class that calculates and set the forces in the \texttt{atom} class. Then the \texttt{integrator} class moves the particles to a new position and the \texttt{applyPeriodicBoundaryConditions} checks if the particles have left the simulation box. If so they are moved to the other side of the box and the initial position is moved to be able to calculate the mean square displacement properly (as if there where no PBCs).When the particles have been moved one step the \texttt{statisticsSampler} class sample the statistical properties introduced in section \ref{sec: statistics_theory} and at last the statistics is saved to a file to plot the data with a python script. 
@@ -563,9 +564,9 @@ When looking in \texttt{Ovito} one can try to see if the mean square displacemen
 \item $T=2.5$: The atoms moves a lot, but one can see vaguely a 'left over' from the crystal structure. The atoms seems to be contained inside an area, and a few atoms 'escape' from the structure giving defects in the crystal. It appeares as if the solid has melted. 
 \end{itemize}
 
-\newpage
+%\newpage
 \section{Conclusions and further perspectives}
-In figure \ref{fig: D_T} we clearly see discontinuously points in both the diffusion constant and in the temperature ratio. We see that the diffusion constant is zero for low themperatures, but starts to grow at $T = 275$ K. The melting temperature of the Argon crystal must therefore be at $T = 275$K. This is also consistent with the observations in \textbf{Ovito}. 
+In figure \ref{fig: D_T} we clearly see discontinuously points in both the diffusion constant and in the temperature ratio. We see that the diffusion constant is zero for low themperatures, but starts to grow at $T = 275$ K. The melting temperature of the Argon crystal must therefore be at $T = 275$ K. This is also consistent with the observations in \texttt{Ovito} and it also seems reasonable that there should be a discontinuity for one parameter at the time of a phase transition as the one seen in figure \ref{fig: D_T}. 
 
 The next step would have been to compare this melting temperature with experimental data for Argon. Most likely one would have to adjust the density in the simulation to match the density in the experimental setup. This is easily done by adjusting the lattice constant $b$ because the pressure is proportional to the inverse of the lattice constant cubed. If one where to run the simulations again for a different lattice constant it would have been interesting to run the simulation with a larger number of unit cells to see if this would affect the uncertainties, or noise in the results. 
 
